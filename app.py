@@ -15,6 +15,11 @@ import streamlit as st
 
 ART = "artifacts"
 HORIZONS = [1, 2, 3, 4, 5]
+NBA_TEAMS = {
+    "ATL", "BKN", "BOS", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW",
+    "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK",
+    "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS",
+}
 
 st.set_page_config(page_title="NBA EPM Projections", layout="wide")
 
@@ -81,15 +86,23 @@ with tab_player:
 
 # ---------------------------------------------------------------- Leaderboards
 with tab_board:
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     h = col1.selectbox("Years ahead", HORIZONS, index=2, key="lb_h")
-    max_age = col2.slider("Max age", 18, 40, 40)
+    teams = ["All teams"] + sorted(
+        t for t in current["team"].dropna().unique() if t in NBA_TEAMS)
+    team = col2.selectbox("Team", teams)
+    search = col3.text_input("Search player")
 
     pcol = f"pred_epm_{h}y"
-    board = current[current["age"] <= max_age].copy()
-    board = board[["player_name", "age", "min_pg", "epm_now", pcol]].dropna(subset=[pcol])
-    board = board.sort_values(pcol, ascending=False).head(30)
-    board.columns = ["Player", "Age", "Min/G", "EPM now", f"Projected {h}y"]
+    board = current.copy()
+    if team != "All teams":
+        board = board[board["team"] == team]
+    if search:
+        board = board[board["player_name"].str.contains(search, case=False, na=False)]
+
+    board = board[["player_name", "team", "age", "min_pg", "epm_now", pcol]].dropna(subset=[pcol])
+    board = board.sort_values(pcol, ascending=False).head(50)
+    board.columns = ["Player", "Team", "Age", "Min/G", "EPM now", f"Projected {h}y"]
     st.dataframe(
         board.style.format({"Age": "{:.0f}", "Min/G": "{:.1f}",
                             "EPM now": "{:.2f}", f"Projected {h}y": "{:.2f}"}),
