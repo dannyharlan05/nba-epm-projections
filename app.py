@@ -100,12 +100,12 @@ with tab_board:
     if search:
         board = board[board["player_name"].str.contains(search, case=False, na=False)]
 
-    board = board[["player_name", "team", "age", "min_pg", "epm_now", pcol]].dropna(subset=[pcol])
+    board = board[["player_name", "team", "age", "epm_now", pcol]].dropna(subset=[pcol])
     board = board.sort_values(pcol, ascending=False).head(50)
-    board.columns = ["Player", "Team", "Age", "Min/G", "EPM now", f"Projected {h}y"]
+    board.columns = ["Player", "Team", "Age", "EPM now", f"Projected {h}y"]
     st.dataframe(
-        board.style.format({"Age": "{:.0f}", "Min/G": "{:.1f}",
-                            "EPM now": "{:.2f}", f"Projected {h}y": "{:.2f}"}),
+        board.style.format({"Age": "{:.0f}", "EPM now": "{:.2f}",
+                            f"Projected {h}y": "{:.2f}"}),
         hide_index=True, use_container_width=True, height=600)
 
 # ---------------------------------------------------------------- Methodology
@@ -128,12 +128,6 @@ seasons into the future.
   which would bias the model toward survivors. Players whose careers ended get a
   replacement-level target so decline is modeled rather than ignored.
 
-### Cross-validation (out-of-fold MAE)
-""")
-    cv = pd.DataFrame(meta["cv_mae"])
-    st.dataframe(cv.style.format({"train_mae": "{:.3f}", "cv_mae": "{:.3f}", "gap": "{:+.3f}"}),
-                 hide_index=True)
-    st.markdown("""
 ### Limitations
 
 - Gradient-boosted trees cannot extrapolate beyond the range seen in training, so an
