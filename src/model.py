@@ -50,6 +50,21 @@ def params_for(horizon: int) -> dict:
     return {**DEFAULT_PARAMS, **PARAMS_BY_HORIZON.get(horizon, {})}
 
 
+# Recency weighting: recent seasons count more, so the aging curve reflects the modern
+# game (longer careers) rather than being dragged down by early-2000s washouts. Weights
+# are anchored to the max season of whatever set they're fit on, so a CV fold never
+# references anything outside its own training rows (leak-free by construction).
+# Smaller HALF_LIFE = more aggressive recency bias. None = off (equal weights).
+HALF_LIFE = 6
+
+
+def recency_weights(seasons) -> np.ndarray:
+    seasons = np.asarray(seasons, dtype=float)
+    if HALF_LIFE is None:
+        return np.ones(len(seasons))
+    return 0.5 ** ((seasons.max() - seasons) / HALF_LIFE)
+
+
 def temporal_splits(seasons: pd.Series, n_test_seasons: int = 2):
     """CV folds where test seasons are always strictly after all training seasons."""
     uniq = sorted(seasons.unique())
@@ -72,11 +87,12 @@ def cv_report(df: pd.DataFrame, features=EPM_FEATURES, target_prefix="target_epm
         tgt = f"{target_prefix}_{h}y"
         dfh = df.dropna(subset=[tgt])
         X, y = dfh[features].values, dfh[tgt].values
+        seasons = dfh["season"].values
         p = params_for(h)
         tr_maes, te_maes = [], []
         for tr, te in temporal_splits(dfh["season"]):
             m = xgb.XGBRegressor(**p)
-            m.fit(X[tr], y[tr])
+            m.fit(X[tr], y[tr], sample_weight=recency_weights(seasons[tr]))
             tr_maes.append(mean_absolute_error(y[tr], m.predict(X[tr])))
             te_maes.append(mean_absolute_error(y[te], m.predict(X[te])))
         rows.append({"horizon": h, "train_mae": np.mean(tr_maes),
@@ -96,7 +112,8 @@ def train_models(df: pd.DataFrame, features=EPM_FEATURES, target_prefix="target_
         if quantile_alpha is not None:
             p = {**p, "objective": "reg:quantileerror", "quantile_alpha": quantile_alpha}
         m = xgb.XGBRegressor(**p)
-        m.fit(dfh[features].values, dfh[tgt].values)
+        m.fit(dfh[features].values, dfh[tgt].values,
+              sample_weight=recency_weights(dfh["season"].values))
         models[h] = m
     return models
 
@@ -111,6 +128,7 @@ def add_oof_predictions(df: pd.DataFrame, features=EPM_FEATURES,
         tgt = f"{target_prefix}_{h}y"
         dfh = df.dropna(subset=[tgt]).copy()
         X, y = dfh[features].values, dfh[tgt].values
+        seasons = dfh["season"].values
         p = params_for(h)
         if quantile_alpha is not None:
             p = {**p, "objective": "reg:quantileerror", "quantile_alpha": quantile_alpha}
@@ -119,7 +137,7 @@ def add_oof_predictions(df: pd.DataFrame, features=EPM_FEATURES,
         in_oof = np.zeros(len(dfh), dtype=bool)
         m = xgb.XGBRegressor(**p)
         for tr, te in temporal_splits(dfh["season"]):
-            m.fit(X[tr], y[tr])
+            m.fit(X[tr], y[tr], sample_weight=recency_weights(seasons[tr]))
             oof[te] = m.predict(X[te])
             in_oof[te] = True
 
@@ -127,7 +145,7 @@ def add_oof_predictions(df: pd.DataFrame, features=EPM_FEATURES,
         df[col] = np.nan
         df.loc[dfh.index[in_oof], col] = oof[in_oof]
 
-        m.fit(X, y)  # final model for current season (genuinely unseen)
+        m.fit(X, y, sample_weight=recency_weights(seasons))  # final model, current season
         no_t = df[tgt].isna()
         df.loc[no_t, col] = m.predict(df.loc[no_t, features].values)
     return df
