@@ -127,8 +127,6 @@ seasons into the future.
 - **Survivorship handling:** players who leave the league are not silently dropped,
   which would bias the model toward survivors. Players whose careers ended get a
   replacement-level target so decline is modeled rather than ignored.
-- **Clipped interactions:** minutes-times-impact features clip impact at zero, so a
-  high-minute player with slightly negative EPM is not treated like a low-minute one.
 
 ### Cross-validation (out-of-fold MAE)
 """)
@@ -141,5 +139,5 @@ seasons into the future.
 - Gradient-boosted trees cannot extrapolate beyond the range seen in training, so an
   unprecedented young season is pulled toward historical precedent and the projection
   will read conservative for true outliers.
-- EPM inputs begin in the 2010s, which limits historical coverage.
+- EPM inputs begin in the early 2000s, so seasons before then are not covered.
 """)

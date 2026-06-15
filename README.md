@@ -12,7 +12,6 @@ project is built to avoid those traps:
 |---|---|---|
 | Leak-free temporal CV | Each fold trains only on seasons before the test seasons | The reported error reflects real forward forecasting, not an inflated in-sample number |
 | Survivorship correction | Players who leave the league get a replacement-level target instead of being dropped | Without it, the model over-projects aging veterans, since their bad seasons disappear into retirement |
-| Clipped impact interactions | Minutes-times-impact terms clip impact at 0 | Rewards good high-minute players without penalizing promising, slightly-negative young ones |
 
 ---
 
@@ -69,7 +68,7 @@ in short, refresh the inputs and re-run `python build_artifacts.py`.
 
 **Features.** Current and lagged EPM (with slope and deltas), DARKO DPM as a second
 impact signal, observed EPM and its lags, per-36 box rates, draft position, team
-context, and clipped minutes-times-impact interactions. A monotonic constraint keeps
+context, and minutes-times-impact interactions. A monotonic constraint keeps
 more current EPM from ever lowering a projection, all else equal.
 
 **Validation.** `temporal_splits` builds expanding-window folds where the test seasons
@@ -83,7 +82,7 @@ in `src/model.py`) and flow to CV and prediction alike.
 - Gradient-boosted trees cannot extrapolate beyond the training target range, so an
   unprecedented season (for example a 20-year-old at 7+ EPM) is regressed toward
   precedent and the projection reads conservative for true outliers.
-- EPM inputs only go back to the 2010s, which limits historical coverage.
+- EPM inputs begin in the early 2000s, so seasons before then are not covered.
 
 ## Tech
 
