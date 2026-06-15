@@ -26,15 +26,26 @@ def build_base_dataset(darko: pd.DataFrame, draft: pd.DataFrame,
     logs["FG3_PCT"] = logs["FG3M"] / logs["FG3A"].replace(0, np.nan)
     logs["TS_PCT"] = logs["PTS"] / (2 * (logs["FGA"] + 0.44 * logs["FTA"])).replace(0, np.nan)
 
+    # box-score rates averaged over ALL games (regular season + playoffs)
     season_stats = logs.groupby(["PLAYER_ID", "SEASON_YEAR"]).agg(
-        games=("MIN", "count"), min_pg=("MIN", "mean"),
+        min_pg=("MIN", "mean"),
         pts_36=("PTS_36", "mean"), ast_36=("AST_36", "mean"),
         oreb_36=("OREB_36", "mean"), dreb_36=("DREB_36", "mean"),
         stl_36=("STL_36", "mean"), blk_36=("BLK_36", "mean"),
         tov_36=("TOV_36", "mean"), fg3a_36=("FG3A_36", "mean"),
         fta_36=("FTA_36", "mean"), ft_pct=("FT_PCT", "mean"),
         fg3_pct=("FG3_PCT", "mean"), ts_pct=("TS_PCT", "mean"),
-    ).reset_index().rename(columns={"PLAYER_ID": "nba_id", "SEASON_YEAR": "season"})
+    ).reset_index()
+
+    # games = REGULAR-SEASON count only (GAME_ID 3rd digit == '2'), so it's a true
+    # 0-82 durability measure; the rate stats above still include playoffs.
+    _gtype = logs["GAME_ID"].astype(str).str.zfill(10).str[2]
+    _reg = (logs[_gtype == "2"].groupby(["PLAYER_ID", "SEASON_YEAR"])
+            .size().reset_index(name="games"))
+    season_stats = season_stats.merge(_reg, on=["PLAYER_ID", "SEASON_YEAR"], how="left")
+    season_stats["games"] = season_stats["games"].fillna(0)
+
+    season_stats = season_stats.rename(columns={"PLAYER_ID": "nba_id", "SEASON_YEAR": "season"})
     season_stats["nba_id"] = season_stats["nba_id"].astype(int)
     season_stats["season"] = season_stats["season"].astype(str).str[-2:].astype(int) + 2000
 
@@ -199,8 +210,15 @@ def add_availability_features(df: pd.DataFrame) -> pd.DataFrame:
     """Availability/role context. Interactions clip impact at 0 so they only ever
     *reward* good-and-played-a-lot, never penalize negative high-minute players."""
     df = df.copy()
-    df["games_played_pct"] = df["games"] / 82
-    df["total_minutes"] = df["games"] * df["min_pg"]
+    # COVID-shortened seasons were not 82 games; boost their games to an 82-game
+    # equivalent so availability features are comparable across seasons (a healthy
+    # 2021 player reads as fully available, an injured one stays proportionally low).
+    SEASON_GAMES = {2020: 73, 2021: 72}
+    season_len = df["season"].map(SEASON_GAMES).fillna(82)
+    games_82 = df["games"] * (82 / season_len)
+
+    df["games_played_pct"] = games_82 / 82
+    df["total_minutes"] = games_82 * df["min_pg"]
     df["minutes_x_games"] = df["min_pg"] * df["games_played_pct"]
 
     df["epm_x_games"] = df["epm_now"].clip(lower=0) * df["games_played_pct"]
@@ -210,12 +228,13 @@ def add_availability_features(df: pd.DataFrame) -> pd.DataFrame:
     df["epm_actual_x_games"] = df["epm_actual_now"].clip(lower=0) * df["games_played_pct"]
     df["epm_actual_x_min_pg"] = df["epm_actual_now"].clip(lower=0) * df["min_pg"]
 
-    df["low_games_high_minutes"] = ((df["games"] < 50) & (df["min_pg"] >= 24)).astype(int)
-    df["low_games_low_minutes"] = ((df["games"] < 50) & (df["min_pg"] < 15)).astype(int)
-    df["low_games_good_epm"] = ((df["games"] < 50) & (df["epm_now"] > 0)).astype(int)
-    df["low_games_bad_epm"] = ((df["games"] < 50) & (df["epm_now"] < -1)).astype(int)
-    df["low_games_good_dpm"] = ((df["games"] < 50) & (df["dpm"] > 0)).astype(int)
-    df["low_games_bad_dpm"] = ((df["games"] < 50) & (df["dpm"] < -1)).astype(int)
+    # low-games flags use the boosted count so short seasons don't over-flag healthy players
+    df["low_games_high_minutes"] = ((games_82 < 50) & (df["min_pg"] >= 24)).astype(int)
+    df["low_games_low_minutes"] = ((games_82 < 50) & (df["min_pg"] < 15)).astype(int)
+    df["low_games_good_epm"] = ((games_82 < 50) & (df["epm_now"] > 0)).astype(int)
+    df["low_games_bad_epm"] = ((games_82 < 50) & (df["epm_now"] < -1)).astype(int)
+    df["low_games_good_dpm"] = ((games_82 < 50) & (df["dpm"] > 0)).astype(int)
+    df["low_games_bad_dpm"] = ((games_82 < 50) & (df["dpm"] < -1)).astype(int)
     return df
 
 
