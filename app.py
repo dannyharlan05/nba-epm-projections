@@ -56,10 +56,9 @@ with tab_player:
     proj = [row.get(f"pred_epm_{h}y") for h in HORIZONS]
     years = [CUR + h for h in HORIZONS]
 
-    c1, c2, c3 = st.columns(3)
+    c1, c2 = st.columns(2)
     c1.metric("Current EPM", f"{row['epm_now']:.2f}" if pd.notna(row["epm_now"]) else "n/a")
     c2.metric("Age", f"{row['age']:.0f}" if pd.notna(row["age"]) else "n/a")
-    c3.metric("Min/G", f"{row['min_pg']:.1f}" if pd.notna(row["min_pg"]) else "n/a")
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=years, y=proj, name="Projected EPM",
