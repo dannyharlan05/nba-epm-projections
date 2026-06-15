@@ -15,11 +15,6 @@ import streamlit as st
 
 ART = "artifacts"
 HORIZONS = [1, 2, 3, 4, 5]
-NBA_TEAMS = {
-    "ATL", "BKN", "BOS", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW",
-    "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK",
-    "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS",
-}
 
 st.set_page_config(page_title="NBA EPM Projections", layout="wide")
 
@@ -86,17 +81,12 @@ with tab_player:
 
 # ---------------------------------------------------------------- Leaderboards
 with tab_board:
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(2)
     h = col1.selectbox("Years ahead", HORIZONS, index=2, key="lb_h")
-    teams = ["All teams"] + sorted(
-        t for t in current["team"].dropna().unique() if t in NBA_TEAMS)
-    team = col2.selectbox("Team", teams)
-    search = col3.text_input("Search player")
+    search = col2.text_input("Search player")
 
     pcol = f"pred_epm_{h}y"
     board = current.copy()
-    if team != "All teams":
-        board = board[board["team"] == team]
     if search:
         board = board[board["player_name"].str.contains(search, case=False, na=False)]
 
