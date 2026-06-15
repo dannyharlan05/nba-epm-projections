@@ -1,0 +1,8 @@
+pandas>=2.0
+numpy>=1.24
+xgboost>=2.0
+scikit-learn>=1.3
+streamlit>=1.30
+plotly>=5.18
+pyarrow>=14.0
+nba_api>=1.4

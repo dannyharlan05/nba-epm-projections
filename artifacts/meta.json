@@ -1,0 +1,80 @@
+{
+  "features": [
+    "epm_now",
+    "epm_lag1",
+    "epm_lag2",
+    "age",
+    "years_in_league",
+    "min_pg",
+    "young_improver",
+    "total_minutes",
+    "minutes_x_games",
+    "epm_x_games",
+    "epm_x_min_pg",
+    "dpm_x_games",
+    "dpm_x_min_pg",
+    "epm_actual_x_games",
+    "epm_actual_x_min_pg",
+    "pts_36",
+    "ast_36",
+    "oreb_36",
+    "stl_36",
+    "blk_36",
+    "ft_pct",
+    "draft_score",
+    "team_winpct",
+    "dpm",
+    "epm_actual_now",
+    "epm_actual_lag1",
+    "epm_actual_lag2"
+  ],
+  "horizons": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "default_params": {
+    "n_estimators": 800,
+    "learning_rate": 0.02,
+    "max_depth": 4,
+    "subsample": 0.6,
+    "colsample_bytree": 0.8,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "cv_mae": [
+    {
+      "horizon": 1,
+      "train_mae": 0.6884245876276252,
+      "cv_mae": 0.8678567870105236,
+      "gap": 0.17943219938289845
+    },
+    {
+      "horizon": 2,
+      "train_mae": 0.7733995176311288,
+      "cv_mae": 1.018138997751086,
+      "gap": 0.24473948011995716
+    },
+    {
+      "horizon": 3,
+      "train_mae": 0.774123243520455,
+      "cv_mae": 1.060159488197291,
+      "gap": 0.28603624467683586
+    },
+    {
+      "horizon": 4,
+      "train_mae": 0.7648431001467207,
+      "cv_mae": 1.0523082648085464,
+      "gap": 0.2874651646618257
+    },
+    {
+      "horizon": 5,
+      "train_mae": 0.7228938950973934,
+      "cv_mae": 1.0352111386120089,
+      "gap": 0.31231724351461543
+    }
+  ],
+  "current_season": 2026
+}

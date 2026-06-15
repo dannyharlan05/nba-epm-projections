@@ -1,0 +1,9 @@
+# raw data is large and local-only; keep it out of git
+data/*.csv
+data/*.pkl
+# NOTE: artifacts/ IS committed so the deployed app can load it without the raw data
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
