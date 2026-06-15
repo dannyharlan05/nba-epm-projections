@@ -32,7 +32,7 @@ _MONO = tuple(1 if f in _MONO_UP else 0 for f in EPM_FEATURES)
 
 DEFAULT_PARAMS = dict(
     n_estimators=800, learning_rate=0.02, max_depth=4,
-    subsample=0.6, colsample_bytree=0.8,
+    subsample=0.6, colsample_bytree=1.0,
     random_state=42, n_jobs=-1, monotone_constraints=_MONO,
 )
 
