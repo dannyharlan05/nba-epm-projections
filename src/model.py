@@ -37,7 +37,13 @@ DEFAULT_PARAMS = dict(
 )
 
 # Per-horizon overrides; {} means "use DEFAULT_PARAMS".
-PARAMS_BY_HORIZON = {1: {}, 2: {}, 3: {}, 4: {}, 5: {}}
+PARAMS_BY_HORIZON = {
+    1: {"learning_rate": 0.01},
+    2: {},
+    3: {},
+    4: {"learning_rate": 0.03},
+    5: {"learning_rate": 0.03},
+}
 
 
 def params_for(horizon: int) -> dict:
