@@ -112,10 +112,12 @@ def add_team_context(df: pd.DataFrame, logs: pd.DataFrame) -> pd.DataFrame:
     logs = logs.copy()
     logs["season"] = logs["SEASON_YEAR"].astype(str).str[-2:].astype(int) + 2000
 
-    mins = logs.groupby(["PLAYER_ID", "season", "TEAM_ABBREVIATION"])["MIN"].sum().reset_index()
-    primary = mins.sort_values("MIN").groupby(["PLAYER_ID", "season"]).tail(1)
-    primary = primary[["PLAYER_ID", "season", "TEAM_ABBREVIATION"]].rename(
-        columns={"PLAYER_ID": "nba_id", "TEAM_ABBREVIATION": "team"})
+    # most recent team = team of the player's latest game that season (handles trades)
+    logs["GAME_DATE"] = pd.to_datetime(logs["GAME_DATE"])
+    primary = (logs.sort_values("GAME_DATE")
+               .groupby(["PLAYER_ID", "season"]).tail(1)
+               [["PLAYER_ID", "season", "TEAM_ABBREVIATION"]])
+    primary = primary.rename(columns={"PLAYER_ID": "nba_id", "TEAM_ABBREVIATION": "team"})
     primary["nba_id"] = primary["nba_id"].astype(int)
 
     tg = logs[["season", "TEAM_ABBREVIATION", "GAME_ID", "WL"]].drop_duplicates()

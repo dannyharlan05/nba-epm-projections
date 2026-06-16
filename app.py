@@ -90,12 +90,14 @@ with tab_board:
         board = board[board["player_name"].str.contains(search, case=False, na=False)]
 
     board = board[["player_name", "team", "age", "epm_now", pcol]].dropna(subset=[pcol])
-    board = board.sort_values(pcol, ascending=False).head(50)
-    board.columns = ["Player", "Team", "Age", "EPM now", f"Projected {h}y"]
+    board = board.sort_values(pcol, ascending=False).reset_index(drop=True)
+    board.insert(0, "Rank", board.index + 1)
+    board.columns = ["Rank", "Player", "Team", "Age", "EPM now", f"Projected {h}y"]
+    st.caption(f"{len(board)} players")
     st.dataframe(
         board.style.format({"Age": "{:.0f}", "EPM now": "{:.2f}",
                             f"Projected {h}y": "{:.2f}"}),
-        hide_index=True, use_container_width=True, height=600)
+        hide_index=True, use_container_width=True, height=700)
 
 # ---------------------------------------------------------------- Methodology
 with tab_method:
