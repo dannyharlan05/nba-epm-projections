@@ -265,4 +265,7 @@ def build_training_table(darko, draft, logs, epm, actual, draft_scores) -> pd.Da
     df = apply_survivorship(df)
     df = add_availability_features(df)
     df = add_young_improver(df)
+    # Pin row order so subsample<1 draws the same rows here and in the notebook
+    # (otherwise per-player predictions drift even when MAE matches).
+    df = df.sort_values(["nba_id", "season"]).reset_index(drop=True)
     return df
