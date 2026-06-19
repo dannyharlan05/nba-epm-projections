@@ -2,6 +2,24 @@
 
 Forecasting NBA player impact (Estimated Plus-Minus) one to five seasons into the future.
 
+**[▶ Live demo](https://YOUR-APP.streamlit.app)** · interactive player projections, leaderboards, and methodology.
+<!-- replace the URL above with your deployed Streamlit Community Cloud link -->
+
+## Results
+
+Out-of-fold MAE from leak-free temporal cross-validation (~12,600 player-seasons, 2001–2026):
+
+| Horizon | OOF MAE (EPM) |
+|---|---|
+| 1 year | 0.86 |
+| 2 years | 1.02 |
+| 3 years | 1.06 |
+| 4 years | 1.04 |
+| 5 years | 1.04 |
+
+For reference, single-season EPM roughly spans −6 to +8, and ~95% of rotation players
+fall within about ±3, so a sub-1.1 MAE several years out is a meaningful signal.
+
 ## Why this project
 
 A lot of amateur sports models leak future information into training, score themselves
