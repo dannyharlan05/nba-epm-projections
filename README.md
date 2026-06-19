@@ -2,8 +2,7 @@
 
 Forecasting NBA player impact (Estimated Plus-Minus) one to five seasons into the future.
 
-**[▶ Live demo](https://YOUR-APP.streamlit.app)** · interactive player projections, leaderboards, and methodology.
-<!-- replace the URL above with your deployed Streamlit Community Cloud link -->
+**[▶ Live demo](https://nba-epm-projections.streamlit.app/)** · interactive player projections, leaderboards, and methodology.
 
 ## Results
 
