@@ -1,12 +1,14 @@
 # NBA EPM Projections
 
-Forecasting NBA player impact (Estimated Plus-Minus) one to five seasons into the future.
+Projects an NBA player's EPM (Estimated Plus-Minus, a catch-all impact metric) out 1 to
+5 seasons.
 
-**[▶ Live demo](https://nba-epm-projections.streamlit.app/)** · interactive player projections, leaderboards, and methodology.
+[Live demo](https://nba-epm-projections.streamlit.app/): pick a player, browse the
+leaderboards, read how it works.
 
 ## Results
 
-Out-of-fold MAE from leak-free temporal cross-validation (~12,600 player-seasons, 2001–2026):
+Out-of-fold MAE, from time-ordered cross-validation over ~12,600 player-seasons (2001-2026):
 
 | Horizon | OOF MAE (EPM) |
 |---|---|
@@ -16,23 +18,20 @@ Out-of-fold MAE from leak-free temporal cross-validation (~12,600 player-seasons
 | 4 years | 1.04 |
 | 5 years | 1.04 |
 
-For reference, single-season EPM roughly spans −6 to +8, and ~95% of rotation players
-fall within about ±3, so a sub-1.1 MAE several years out is a meaningful signal.
+EPM mostly runs from about -6 to +8, so being a point off a few years out is fine.
 
-## Why this project
+## The parts I cared about getting right
 
-A lot of amateur sports models leak future information into training, score themselves
-only on the players who stuck around, and report optimistic accuracy as a result. This
-project is built to avoid those traps:
+Sports models cheat without meaning to, so most of the work went into not doing that:
 
-| Decision | What it does | Why it matters |
-|---|---|---|
-| Leak-free temporal CV | Each fold trains only on seasons before the test seasons | The reported error reflects real forward forecasting, not an inflated in-sample number |
-| Survivorship correction | Players who leave the league get a replacement-level target instead of being dropped | Without it, the model over-projects aging veterans, since their bad seasons disappear into retirement |
+- The CV is strictly time-ordered. Train on the past, test on the future, never the
+  other way. So the error numbers above aren't inflated by leakage.
+- Players who wash out of the league aren't dropped, they get a replacement-level
+  target. If you drop them the model decides 35-year-olds age gracefully, because all
+  their bad seasons turned into retirements instead.
+- Predictions don't depend on row or column order, so reruns give the same numbers.
 
----
-
-## What's inside
+## Layout
 
 ```
 epm-projections/
@@ -40,67 +39,62 @@ epm-projections/
 │   ├── data.py        # load game logs, DARKO, draft, predictive + actual EPM
 │   ├── features.py    # build the per-(player, season) training table
 │   └── model.py       # temporal CV, model training, OOF predictions
-├── build_artifacts.py # run the pipeline once, serialize models + predictions
+├── build_artifacts.py # run the pipeline once, save models + predictions
 ├── app.py             # Streamlit UI (player view, leaderboards, methodology)
-├── data/              # drop raw CSVs here (git-ignored)
-└── artifacts/         # generated models + predictions (git-ignored)
+├── data/              # raw CSVs go here (git-ignored)
+└── artifacts/         # saved models + predictions
 ```
 
-The model **trains in `build_artifacts.py` and the app only loads** the serialized
-output — so the UI is fast and deployable on a free tier.
+Everything trains in `build_artifacts.py`. The app just reads the saved files, so it
+loads instantly and runs on Streamlit's free tier.
 
----
-
-## Quickstart
+## Running it
 
 ```bash
 pip install -r requirements.txt
 
-# 1) put the raw inputs in ./data  (see "Data inputs" below)
+# 1) drop the raw inputs in ./data (see below)
 # 2) build models + predictions
 python build_artifacts.py
 # 3) launch the app
 streamlit run app.py
 ```
 
-### Data inputs (`./data`)
+### Data
+
 | File | Source | Provides |
 |---|---|---|
 | `player_game_logs_clean.csv` | NBA API player game logs | box-score rates, minutes, availability, team |
-| `DARKO ... Full DPM History.csv` | DARKO public history | DPM (box-prior impact) + age |
-| `EPM data (N).csv` | Dunks & Threes (predictive EPM) | the primary signal + targets |
+| `DARKO ... Full DPM History.csv` | DARKO public history | DPM (box-prior impact) and age |
+| `EPM data (N).csv` | Dunks & Threes (predictive EPM) | the main signal and the targets |
 | `Dunks & Threes Stats*.csv` | Dunks & Threes (actual EPM) | observed EPM (late-season form) |
-| `models_by_cluster.pkl` *(optional)* | college draft model | `draft_score` for young players |
+| `models_by_cluster.pkl` *(optional)* | my college draft model | `draft_score` for young players |
 
-Draft history is pulled once from the NBA API and cached to `data/draft_history.csv`.
+Draft history pulls from the NBA API once and caches to `data/draft_history.csv`. When
+new games happen, refresh the inputs and rerun `build_artifacts.py` ([UPDATING.md](UPDATING.md)
+has the details).
 
-To refresh projections after more games are played, see **[UPDATING.md](UPDATING.md)** —
-in short, refresh the inputs and re-run `python build_artifacts.py`.
+## The model
 
----
+One XGBoost model per horizon (1 through 5 years out), each predicting EPM that many
+seasons later.
 
-## Model details
+Features are current and past EPM (plus its slope and deltas), DARKO DPM as a second
+opinion on impact, the actual observed EPM and its lags, per-36 box stats, draft slot,
+a bit of team context, and a couple of minutes-by-impact interactions. There's a
+monotonic constraint so higher current EPM can't pull a projection down.
 
-**Target.** `target_epm_{h}y` = a player's EPM `h` seasons later (`h` = 1…5).
+Validation is the expanding-window setup from above. Current players don't have a real
+answer yet, so they're scored by a model fit on all the history. The hyperparameters
+sit in one place in `model.py` so the CV and the live numbers can't drift apart.
 
-**Features.** Current and lagged EPM (with slope and deltas), DARKO DPM as a second
-impact signal, observed EPM and its lags, per-36 box rates, draft position, team
-context, and minutes-times-impact interactions. A monotonic constraint keeps
-more current EPM from ever lowering a projection, all else equal.
+## What it doesn't do well
 
-**Validation.** `temporal_splits` builds expanding-window folds where the test seasons
-always come after the training seasons. Reported predictions for past players are
-out-of-fold; current-season players (no target yet) use a final model fit on
-everything. Hyperparameters live in one place (`DEFAULT_PARAMS` + `PARAMS_BY_HORIZON`
-in `src/model.py`) and flow to CV and prediction alike.
+- Trees can't predict outside the range they trained on, so something unprecedented (a
+  20-year-old at +7 EPM) gets dragged back toward normal and the projection underrates
+  real outliers.
+- EPM data only goes back to the early 2000s.
 
-## Limitations
-
-- Gradient-boosted trees cannot extrapolate beyond the training target range, so an
-  unprecedented season (for example a 20-year-old at 7+ EPM) is regressed toward
-  precedent and the projection reads conservative for true outliers.
-- EPM inputs begin in the early 2000s, so seasons before then are not covered.
-
-## Tech
+## Stack
 
 Python, XGBoost, scikit-learn, Streamlit, Plotly, pandas.
