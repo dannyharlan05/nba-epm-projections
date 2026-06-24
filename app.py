@@ -154,20 +154,19 @@ with tab_compare:
 
 # ============================================================ Leaderboards
 with tab_board:
-    c1, c2, c3 = st.columns(3)
+    c1, c2 = st.columns(2)
     h = c1.selectbox("Years ahead", HORIZONS, index=2, key="lb_h")
-    sort_by = c2.selectbox("Sort by", ["Projected EPM", "Change"])
-    search = c3.text_input("Search player")
+    search = c2.text_input("Search player")
 
     pcol = f"pred_epm_{h}y"
     b = current.dropna(subset=[pcol, "epm_now"]).copy()
     if search:
         b = b[b["player_name"].str.contains(search, case=False, na=False)]
-    # change vs current EPM; "DNQ" for players projected below -2 (deep negatives)
+    # change vs current EPM; blank for players projected below -2 (deep negatives)
     b["change"] = (b[pcol] - b["epm_now"]).astype(float)
     b.loc[b[pcol] < -2, "change"] = float("nan")
-    sort_col = "change" if sort_by == "Change" else pcol
-    b = b.sort_values(sort_col, ascending=False, na_position="last").reset_index(drop=True)
+    # highest projection at top, lowest at bottom (blanks sink to the bottom)
+    b = b.sort_values(pcol, ascending=False, na_position="last").reset_index(drop=True)
     b.insert(0, "Rank", b.index + 1)
     out = b[["Rank", "player_name", "team", "age", "epm_now", pcol, "change"]].copy()
     out.columns = ["Rank", "Player", "Team", "Age", "EPM now", f"Proj {h}y", "Change"]
