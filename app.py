@@ -203,8 +203,9 @@ seasons into the future.
   the test seasons, so the model is never scored on data it has effectively seen.
   Reported numbers are out-of-fold.
 - **Survivorship handling:** players who leave the league are not silently dropped,
-  which would bias the model toward survivors. Players whose careers ended get a
-  replacement-level target so decline is modeled rather than ignored.
+  which would bias the model toward survivors. Their future is decayed from their last
+  level toward replacement over the horizon (a gradual fade, not an instant cliff), so
+  decline is modeled rather than ignored.
 
 ### Limitations
 

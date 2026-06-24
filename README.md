@@ -12,13 +12,13 @@ Out-of-fold MAE, from time-ordered cross-validation over ~12,600 player-seasons 
 
 | Horizon | OOF MAE (EPM) |
 |---|---|
-| 1 year | 0.86 |
-| 2 years | 1.02 |
-| 3 years | 1.06 |
-| 4 years | 1.04 |
-| 5 years | 1.04 |
+| 1 year | 0.74 |
+| 2 years | 0.84 |
+| 3 years | 0.84 |
+| 4 years | 0.83 |
+| 5 years | 0.80 |
 
-EPM mostly runs from about -6 to +8, so being a point off a few years out is fine.
+EPM mostly runs from about -6 to +8, so being well under a point off a few years out is solid.
 
 ## The parts I cared about getting right
 
@@ -26,9 +26,10 @@ Sports models cheat without meaning to, so most of the work went into not doing 
 
 - The CV is strictly time-ordered. Train on the past, test on the future, never the
   other way. So the error numbers above aren't inflated by leakage.
-- Players who wash out of the league aren't dropped, they get a replacement-level
-  target. If you drop them the model decides 35-year-olds age gracefully, because all
-  their bad seasons turned into retirements instead.
+- Players who wash out of the league aren't dropped, their future is decayed from their
+  last level toward replacement over the horizon (a gradual fade, not a cliff). If you
+  drop them the model decides 35-year-olds age gracefully, because all their bad seasons
+  turned into retirements instead.
 - Predictions don't depend on row or column order, so reruns give the same numbers.
 
 ## Layout
