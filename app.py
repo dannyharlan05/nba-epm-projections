@@ -162,11 +162,12 @@ with tab_board:
     b = current.dropna(subset=[pcol, "epm_now"]).copy()
     if search:
         b = b[b["player_name"].str.contains(search, case=False, na=False)]
+    # change vs current EPM; blanked (NaN) for players projected below -2 (deep negatives).
+    # real float NaN (not pd.NA) so the grid treats it as missing and sorts it last.
+    b["change"] = (b[pcol] - b["epm_now"]).astype(float)
+    b.loc[b[pcol] < -2, "change"] = float("nan")
     b = b.sort_values(pcol, ascending=False).reset_index(drop=True)
     b.insert(0, "Rank", b.index + 1)
-    # change vs current EPM; blanked (NA) for players projected below -2 (deep negatives)
-    b["change"] = b[pcol] - b["epm_now"]
-    b.loc[b[pcol] < -2, "change"] = pd.NA
     out = b[["Rank", "player_name", "team", "age", "epm_now", pcol, "change"]].copy()
     out.columns = ["Rank", "Player", "Team", "Age", "EPM now", f"Proj {h}y", "Change"]
 
