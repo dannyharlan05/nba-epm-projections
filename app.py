@@ -163,11 +163,9 @@ with tab_board:
     b = current.dropna(subset=[pcol, "epm_now"]).copy()
     if search:
         b = b[b["player_name"].str.contains(search, case=False, na=False)]
-    # change vs current EPM; blanked (NaN) for players projected below -2 (deep negatives)
+    # change vs current EPM; "DNQ" for players projected below -2 (deep negatives)
     b["change"] = (b[pcol] - b["epm_now"]).astype(float)
     b.loc[b[pcol] < -2, "change"] = float("nan")
-    # sort here in pandas (na_position="last") so blanks are always pinned to the bottom,
-    # since the grid's own click-to-sort treats NaN as 0.
     sort_col = "change" if sort_by == "Change" else pcol
     b = b.sort_values(sort_col, ascending=False, na_position="last").reset_index(drop=True)
     b.insert(0, "Rank", b.index + 1)
@@ -175,10 +173,13 @@ with tab_board:
     out.columns = ["Rank", "Player", "Team", "Age", "EPM now", f"Proj {h}y", "Change"]
 
     st.caption(f"{len(out)} players")
-    sty = out.style.format({"Age": "{:.0f}", "EPM now": "{:+.2f}", f"Proj {h}y": "{:+.2f}",
-                            "Change": "{:+.2f}"}, na_rep="—")
+    sty = out.style.format({"Age": "{:.0f}", "EPM now": "{:+.2f}",
+                            f"Proj {h}y": "{:+.2f}", "Change": "{:+.2f}"}, na_rep="DNQ")
     st.dataframe(sty, hide_index=True, width="stretch", height=640)
-    st.download_button("Download CSV", out.to_csv(index=False).encode(),
+
+    csv = out.copy()
+    csv["Change"] = csv["Change"].map(lambda v: "DNQ" if pd.isna(v) else f"{v:+.2f}")
+    st.download_button("Download CSV", csv.to_csv(index=False).encode(),
                        file_name=f"epm_projections_{h}y.csv", mime="text/csv")
 
 # ============================================================ Methodology
