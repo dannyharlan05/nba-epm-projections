@@ -1,80 +1,35 @@
 {
-  "features": [
-    "epm_now",
-    "epm_lag1",
-    "epm_lag2",
-    "age",
-    "years_in_league",
-    "min_pg",
-    "young_improver",
-    "total_minutes",
-    "minutes_x_games",
-    "epm_x_games",
-    "dpm_x_games",
-    "epm_actual_x_games",
-    "epm_x_min_pg",
-    "dpm_x_min_pg",
-    "epm_actual_x_min_pg",
-    "pts_36",
-    "ast_36",
-    "oreb_36",
-    "stl_36",
-    "blk_36",
-    "ft_pct",
-    "draft_score",
-    "team_winpct",
-    "dpm",
-    "epm_actual_now",
-    "epm_actual_lag1",
-    "epm_actual_lag2"
-  ],
-  "horizons": [
-    1,
-    2,
-    3,
-    4,
-    5
-  ],
-  "default_params": {
-    "n_estimators": 800,
-    "learning_rate": 0.02,
-    "max_depth": 4,
-    "subsample": 0.6,
-    "colsample_bytree": 0.8,
-    "random_state": 42,
-    "n_jobs": -1
-  },
+  "current_season": 2026,
   "cv_mae": [
     {
       "horizon": 1,
-      "train_mae": 0.7576763943358977,
-      "cv_mae": 0.8641694391719749,
-      "gap": 0.10649304483607713
+      "train_mae": 0.754782226520009,
+      "cv_mae": 0.8636075905637036,
+      "gap": 0.10882536404369458
     },
     {
       "horizon": 2,
-      "train_mae": 0.86021242662076,
-      "cv_mae": 1.0138588351851663,
-      "gap": 0.15364640856440626
+      "train_mae": 0.8564519876078809,
+      "cv_mae": 1.014553590040527,
+      "gap": 0.15810160243264604
     },
     {
       "horizon": 3,
-      "train_mae": 0.869332122230476,
-      "cv_mae": 1.051342110803455,
-      "gap": 0.18200998857297912
+      "train_mae": 0.8647547466690073,
+      "cv_mae": 1.052708505620068,
+      "gap": 0.1879537589510607
     },
     {
       "horizon": 4,
-      "train_mae": 0.8634148458318629,
-      "cv_mae": 1.0422444354444134,
-      "gap": 0.17882958961255047
+      "train_mae": 0.8585669668604188,
+      "cv_mae": 1.0417652359442027,
+      "gap": 0.1831982690837839
     },
     {
       "horizon": 5,
-      "train_mae": 0.8246763219846022,
-      "cv_mae": 1.0299464525089828,
-      "gap": 0.2052701305243806
+      "train_mae": 0.820208124996869,
+      "cv_mae": 1.030152332409399,
+      "gap": 0.20994420741253006
     }
-  ],
-  "current_season": 2026
+  ]
 }
