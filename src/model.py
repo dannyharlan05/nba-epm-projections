@@ -17,9 +17,8 @@ EPM_FEATURES = [
     "age", "years_in_league",
     "min_pg", "young_improver",
     "total_minutes", "minutes_x_games",
-    "epm_x_games", "epm_x_min_pg",
-    "dpm_x_games", "dpm_x_min_pg",
-    "epm_actual_x_games", "epm_actual_x_min_pg",
+    "epm_x_games", "dpm_x_games", "epm_actual_x_games",
+    "epm_x_min_pg", "dpm_x_min_pg", "epm_actual_x_min_pg",
     "pts_36", "ast_36", "oreb_36", "stl_36", "blk_36",
     "ft_pct", "draft_score", "team_winpct",
     "dpm",
@@ -32,17 +31,17 @@ _MONO = tuple(1 if f in _MONO_UP else 0 for f in EPM_FEATURES)
 
 DEFAULT_PARAMS = dict(
     n_estimators=800, learning_rate=0.02, max_depth=4,
-    subsample=0.6, colsample_bytree=1.0,
+    subsample=0.6, colsample_bytree=0.8,
     random_state=42, n_jobs=-1, monotone_constraints=_MONO,
 )
 
 # Per-horizon overrides; {} means "use DEFAULT_PARAMS".
 PARAMS_BY_HORIZON = {
     1: {"learning_rate": 0.01},
-    2: {},
-    3: {},
-    4: {"learning_rate": 0.03},
-    5: {"learning_rate": 0.03},
+    2: {"learning_rate": 0.01},
+    3: {"learning_rate": 0.01},
+    4: {"learning_rate": 0.01},
+    5: {"learning_rate": 0.01},
 }
 
 
