@@ -189,14 +189,16 @@ def add_epm_features(df: pd.DataFrame, epm: pd.DataFrame,
     return df
 
 
-def apply_survivorship(df: pd.DataFrame) -> pd.DataFrame:
-    """True washouts (career ended before season+h) get a replacement-level target
-    instead of being dropped, so the model isn't biased toward survivors.
+def apply_survivorship(df: pd.DataFrame, decay: float = 0.85) -> pd.DataFrame:
+    """True washouts (career ended before season+h) get a target that DECAYS from their
+    last known level toward replacement level over the horizon -- a gradual fade rather
+    than an instant cliff to the floor -- instead of being dropped. This keeps the model
+    unbiased toward survivors without teaching it that aging players crater immediately.
     Idempotent via _raw_* backups."""
     cur = df["season"].max()
     player_last = df.groupby("nba_id")["season"].transform("max")
     for prefix, nowcol in [("target_epm", "epm_now"), ("target_dpm", "dpm")]:
-        dnp = df[nowcol].quantile(0.05)
+        floor = df[nowcol].quantile(0.05)
         for h in [1, 2, 3, 4, 5]:
             tgt, raw = f"{prefix}_{h}y", f"_raw_{prefix}_{h}y"
             if raw in df.columns:
@@ -204,7 +206,8 @@ def apply_survivorship(df: pd.DataFrame) -> pd.DataFrame:
             else:
                 df[raw] = df[tgt].copy()
             fill = ((df["season"] + h) <= cur) & df[tgt].isna() & (player_last < (df["season"] + h))
-            df.loc[fill, tgt] = dnp
+            base = df.loc[fill, nowcol].fillna(floor)        # last known level (floor if none)
+            df.loc[fill, tgt] = floor + (base - floor) * (decay ** h)
     return df
 
 

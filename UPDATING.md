@@ -82,27 +82,21 @@ before, so you must link the new ones once.
 
 ---
 
-## The easy button: `update.sh`
+## Quick reference
 
-`update.sh` does the relink + rebuild for you, so you never have to remember the
-`ln -sf` loop. After refreshing the raw files (game logs via the notebook; EPM /
-Dunks / DARKO downloads):
+After refreshing the raw files in `./data` (game logs via the notebook; EPM / Dunks /
+DARKO downloads), rebuild:
 
 ```bash
 cd epm-projections
-./update.sh             # relink data + rebuild (covers Case A and Case B)
-./update.sh --rookies   # same, but also re-pull a new rookie class
+python build_artifacts.py
 ```
-
-Then restart the app: `streamlit run app.py`.
-
-## Quick reference
 
 | Situation | Command |
 |---|---|
-| Games played / new season's files | `./update.sh` |
-| New rookies | `./update.sh --rookies` |
-| Changed model params (`src/model.py`) | `./update.sh` (or just `python build_artifacts.py`) |
+| Games played / new season's files | `python build_artifacts.py` |
+| New rookies | `rm data/draft_history.csv` then `python build_artifacts.py` |
+| Changed model params (`src/model.py`) | `python build_artifacts.py` |
 
 After any rebuild, restart the app (or Clear cache) to see the new numbers.
 
