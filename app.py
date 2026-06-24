@@ -154,19 +154,22 @@ with tab_compare:
 
 # ============================================================ Leaderboards
 with tab_board:
-    c1, c2 = st.columns(2)
+    c1, c2, c3 = st.columns(3)
     h = c1.selectbox("Years ahead", HORIZONS, index=2, key="lb_h")
-    search = c2.text_input("Search player")
+    sort_by = c2.selectbox("Sort by", ["Projected EPM", "Change"])
+    search = c3.text_input("Search player")
 
     pcol = f"pred_epm_{h}y"
     b = current.dropna(subset=[pcol, "epm_now"]).copy()
     if search:
         b = b[b["player_name"].str.contains(search, case=False, na=False)]
-    # change vs current EPM; blanked (NaN) for players projected below -2 (deep negatives).
-    # real float NaN (not pd.NA) so the grid treats it as missing and sorts it last.
+    # change vs current EPM; blanked (NaN) for players projected below -2 (deep negatives)
     b["change"] = (b[pcol] - b["epm_now"]).astype(float)
     b.loc[b[pcol] < -2, "change"] = float("nan")
-    b = b.sort_values(pcol, ascending=False).reset_index(drop=True)
+    # sort here in pandas (na_position="last") so blanks are always pinned to the bottom,
+    # since the grid's own click-to-sort treats NaN as 0.
+    sort_col = "change" if sort_by == "Change" else pcol
+    b = b.sort_values(sort_col, ascending=False, na_position="last").reset_index(drop=True)
     b.insert(0, "Rank", b.index + 1)
     out = b[["Rank", "player_name", "team", "age", "epm_now", pcol, "change"]].copy()
     out.columns = ["Rank", "Player", "Team", "Age", "EPM now", f"Proj {h}y", "Change"]
