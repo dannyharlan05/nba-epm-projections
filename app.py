@@ -164,11 +164,15 @@ with tab_board:
         b = b[b["player_name"].str.contains(search, case=False, na=False)]
     b = b.sort_values(pcol, ascending=False).reset_index(drop=True)
     b.insert(0, "Rank", b.index + 1)
-    out = b[["Rank", "player_name", "team", "age", "epm_now", pcol]].copy()
-    out.columns = ["Rank", "Player", "Team", "Age", "EPM now", f"Proj {h}y"]
+    # change vs current EPM; blanked (NA) for players projected below -2 (deep negatives)
+    b["change"] = b[pcol] - b["epm_now"]
+    b.loc[b[pcol] < -2, "change"] = pd.NA
+    out = b[["Rank", "player_name", "team", "age", "epm_now", pcol, "change"]].copy()
+    out.columns = ["Rank", "Player", "Team", "Age", "EPM now", f"Proj {h}y", "Change"]
 
     st.caption(f"{len(out)} players")
-    sty = out.style.format({"Age": "{:.0f}", "EPM now": "{:+.2f}", f"Proj {h}y": "{:+.2f}"})
+    sty = out.style.format({"Age": "{:.0f}", "EPM now": "{:+.2f}", f"Proj {h}y": "{:+.2f}",
+                            "Change": "{:+.2f}"}, na_rep="—")
     st.dataframe(sty, hide_index=True, width="stretch", height=640)
     st.download_button("Download CSV", out.to_csv(index=False).encode(),
                        file_name=f"epm_projections_{h}y.csv", mime="text/csv")
