@@ -171,13 +171,20 @@ with tab_board:
     b.insert(0, "Rank", b.index + 1)
     out = b[["Rank", "player_name", "team", "age", "epm_now", pcol, "change"]].copy()
     out.columns = ["Rank", "Player", "Team", "Age", "EPM now", f"Proj {h}y", "Change"]
-    # pre-format Change to a string so the grid can't render the blank as "None"
-    out["Change"] = out["Change"].map(lambda v: "DNQ" if pd.isna(v) else f"{v:+.2f}")
 
-    st.caption(f"{len(out)} players")
-    sty = out.style.format({"Age": "{:.0f}", "EPM now": "{:+.2f}", f"Proj {h}y": "{:+.2f}"})
-    st.dataframe(sty, hide_index=True, width="stretch", height=640)
-    st.download_button("Download CSV", out.to_csv(index=False).encode(),
+    st.caption(f"{len(out)} players · blank Change = projected below -2")
+    st.dataframe(
+        out, hide_index=True, width="stretch", height=640,
+        column_config={
+            "Age": st.column_config.NumberColumn(format="%d"),
+            "EPM now": st.column_config.NumberColumn(format="%+.2f"),
+            f"Proj {h}y": st.column_config.NumberColumn(format="%+.2f"),
+            "Change": st.column_config.NumberColumn(format="%+.2f"),
+        },
+    )
+    csv = out.copy()
+    csv["Change"] = csv["Change"].map(lambda v: "DNQ" if pd.isna(v) else f"{v:+.2f}")
+    st.download_button("Download CSV", csv.to_csv(index=False).encode(),
                        file_name=f"epm_projections_{h}y.csv", mime="text/csv")
 
 # ============================================================ Methodology
