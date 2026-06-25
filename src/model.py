@@ -25,6 +25,9 @@ EPM_FEATURES = [
     "epm_actual_now", "epm_actual_lag1", "epm_actual_lag2",
 ]
 
+# Features for the actual (observed) EPM model. Identical for now; edit independently.
+EPM_ACTUAL_FEATURES = list(EPM_FEATURES)
+
 # Monotonic +1: more current EPM never lowers the projection (ceteris paribus).
 _MONO_UP = {"epm_now"}
 _MONO = tuple(1 if f in _MONO_UP else 0 for f in EPM_FEATURES)

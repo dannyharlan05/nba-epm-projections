@@ -8,17 +8,21 @@ leaderboards, read how it works.
 
 ## Results
 
-Out-of-fold MAE, from time-ordered cross-validation over ~12,600 player-seasons (2001-2026):
+Two models, both validated with time-ordered cross-validation over ~12,600
+player-seasons (2001-2026). The app has a toggle to switch between them.
 
-| Horizon | OOF MAE (EPM) |
-|---|---|
-| 1 year | 0.74 |
-| 2 years | 0.84 |
-| 3 years | 0.84 |
-| 4 years | 0.83 |
-| 5 years | 0.80 |
+| Horizon | Predictive EPM (stabilized) | Observed EPM (raw season) |
+|---|---|---|
+| 1 year | 0.74 | 1.12 |
+| 2 years | 0.84 | 1.11 |
+| 3 years | 0.84 | 1.07 |
+| 4 years | 0.83 | 1.03 |
+| 5 years | 0.80 | 0.98 |
 
-EPM mostly runs from about -6 to +8, so being well under a point off a few years out is solid.
+EPM mostly runs from about -6 to +8. Predictive EPM is the smoothed next-day number, so
+it projects well (sub-point error). Observed EPM is the raw full-season result, which
+swings with injuries and form, so it carries a higher, irreducible error -- which is the
+whole reason a stabilized metric exists.
 
 ## The parts I cared about getting right
 
@@ -78,7 +82,11 @@ has the details).
 ## The model
 
 One XGBoost model per horizon (1 through 5 years out), each predicting EPM that many
-seasons later.
+seasons later. There are two parallel versions with the same features and setup: one
+targets **predictive EPM** (the stabilized next-day number, easier to project) and one
+targets **observed EPM** (the raw full-season result, noisier). The app toggles between
+them, and the higher error on observed EPM is exactly what you'd expect from a raw
+metric versus a smoothed one.
 
 Features are current and past EPM (plus its slope and deltas), DARKO DPM as a second
 opinion on impact, the actual observed EPM and its lags, per-36 box stats, draft slot,

@@ -179,6 +179,7 @@ def add_epm_features(df: pd.DataFrame, epm: pd.DataFrame,
                   "epm_gap", "epm_actual_lag1", "epm_actual_lag2"]:
             df[c] = np.nan
 
+    # forward predictive-EPM targets
     for h in [1, 2, 3, 4, 5]:
         fut = epm[["nba_id", "season", "epm", "oepm", "depm"]].copy()
         fut["season"] = fut["season"] - h
@@ -186,6 +187,14 @@ def add_epm_features(df: pd.DataFrame, epm: pd.DataFrame,
                                   "oepm": f"target_oepm_{h}y",
                                   "depm": f"target_depm_{h}y"})
         df = df.merge(fut, on=["nba_id", "season"], how="left")
+
+    # forward ACTUAL-EPM targets (observed EPM h seasons later)
+    if actual is not None:
+        for h in [1, 2, 3, 4, 5]:
+            fut = actual[["nba_id", "season", "epm_actual_now"]].copy()
+            fut["season"] = fut["season"] - h
+            fut = fut.rename(columns={"epm_actual_now": f"target_epm_actual_{h}y"})
+            df = df.merge(fut, on=["nba_id", "season"], how="left")
     return df
 
 
@@ -197,7 +206,10 @@ def apply_survivorship(df: pd.DataFrame, decay: float = 0.85) -> pd.DataFrame:
     Idempotent via _raw_* backups."""
     cur = df["season"].max()
     player_last = df.groupby("nba_id")["season"].transform("max")
-    for prefix, nowcol in [("target_epm", "epm_now"), ("target_dpm", "dpm")]:
+    for prefix, nowcol in [("target_epm", "epm_now"), ("target_dpm", "dpm"),
+                           ("target_epm_actual", "epm_actual_now")]:
+        if nowcol not in df.columns:
+            continue
         floor = df[nowcol].quantile(0.05)
         for h in [1, 2, 3, 4, 5]:
             tgt, raw = f"{prefix}_{h}y", f"_raw_{prefix}_{h}y"
