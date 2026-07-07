@@ -1,4 +1,4 @@
-"""EPM projection models: leak-free temporal CV, median + p90 ceiling, OOF predictions.
+"""EPM projection models: time-ordered temporal CV and out-of-fold predictions.
 
 Single source of truth for hyperparameters: DEFAULT_PARAMS + PARAMS_BY_HORIZON.
 Edit those to retune every horizon; everything downstream reads from them.
@@ -55,7 +55,7 @@ def params_for(horizon: int) -> dict:
 # Recency weighting: recent seasons count more, so the aging curve reflects the modern
 # game (longer careers) rather than being dragged down by early-2000s washouts. Weights
 # are anchored to the max season of whatever set they're fit on, so a CV fold never
-# references anything outside its own training rows (leak-free by construction).
+# references anything outside its own training rows (no test-fold data enters the weights).
 # Smaller HALF_LIFE = more aggressive recency bias. None = off (equal weights).
 HALF_LIFE = 6
 
@@ -123,7 +123,7 @@ def train_models(df: pd.DataFrame, features=EPM_FEATURES, target_prefix="target_
 def add_oof_predictions(df: pd.DataFrame, features=EPM_FEATURES,
                         target_prefix="target_epm", out_prefix="pred_epm",
                         quantile_alpha: float | None = None) -> pd.DataFrame:
-    """Leak-free predictions: OOF for rows with a target, final model for current
+    """Out-of-fold predictions for rows with a target; final model for current
     (no-target) rows. Returns df with out_prefix_{h}y columns added."""
     df = df.copy()
     for h in HORIZONS:

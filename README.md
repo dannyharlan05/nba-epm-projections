@@ -14,10 +14,10 @@ player-seasons (2001-2026). The app has a toggle to switch between them.
 | Horizon | Predictive EPM (stabilized) | Observed EPM (raw season) |
 |---|---|---|
 | 1 year | 0.74 | 1.12 |
-| 2 years | 0.84 | 1.11 |
-| 3 years | 0.84 | 1.07 |
-| 4 years | 0.83 | 1.03 |
-| 5 years | 0.80 | 0.98 |
+| 2 years | 0.84 | 1.12 |
+| 3 years | 0.84 | 1.08 |
+| 4 years | 0.83 | 1.04 |
+| 5 years | 0.80 | 0.99 |
 
 EPM mostly runs from about -6 to +8. Predictive EPM is the smoothed next-day number, so
 it projects well (sub-point error). Observed EPM is the raw full-season result, which
@@ -29,7 +29,8 @@ whole reason a stabilized metric exists.
 Sports models cheat without meaning to, so most of the work went into not doing that:
 
 - The CV is strictly time-ordered. Train on the past, test on the future, never the
-  other way. So the error numbers above aren't inflated by leakage.
+  other way, so no future information reaches the features. The error numbers reflect real
+  forward forecasting, not lookahead.
 - Players who wash out of the league aren't dropped, their future is decayed from their
   last level toward replacement over the horizon (a gradual fade, not a cliff). If you
   drop them the model decides 35-year-olds age gracefully, because all their bad seasons

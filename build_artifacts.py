@@ -43,7 +43,7 @@ def main():
                                 target_prefix="target_epm_actual")
     print(cv_actual.to_string(index=False))
 
-    print("generating leak-free predictions (predictive + actual)...")
+    print("generating out-of-fold predictions (predictive + actual)...")
     df = model.add_oof_predictions(df, out_prefix="pred_epm")
     df = model.add_oof_predictions(df, features=model.EPM_ACTUAL_FEATURES,
                                    target_prefix="target_epm_actual",

@@ -39,7 +39,7 @@ has_actual = "pred_epm_actual_1y" in df.columns and "cv_mae_actual" in meta
 
 st.title("NBA EPM Projections")
 st.caption(f"Multi-year Estimated Plus-Minus forecasts · current season {CUR} · "
-           "leak-free temporal cross-validation")
+           "time-ordered cross-validation")
 
 # ----- projection target toggle (click to switch model; drives every tab) -----
 if has_actual:
@@ -230,9 +230,9 @@ on the observed-EPM model.
 - **Features:** current and lagged EPM, DARKO DPM as a second impact signal, observed
   EPM, per-36 box-score rates, draft position, team context, and minutes/impact
   interactions. Both models share the same feature set.
-- **Leak-free validation:** every cross-validation fold trains only on seasons before
-  the test seasons, so the model is never scored on data it has effectively seen.
-  Reported numbers are out-of-fold.
+- **Time-ordered validation:** every cross-validation fold trains only on seasons before
+  the test seasons, so no future information reaches the feature set. Reported numbers are
+  out-of-fold.
 - **Survivorship handling:** players who leave the league are not silently dropped,
   which would bias the model toward survivors. Their future is decayed from their last
   level toward replacement over the horizon (a gradual fade, not an instant cliff), so
