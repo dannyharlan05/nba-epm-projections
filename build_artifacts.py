@@ -28,10 +28,9 @@ def main():
     logs = data.load_game_logs()
     epm = data.load_predictive_epm()
     actual = data.load_actual_epm()
-    draft_scores = data.load_draft_scores()
 
     print("building training table...")
-    df = features.build_training_table(darko, draft, logs, epm, actual, draft_scores)
+    df = features.build_training_table(darko, draft, logs, epm, actual)
     print(f"  df_train: {df.shape}")
 
     print("cross-validation (predictive EPM)...")

@@ -74,7 +74,6 @@ streamlit run app.py
 | `DARKO ... Full DPM History.csv` | DARKO public history | DPM (box-prior impact) and age |
 | `EPM data (N).csv` | Dunks & Threes (predictive EPM) | the main signal and the targets |
 | `Dunks & Threes Stats*.csv` | Dunks & Threes (actual EPM) | observed EPM (late-season form) |
-| `models_by_cluster.pkl` *(optional)* | my college draft model | `draft_score` for young players |
 
 Draft history pulls from the NBA API once and caches to `data/draft_history.csv`. When
 new games happen, refresh the inputs and rerun `build_artifacts.py` ([UPDATING.md](UPDATING.md)
@@ -90,7 +89,7 @@ them, and the higher error on observed EPM is exactly what you'd expect from a r
 metric versus a smoothed one.
 
 Features are current and past EPM (plus its slope and deltas), DARKO DPM as a second
-opinion on impact, the actual observed EPM and its lags, per-36 box stats, draft slot,
+opinion on impact, the actual observed EPM and its lags, per-36 box stats,
 a bit of team context, and a couple of minutes-by-impact interactions. There's a
 monotonic constraint so higher current EPM can't pull a projection down.
 

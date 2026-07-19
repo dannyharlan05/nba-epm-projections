@@ -20,7 +20,7 @@ EPM_FEATURES = [
     "epm_x_games", "dpm_x_games", "epm_actual_x_games",
     "epm_x_min_pg", "dpm_x_min_pg", "epm_actual_x_min_pg",
     "pts_36", "ast_36", "oreb_36", "stl_36", "blk_36",
-    "ft_pct", "draft_score", "team_winpct",
+    "ft_pct", "team_winpct",
     "dpm",
     "epm_actual_now", "epm_actual_lag1", "epm_actual_lag2",
 ]
@@ -28,8 +28,8 @@ EPM_FEATURES = [
 # Features for the actual (observed) EPM model. Identical for now; edit independently.
 EPM_ACTUAL_FEATURES = list(EPM_FEATURES)
 
-# Monotonic +1: more current EPM never lowers the projection (ceteris paribus).
-_MONO_UP = {"epm_now"}
+# Monotonic +1: more current EPM (predictive and actual) never lowers the projection.
+_MONO_UP = {"epm_now", "epm_actual_now"}
 _MONO = tuple(1 if f in _MONO_UP else 0 for f in EPM_FEATURES)
 
 DEFAULT_PARAMS = dict(

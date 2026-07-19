@@ -16,7 +16,6 @@ from* and the two cases (mid-season vs. new season).
 | `Dunks & Threes Stats*.csv` | re-downloaded from Dunks & Threes | **you** (manual download) |
 | `DARKO ... Full DPM History.csv` | re-downloaded from DARKO | **you** (manual download) |
 | `draft_history.csv` | auto-pulled from NBA API | the repo (cached) |
-| `models_by_cluster.pkl` | from the draft model project | rarely changes |
 
 Because `data/` holds **symlinks** to the files in your main project folder, anything
 you re-pull or re-download in the main folder flows through automatically — you don't

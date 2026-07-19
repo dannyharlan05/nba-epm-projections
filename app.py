@@ -228,7 +228,7 @@ on the observed-EPM model.
 ### How it works
 
 - **Features:** current and lagged EPM, DARKO DPM as a second impact signal, observed
-  EPM, per-36 box-score rates, draft position, team context, and minutes/impact
+  EPM, per-36 box-score rates, team context, and minutes/impact
   interactions. Both models share the same feature set.
 - **Time-ordered validation:** every cross-validation fold trains only on seasons before
   the test seasons, so no future information reaches the feature set. Reported numbers are

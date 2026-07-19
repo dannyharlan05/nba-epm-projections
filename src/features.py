@@ -1,7 +1,7 @@
 """Feature engineering: build the per-(player, season) training table `df_train`.
 
 Pipeline order (each function takes and returns df_train):
-    build_base_dataset -> merge_draft_scores -> add_team_context
+    build_base_dataset -> add_team_context
     -> add_epm_features -> apply_survivorship -> add_availability_features
     -> add_young_improver
 
@@ -82,28 +82,6 @@ def build_base_dataset(darko: pd.DataFrame, draft: pd.DataFrame,
 
     df = df[df["season"] >= 2000]
     df = df.dropna(subset=["pts_36"]).reset_index(drop=True)
-    return df
-
-
-def merge_draft_scores(df: pd.DataFrame, draft_scores: pd.DataFrame | None) -> pd.DataFrame:
-    """Join college draft-model scores by normalized name + draft year (optional)."""
-    if draft_scores is None:
-        df["draft_score"] = np.nan
-        df["play_style_cluster"] = np.nan
-        return df
-
-    def norm(s):
-        return str(s).lower().replace(".", "").replace("-", " ").strip()
-
-    ds = draft_scores.copy()
-    ds["name_key"] = ds["Name"].apply(norm)
-    for col in ["draft_score", "play_style_cluster", "name_key"]:
-        if col in df.columns:
-            df = df.drop(columns=[col])
-    df["name_key"] = df["player_name"].apply(norm)
-    df = df.merge(
-        ds[["name_key", "draft_year", "draft_score", "play_style_cluster"]],
-        on=["name_key", "draft_year"], how="left").drop(columns=["name_key"])
     return df
 
 
@@ -273,10 +251,9 @@ def add_young_improver(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def build_training_table(darko, draft, logs, epm, actual, draft_scores) -> pd.DataFrame:
+def build_training_table(darko, draft, logs, epm, actual) -> pd.DataFrame:
     """Run the full feature pipeline end to end."""
     df = build_base_dataset(darko, draft, logs)
-    df = merge_draft_scores(df, draft_scores)
     df = add_team_context(df, logs)
     df = add_epm_features(df, epm, actual)
     df = apply_survivorship(df)

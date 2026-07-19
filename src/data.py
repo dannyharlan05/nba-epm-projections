@@ -87,21 +87,3 @@ def load_actual_epm() -> pd.DataFrame | None:
     act["nba_id"] = act["nba_id"].astype(int)
     act["season"] = act["season"].astype(int)
     return act.drop_duplicates(["nba_id", "season"])
-
-
-def load_draft_scores() -> pd.DataFrame | None:
-    """College draft-model scores from models_by_cluster.pkl. Optional feature."""
-    pkl = _path("models_by_cluster.pkl")
-    if not os.path.exists(pkl):
-        return None
-    import pickle
-    with open(pkl, "rb") as f:
-        cluster_models = pickle.load(f)
-    scores = pd.concat(
-        [v["df_with_predictions"] for v in cluster_models.values()]
-    ).drop_duplicates(subset=["Name", "Year"])
-    scores["draft_year"] = scores["Year"].astype(int) + 2000
-    scores = scores.rename(columns={
-        "Prediction": "draft_score", "PlayStyleCluster": "play_style_cluster",
-    })
-    return scores[["Name", "draft_year", "draft_score", "play_style_cluster"]]
