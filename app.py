@@ -35,6 +35,15 @@ if not os.path.exists(os.path.join(ART, "predictions.parquet")):
 df, meta = load_artifacts()
 CUR = meta["current_season"]
 
+# players who sat out the whole season carry status != "played"; older artifacts
+# have no such column, so default everyone to played
+if "status" not in df.columns:
+    df["status"] = "played"
+
+
+def season_label(s):
+    return f"{int(s) - 1}-{str(int(s))[-2:]}"
+
 has_actual = "pred_epm_actual_1y" in df.columns and "cv_mae_actual" in meta
 
 st.title("NBA EPM Projections")
@@ -92,6 +101,16 @@ with tab_player:
 
     age = f"Age {row['age']:.0f}" if pd.notna(row.get("age")) else ""
     st.markdown(f"### {name} · {age}")
+
+    if row.get("status", "played") != "played":
+        st.warning(
+            f"Did not play in {season_label(CUR)} — every projection below assumes he "
+            + ("returns. Predictive EPM is still published for him, so the current value "
+               "is a live estimate, not a result."
+               if IS_PRED else
+               f"returns. He has no {season_label(CUR)} result, so the current value shown "
+               f"is his {season_label(CUR - 1)} season.")
+        )
 
     now_val = row[NOW]
 
@@ -185,10 +204,15 @@ with tab_board:
     b.loc[b[pcol] < -2, "change"] = float("nan")
     b = b.sort_values(pcol, ascending=False, na_position="last").reset_index(drop=True)
     b.insert(0, "Rank", b.index + 1)
-    out = b[["Rank", "player_name", "team", "age", NOW, pcol, "change"]].copy()
+    b["_player"] = b["player_name"].where(
+        b["status"].eq("played"), b["player_name"] + "  · DNP")
+    out = b[["Rank", "_player", "team", "age", NOW, pcol, "change"]].copy()
     out.columns = ["Rank", "Player", "Team", "Age", "EPM now", f"Proj {h}y", "Change"]
 
-    st.caption(f"{len(out)} players · blank Change = projected below -2")
+    n_dnp = int(b["status"].ne("played").sum())
+    st.caption(f"{len(out)} players · blank Change = projected below -2"
+               + (f" · DNP = did not play in {season_label(CUR)} ({n_dnp} players), "
+                  f"projection assumes a return" if n_dnp else ""))
     st.dataframe(
         out, hide_index=True, width="stretch", height=640,
         column_config={

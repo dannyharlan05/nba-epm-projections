@@ -263,3 +263,82 @@ def build_training_table(darko, draft, logs, epm, actual) -> pd.DataFrame:
     # (otherwise per-player predictions drift even when MAE matches).
     df = df.sort_values(["nba_id", "season"]).reset_index(drop=True)
     return df
+
+
+# --- players who sat out a whole season -------------------------------------
+# now-column -> lag prefix, so a ghost row's trajectory features stay consistent
+_GHOST_LAGGED = {
+    "epm_now": "epm_lag", "epm_actual_now": "epm_actual_lag", "dpm": "dpm_lag",
+    "oepm_now": "oepm_lag", "depm_now": "depm_lag",
+    "o_dpm": "o_dpm_lag", "d_dpm": "d_dpm_lag",
+}
+
+
+def ghost_rows(df: pd.DataFrame, darko: pd.DataFrame, epm: pd.DataFrame,
+               season: int | None = None, games: int = 1,
+               min_pg: float | str = "carry") -> pd.DataFrame:
+    """
+    Rows for players who played the previous season but did not play `season` at
+    all -- injured, overseas, unsigned. They fall out of the training table only
+    because build_base_dataset drops player-seasons with no game logs; DARKO and
+    the EPM feed still publish a level for them (Haliburton: DPM 3.45 in 2025 ->
+    2.60 in 2026 having played zero games), and that level already prices the
+    year out.
+
+    The missed season is modelled as one where the player got hurt in game 1:
+    availability set to `games`, a year of aging applied, box-score rates carried
+    (there is nothing else to carry them from), and dpm / epm_now refreshed from
+    the feeds. Observed EPM has no row for a season he didn't play, so
+    epm_actual_now is carried.
+
+    min_pg is carried by default rather than set to 1, because `games` carries
+    availability and `min_pg` carries ROLE -- a 34-mpg starter who never suited
+    up is still a 34-mpg starter, and min_pg=1 would grade him as an end-of-bench
+    player on top of being unavailable. Pass min_pg=1 for the other behaviour.
+
+    INFERENCE ONLY. These rows are never fitted on; they exist so the app can
+    show a projection for a player who missed the season.
+    """
+    season = int(df["season"].max()) if season is None else int(season)
+    prev = df[df["season"] == season - 1]
+    played = set(df.loc[df["season"] == season, "nba_id"])
+    src = prev[~prev["nba_id"].isin(played)]
+    if src.empty:
+        return src.copy()
+
+    g = src.copy()
+    g["season"] = season
+    g["age"] = g["age"] + 1
+    if "years_in_league" in g.columns:
+        g["years_in_league"] = g["years_in_league"] + 1
+    g["games"] = games
+    if min_pg != "carry":
+        g["min_pg"] = float(min_pg)
+
+    # his last real season becomes lag1, what was lag1 becomes lag2
+    for now_col, pref in _GHOST_LAGGED.items():
+        if now_col not in g.columns:
+            continue
+        if f"{pref}2" in g.columns:
+            g[f"{pref}2"] = src[f"{pref}1"].values
+        if f"{pref}1" in g.columns:
+            g[f"{pref}1"] = src[now_col].values
+
+    # refresh the level from the feeds; fall back to carrying where absent
+    g["level_source"] = "carried"
+    for feed, cols in [(darko, {"dpm": "dpm", "o_dpm": "o_dpm", "d_dpm": "d_dpm"}),
+                       (epm, {"epm": "epm_now", "oepm": "oepm_now",
+                              "depm": "depm_now", "p_usg": "usg_now"})]:
+        if feed is None:
+            continue
+        f = feed[feed["season"] == season].drop_duplicates("nba_id").set_index("nba_id")
+        for scol, gcol in cols.items():
+            if scol in f.columns and gcol in g.columns:
+                v = g["nba_id"].map(f[scol])
+                g.loc[v.notna(), "level_source"] = "source"
+                g[gcol] = v.fillna(g[gcol])
+
+    # rebuild every derived feature from the same functions training uses
+    g = add_availability_features(g)
+    g = add_young_improver(g)
+    return g.reset_index(drop=True)
