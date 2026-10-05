@@ -10,9 +10,11 @@ from __future__ import annotations
 import json
 import os
 
+import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+from sklearn.isotonic import IsotonicRegression
 
 ART = "artifacts"
 HORIZONS = [1, 2, 3, 4, 5]
@@ -39,6 +41,43 @@ CUR = meta["current_season"]
 # have no such column, so default everyone to played
 if "status" not in df.columns:
     df["status"] = "played"
+
+
+def _peak_smooth(v):
+    """Best unimodal fit to one path [now, 1y..5y]: may rise to a peak then fall, never
+    falls then rises. Year 0 is the observed value, so it is pinned (huge weight) and only
+    the projections move. Same fit as top.ipynb (FORM='peak', ANCHOR_ACTUAL=True)."""
+    yr = np.arange(len(v), dtype=float)
+    w = np.ones(len(v))
+    w[0] = 1e6
+    best, best_sse = v, np.inf
+    for k in range(len(yr)):
+        up = IsotonicRegression(increasing=True).fit_transform(yr[:k + 1], v[:k + 1], sample_weight=w[:k + 1])
+        dn = IsotonicRegression(increasing=False).fit_transform(yr[k:], v[k:], sample_weight=w[k:])
+        cand = np.concatenate([up[:-1], dn])
+        cand[:k] = np.minimum(cand[:k], cand[k])
+        sse = (w * (v - cand) ** 2).sum()
+        if sse < best_sse:
+            best, best_sse = cand, sse
+    # points pooled with the pinned year 0 land ~1e-7 off it; snap them so flat is flat
+    best[np.abs(best - v[0]) < 1e-5] = v[0]
+    return best
+
+
+@st.cache_data
+def smooth_paths(cur: pd.DataFrame) -> pd.DataFrame:
+    """Overwrite the current season's projections with their smoothed paths, for both
+    targets. Rows missing the current value or any horizon are left as-is."""
+    cur = cur.copy()
+    for now_col, pp in [("epm_now", "pred_epm"), ("epm_actual_now", "pred_epm_actual")]:
+        cols = [now_col] + [f"{pp}_{h}y" for h in HORIZONS]
+        if not set(cols) <= set(cur.columns):
+            continue
+        ok = cur[cols].notna().all(axis=1)
+        if ok.any():
+            sm = np.apply_along_axis(_peak_smooth, 1, cur.loc[ok, cols].to_numpy(float))
+            cur.loc[ok, cols[1:]] = sm[:, 1:]
+    return cur
 
 
 def season_label(s):
@@ -78,7 +117,7 @@ _vals = pd.concat([df[c] for c in _pred_cols] + [df[NOW]]).dropna()
 Y_RANGE = [float(_vals.min()) - 0.7, float(_vals.max()) + 0.7]
 
 # current-season slice + league rank by current value
-current = df[df["season"] == CUR].copy()
+current = smooth_paths(df[df["season"] == CUR])
 current["league_rank"] = current[NOW].rank(ascending=False, method="min")
 NAMES = current.dropna(subset=[NOW]).sort_values(NOW, ascending=False)["player_name"].dropna().unique().tolist()
 
@@ -153,7 +192,9 @@ with tab_player:
     fig.update_xaxes(tickmode="array", tickvals=yrs)
     st.plotly_chart(fig, width="stretch")
     st.caption("Solid dot = current (actual) EPM. Shaded band = typical out-of-fold "
-               "absolute error at each horizon (not a confidence interval).")
+               "absolute error at each horizon (not a confidence interval). "
+               "Projected paths are smoothed so they never dip and then recover; "
+               "see Methodology.")
 
 # ============================================================ Compare
 with tab_compare:
@@ -210,7 +251,8 @@ with tab_board:
     out.columns = ["Rank", "Player", "Team", "Age", "EPM now", f"Proj {h}y", "Change"]
 
     n_dnp = int(b["status"].ne("played").sum())
-    st.caption(f"{len(out)} players · blank Change = projected below -2"
+    st.caption(f"{len(out)} players · projections smoothed across horizons (see Methodology)"
+               " · blank Change = projected below -2"
                + (f" · DNP = did not play in {season_label(CUR)} ({n_dnp} players), "
                   f"projection assumes a return" if n_dnp else ""))
     st.dataframe(
@@ -261,6 +303,19 @@ on the observed-EPM model.
   which would bias the model toward survivors. Their future is decayed from their last
   level toward replacement over the horizon (a gradual fade, not an instant cliff), so
   decline is modeled rather than ignored. The same handling is applied to both targets.
+
+### Smoothed trajectories
+
+Each horizon (1y through 5y) is its own model, so left alone a player's path can go
+down and then come back up purely from model-to-model noise. Before display, every
+current path (current EPM → 1y … 5y) is replaced by its closest **single-peaked** fit:
+it can rise to a peak and then decline, but it never declines and then recovers. Current
+EPM is a real result, so it is never changed; only the projections move.
+
+This is a presentation choice, **not an accuracy gain**. Backtested on the out-of-fold
+history it changes roughly a third (predictive) to two-fifths (observed) of paths but moves MAE by less than 0.005 at every
+horizon, in either direction. The MAE figures above are for the unsmoothed model output.
+A genuine "regress next year, then grow" path for a young player gets flattened.
 
 ### Limitations
 
