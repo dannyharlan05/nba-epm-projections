@@ -14,9 +14,18 @@ import pandas as pd
 
 DATA_DIR = os.environ.get("EPM_DATA_DIR", "data")
 
+# browser download numbers of the current file sets -- older (N) files are ignored
+EPM_MIN_FILE = 29   # 'EPM data (N).csv'
+DT_MIN_FILE = 25    # 'Dunks & Threes Stats (N).csv'
+
 
 def _path(name: str) -> str:
     return os.path.join(DATA_DIR, name)
+
+
+def _filenum(f: str) -> int:
+    m = re.search(r"\((\d+)\)", f)
+    return int(m.group(1)) if m else 0
 
 
 def load_game_logs() -> pd.DataFrame:
@@ -55,12 +64,8 @@ def load_draft(refresh: bool = False) -> pd.DataFrame:
     return draft
 
 
-def load_predictive_epm(min_file: int = 2) -> pd.DataFrame:
+def load_predictive_epm(min_file: int = EPM_MIN_FILE) -> pd.DataFrame:
     """Dunks & Threes *predictive* EPM ('EPM data (N).csv'), N >= min_file."""
-    def _filenum(f):
-        m = re.search(r"\((\d+)\)", f)
-        return int(m.group(1)) if m else 0
-
     files = [f for f in glob.glob(_path("EPM data*.csv")) if _filenum(f) >= min_file]
     if not files:
         raise FileNotFoundError(f"no 'EPM data (>= {min_file}).csv' files in {DATA_DIR}")
@@ -71,9 +76,9 @@ def load_predictive_epm(min_file: int = 2) -> pd.DataFrame:
     return epm.drop_duplicates(["nba_id", "season"])
 
 
-def load_actual_epm() -> pd.DataFrame | None:
-    """Dunks & Threes *actual* (observed) EPM. Returns None if files absent."""
-    files = glob.glob(_path("Dunks & Threes Stats*.csv"))
+def load_actual_epm(min_file: int = DT_MIN_FILE) -> pd.DataFrame | None:
+    """Dunks & Threes *actual* (observed) EPM, N >= min_file. Returns None if files absent."""
+    files = [f for f in glob.glob(_path("Dunks & Threes Stats*.csv")) if _filenum(f) >= min_file]
     if not files:
         return None
     act = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
