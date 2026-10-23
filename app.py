@@ -18,6 +18,9 @@ from sklearn.isotonic import IsotonicRegression
 
 ART = "artifacts"
 HORIZONS = [1, 2, 3, 4, 5]
+# "If the season ended today" view (artifacts/predictions_now.parquet). Off until
+# Dunks & Threes posts observed EPM for the season in progress.
+SHOW_SEASON_SO_FAR = False
 
 st.set_page_config(page_title="NBA EPM Projections", layout="wide")
 
@@ -96,7 +99,7 @@ has_actual = "pred_epm_actual_1y" in df.columns and "cv_mae_actual" in meta
 df_now = load_now()
 VIEW_INTO = f"Going into {season_label(CUR + 1)}"
 views = [VIEW_INTO]
-if df_now is not None and len(df_now):
+if SHOW_SEASON_SO_FAR and df_now is not None and len(df_now):
     NOW_SEASON = int(df_now["season"].max())
     views.append(f"If {season_label(NOW_SEASON)} ended today")
 
@@ -306,6 +309,16 @@ with tab_board:
 with tab_method:
     pmae = ", ".join(f"{r['cv_mae']:.2f}" for r in meta["cv_mae"])
     amae = ", ".join(f"{r['cv_mae']:.2f}" for r in meta["cv_mae_actual"]) if has_actual else "n/a"
+    NOW_SECTION = ("""
+### If the season ended today
+
+The second view runs the same trained models on the season in progress, as if it stopped
+now: this season's predicted EPM and DARKO so far, regular-season box stats so far (players
+with no qualifying games yet use EPM's own per-100 estimates), and games played scaled to
+a full season. Nothing is retrained on the partial season. It is predictive EPM only, and
+early in the year it rests on a handful of games, so expect it to move a lot week to week.
+
+""" if len(views) > 1 else "")
     st.markdown(f"""
 ### What this is
 
@@ -336,15 +349,7 @@ on the observed-EPM model.
   level toward replacement over the horizon (a gradual fade, not an instant cliff), so
   decline is modeled rather than ignored. The same handling is applied to both targets.
 
-### If the season ended today
-
-The second view runs the same trained models on the season in progress, as if it stopped
-now: this season's predicted EPM and DARKO so far, regular-season box stats so far (players
-with no qualifying games yet use EPM's own per-100 estimates), and games played scaled to
-a full season. Nothing is retrained on the partial season. It is predictive EPM only, and
-early in the year it rests on a handful of games, so expect it to move a lot week to week.
-
-### Smoothed trajectories
+{NOW_SECTION}### Smoothed trajectories
 
 Each horizon (1y through 5y) is its own model, so left alone a player's path can go
 down and then come back up purely from model-to-model noise. Before display, every
