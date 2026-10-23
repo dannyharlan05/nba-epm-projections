@@ -30,6 +30,13 @@ def load_artifacts():
     return df, meta
 
 
+@st.cache_data
+def load_now():
+    """This season so far, run through the models (notebook's season-ended-today cell)."""
+    p = os.path.join(ART, "predictions_now.parquet")
+    return pd.read_parquet(p) if os.path.exists(p) else None
+
+
 if not os.path.exists(os.path.join(ART, "predictions.parquet")):
     st.error("No artifacts found. Run `python build_artifacts.py` first.")
     st.stop()
@@ -85,9 +92,34 @@ def season_label(s):
 
 has_actual = "pred_epm_actual_1y" in df.columns and "cv_mae_actual" in meta
 
+# ----- view: projections made going into this season, or from this season so far -----
+df_now = load_now()
+VIEW_INTO = f"Going into {season_label(CUR + 1)}"
+views = [VIEW_INTO]
+if df_now is not None and len(df_now):
+    NOW_SEASON = int(df_now["season"].max())
+    views.append(f"If {season_label(NOW_SEASON)} ended today")
+
 st.title("NBA EPM Projections")
-st.caption(f"Multi-year Estimated Plus-Minus forecasts · current season {CUR} · "
-           "time-ordered cross-validation")
+view = st.radio("View", views, horizontal=True,
+                help="Going into the season: projections from last season's full numbers. "
+                     "Ended today: the same models run on this season's numbers so far, "
+                     "as if the season stopped now.") if len(views) > 1 else VIEW_INTO
+IS_NOW = view != VIEW_INTO
+if IS_NOW:
+    df, CUR = df_now, NOW_SEASON
+    if "status" not in df.columns:
+        df["status"] = "played"
+    has_actual = False          # observed EPM isn't used for the season in progress
+    _asof = df["as_of"].max() if "as_of" in df.columns else pd.NaT
+    st.caption(f"{season_label(CUR)} so far"
+               + (f" · regular-season games through {pd.Timestamp(_asof):%b %d}" if pd.notna(_asof)
+                  else " · no regular-season games yet (box stats are EPM's own estimates)")
+               + " · predictive EPM only · early-season numbers swing a lot")
+else:
+    st.caption(f"Multi-year Estimated Plus-Minus forecasts · current season {CUR} · "
+               "time-ordered cross-validation")
+NOW_LABEL = "so far" if IS_NOW else "current"
 
 # ----- projection target toggle (click to switch model; drives every tab) -----
 if has_actual:
@@ -154,7 +186,7 @@ with tab_player:
     now_val = row[NOW]
 
     cols = st.columns(4)
-    cols[0].metric("Current EPM", f"{now_val:+.2f}" if pd.notna(now_val) else "n/a")
+    cols[0].metric(f"EPM {NOW_LABEL}", f"{now_val:+.2f}" if pd.notna(now_val) else "n/a")
     for i, h in enumerate([1, 3, 5]):
         p = row.get(pcolname(h))
         cols[i + 1].metric(f"{h}-Year ({CUR + h})", f"{p:+.2f}" if pd.notna(p) else "n/a")
@@ -183,8 +215,8 @@ with tab_player:
     if pd.notna(now_val):
         fig.add_trace(go.Scatter(x=[CUR], y=[now_val], mode="markers",
                                  marker=dict(size=13, color="#111"),
-                                 name="current (actual)",
-                                 hovertemplate="current %{y:+.2f}<extra></extra>"))
+                                 name=f"{NOW_LABEL} (actual)",
+                                 hovertemplate=NOW_LABEL + " %{y:+.2f}<extra></extra>"))
     fig.update_layout(xaxis_title="Season (end year)", yaxis_title="EPM",
                       height=440, hovermode="x unified",
                       legend=dict(orientation="h", yanchor="bottom", y=1.02))
@@ -303,6 +335,14 @@ on the observed-EPM model.
   which would bias the model toward survivors. Their future is decayed from their last
   level toward replacement over the horizon (a gradual fade, not an instant cliff), so
   decline is modeled rather than ignored. The same handling is applied to both targets.
+
+### If the season ended today
+
+The second view runs the same trained models on the season in progress, as if it stopped
+now: this season's predicted EPM and DARKO so far, regular-season box stats so far (players
+with no qualifying games yet use EPM's own per-100 estimates), and games played scaled to
+a full season. Nothing is retrained on the partial season. It is predictive EPM only, and
+early in the year it rests on a handful of games, so expect it to move a lot week to week.
 
 ### Smoothed trajectories
 
