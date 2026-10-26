@@ -1,0 +1,522 @@
+nba_id,player_name,team,data_name
+1629652,Luguentz Dort,ATL,Luguentz Dort
+1642484,RayJ Dennis,ATL,RayJ Dennis
+1642933,Keshon Gilbert,ATL,Keshon Gilbert
+1630552,Jalen Johnson,ATL,Jalen Johnson
+1630598,Aaron Wiggins,ATL,Aaron Wiggins
+203468,CJ McCollum,ATL,CJ McCollum
+1643412,Kingston Flemings,ATL,
+1630700,Dyson Daniels,ATL,Dyson Daniels
+1629638,Nickeil Alexander-Walker,ATL,Nickeil Alexander-Walker
+1627827,Dorian Finney-Smith,ATL,Dorian Finney-Smith
+1643539,Henri Veesaar,ATL,
+1642854,Asa Newell,ATL,Asa Newell
+1630168,Onyeka Okongwu,ATL,Onyeka Okongwu
+1631243,Mouhamed Gueye,ATL,Mouhamed Gueye
+1643544,Zuby Ejiofor,ATL,
+1630592,Jalen Wilson,ATL,Jalen Wilson
+1630557,Corey Kispert,ATL,Corey Kispert
+1629111,Jock Landale,ATL,Jock Landale
+1628369,Jayson Tatum,BOS,Jayson Tatum
+1629011,Mitchell Robinson,BOS,Mitchell Robinson
+1631199,Ron Harper Jr.,BOS,Ron Harper Jr.
+1628401,Derrick White,BOS,Derrick White
+1630202,Payton Pritchard,BOS,Payton Pritchard
+1643416,Chris Cenac Jr.,BOS,
+202331,Paul George,BOS,Paul George
+1641759,Dillon Mitchell,BOS,
+1642269,Devin Carter,BOS,Devin Carter
+1641775,Jordan Walsh,BOS,Jordan Walsh
+1642864,Hugo González,BOS,Hugo González
+1630573,Sam Hauser,BOS,Sam Hauser
+201144,Mike Conley,BOS,Mike Conley
+1630568,Luka Garza,BOS,Luka Garza
+1631248,Baylor Scheierman,BOS,Baylor Scheierman
+1642873,Amari Williams,BOS,Amari Williams
+1629674,Neemias Queta,BOS,Neemias Queta
+201935,James Harden,CLE,James Harden
+1628418,Thomas Bryant,CLE,Thomas Bryant
+1630596,Evan Mobley,CLE,Evan Mobley
+1630241,Sam Merrill,CLE,Sam Merrill
+1631212,Peyton Watson,CLE,Peyton Watson
+1641854,Craig Porter Jr.,CLE,Craig Porter
+1642434,Riley Minix,CLE,Riley Minix
+1643509,Meleek Thomas,CLE,
+1631215,Khalifa Diop,CLE,
+1642281,Jaylon Tyson,CLE,Jaylon Tyson
+1642400,Tristan Enaruna,CLE,Tristan Enaruna
+1642878,Tyrese Proctor,CLE,Tyrese Proctor
+1628386,Jarrett Allen,CLE,Jarrett Allen
+1626209,Mario Hezonja,CLE,Mario Hezonja
+1641772,Nae'Qwan Tomlin,CLE,Nae'Qwan Tomlin
+1628378,Donovan Mitchell,CLE,Donovan Mitchell
+1643640,"Ernest Udeh, Jr.",CLE,
+1642847,Jeremiah Fears,NOP,Jeremiah Fears
+1629627,Zion Williamson,NOP,Zion Williamson
+1630529,Herbert Jones,NOP,Herbert Jones
+1629673,Jordan Poole,NOP,Jordan Poole
+1627749,Dejounte Murray,NOP,Dejounte Murray
+201599,DeAndre Jordan,NOP,DeAndre Jordan
+1643738,Malik Dia,NOP,
+1630570,Trendon Watford,NOP,Trendon Watford
+1643555,Jaron Pierre Jr.,NOP,
+1631121,Bryce McGowens,NOP,Bryce McGowens
+1642882,Julian Reese,NOP,Julian Reese
+1642358,AJ Johnson,NOP,AJ Johnson
+1631255,Karlo Matković,NOP,Karlo Matkovic
+1642274,Yves Missi,NOP,Yves Missi
+1642852,Derik Queen,NOP,Derik Queen
+1631097,Bennedict Mathurin,NOP,Bennedict Mathurin
+1630530,Trey Murphy III,NOP,Trey Murphy III
+1630180,Saddiq Bey,NOP,Saddiq Bey
+1642855,Noa Essengue,CHI,Noa Essengue
+1630581,Josh Giddey,CHI,Josh Giddey
+1643517,Dailyn Swain,CHI,
+1627741,Buddy Hield,CHI,Buddy Hield
+1643410,Caleb Wilson,CHI,
+1629651,Nic Claxton,CHI,Nicolas Claxton
+1631159,Leonard Miller,CHI,Leonard Miller
+1628380,Zach Collins,CHI,Zach Collins
+1641824,Matas Buzelis,CHI,Matas Buzelis
+1641722,Jordan Hawkins,CHI,Jordan Hawkins
+1643591,Tobe Awaka,CHI,
+1643637,Jaylin Sellers,CHI,
+1626181,Norman Powell,CHI,Norman Powell
+1630188,Jalen Smith,CHI,Jalen Smith
+1630200,Tre Jones,CHI,Tre Jones
+1630171,Isaac Okoro,CHI,Isaac Okoro
+1630172,Patrick Williams,CHI,Patrick Williams
+1631108,Max Christie,DAL,Max Christie
+1641726,Dereck Lively II,DAL,Dereck Lively II
+1630230,Naji Marshall,DAL,Naji Marshall
+1642383,Walter Clayton Jr.,DAL,Walter Clayton Jr.
+1631204,Marcus Sasser,DAL,Marcus Sasser
+1641724,Jett Howard,DAL,Jett Howard
+1642258,Zaccharie Risacher,DAL,Zaccharie Risacher
+202681,Kyrie Irving,DAL,Kyrie Irving
+1641844,Tarik Biberović,DAL,
+1643516,Morez Johnson Jr.,DAL,
+1628997,Caleb Martin,DAL,Caleb Martin
+1629655,Daniel Gafford,DAL,Daniel Gafford
+1629023,P.J. Washington,DAL,P.J. Washington
+1630619,Moussa Cissé,DAL,Moussa Cisse
+1642843,Cooper Flagg,DAL,Cooper Flagg
+1643588,Tobi Lawal,DAL,
+1630583,Santi Aldama,DAL,Santi Aldama
+1643547,Sergio de Larrea,DAL,
+1631128,Christian Braun,DEN,Christian Braun
+1641715,Cam Whitmore,DEN,Cam Whitmore
+1631124,Julian Strawther,DEN,Julian Strawther
+1628963,Marvin Bagley III,DEN,Marvin Bagley III
+1626145,Tyus Jones,DEN,Tyus Jones
+1642350,Trevon Brazile,DEN,
+1642948,Ryan Nembhard,DEN,Ryan Nembhard
+201942,DeMar DeRozan,DEN,DeMar DeRozan
+1643813,Alpha Diallo,DEN,
+1643624,Bryce Hopkins,DEN,
+1641747,DaRon Holmes II,DEN,DaRon Holmes II
+203999,Nikola Jokić,DEN,Nikola Jokic
+1642461,Spencer Jones,DEN,Spencer Jones
+1630192,Zeke Nnaji,DEN,Zeke Nnaji
+1629661,Cameron Johnson,DEN,Cameron Johnson
+1627750,Jamal Murray,DEN,Jamal Murray
+203932,Aaron Gordon,DEN,Aaron Gordon
+1627780,Gary Payton II,GSW,Gary Payton II
+1642865,Yaxel Lendeborg,GSW,
+1641764,Brandin Podziemski,GSW,Brandin Podziemski
+1642954,Will Richard,GSW,Will Richard
+1630541,Moses Moody,GSW,Moses Moody
+204001,Kristaps Porziņģis,GSW,Kristaps Porzingis
+1629001,De'Anthony Melton,GSW,De'Anthony Melton
+202710,Jimmy Butler III,GSW,Jimmy Butler
+1630314,Brandon Williams,GSW,Brandon Williams
+1630611,Gui Santos,GSW,Gui Santos
+1643018,LJ Cryer,GSW,LJ Cryer
+201143,Al Horford,GSW,Al Horford
+203110,Draymond Green,GSW,Draymond Green
+1629646,Charles Bassey,GSW,Charles Bassey
+201939,Stephen Curry,GSW,Stephen Curry
+1627777,Georges Niang,GSW,Georges Niang
+1642502,Malevy Leons,GSW,Malevy Leons
+1643633,Graham Ike,GSW,
+1641708,Amen Thompson,HOU,Amen Thompson
+1643570,Bruce Thornton,HOU,
+1641763,Julian Phillips,HOU,Julian Phillips
+1627832,Fred VanVleet,HOU,Fred VanVleet
+201142,Kevin Durant,HOU,Kevin Durant
+1630256,Jae'Sean Tate,HOU,Jae'Sean Tate
+1631095,Jabari Smith Jr.,HOU,Jabari Smith Jr.
+203500,Steven Adams,HOU,Steven Adams
+1642263,Reed Sheppard,HOU,Reed Sheppard
+1631106,Tari Eason,HOU,Tari Eason
+1643595,Quadir Copeland,HOU,
+1642384,Isaiah Crawford,HOU,Isaiah Crawford
+1630578,Alperen Sengun,HOU,Alperen Sengun
+203991,Clint Capela,HOU,Clint Capela
+203992,Bogdan Bogdanović,HOU,Bogdan Bogdanovic
+1631131,Oscar Tshiebwe,HOU,Oscar Tshiebwe
+203935,Marcus Smart,HOU,Marcus Smart
+1643413,Keaton Wagler,LAC,
+203078,Bradley Beal,LAC,Bradley Beal
+1642920,Kobe Sanders,LAC,Kobe Sanders
+1627884,Derrick Jones Jr.,LAC,Derrick Jones Jr.
+1627742,Brandon Ingram,LAC,Brandon Ingram
+1627739,Kris Dunn,LAC,Kris Dunn
+1641711,Gradey Dick,LAC,Gradey Dick
+1629636,Darius Garland,LAC,Darius Garland
+201572,Brook Lopez,LAC,Brook Lopez
+1643568,Nick Martinelli,LAC,
+1642949,Yanic Konan Niederhäuser,LAC,Yanic Konan Niederhäuser
+1642394,Baba Miller,LAC,
+1641757,Jordan Miller,LAC,Jordan Miller
+1630543,Isaiah Jackson,LAC,Isaiah Jackson
+1642353,Cam Christie,LAC,Cam Christie
+1629618,Jalen Pickett,LAC,Jalen Pickett
+1629060,Rui Hachimura,LAC,Rui Hachimura
+1629622,Max Strus,LAC,Max Strus
+1642876,Adou Thiero,LAL,Adou Thiero
+1629020,Jarred Vanderbilt,LAL,Jarred Vanderbilt
+1629680,Matisse Thybulle,LAL,Matisse Thybulle
+1629656,Quentin Grimes,LAL,Quentin Grimes
+1630702,Jaden Hardy,LAL,Jaden Hardy
+1642355,Bronny James,LAL,Bronny James
+1629012,Collin Sexton,LAL,Collin Sexton
+1630533,Ziaire Williams,LAL,Ziaire Williams
+1631222,Jake LaRavia,LAL,Jake LaRavia
+1631117,Walker Kessler,LAL,Walker Kessler
+1630559,Austin Reaves,LAL,Austin Reaves
+1643024,Chris Mañon,LAL,Chris Mañon
+1643758,AK Okereke,LAL,
+1643418,Cameron Carr,LAL,
+1641751,Arthur Kaluma,LAL,
+1630572,Sandro Mamukelashvili,LAL,Sandro Mamukelashvili
+1626172,Kevon Looney,LAL,Kevon Looney
+1629029,Luka Dončić,LAL,Luka Doncic
+1631323,Simone Fontecchio,MIA,Simone Fontecchio
+1630558,Davion Mitchell,MIA,Davion Mitchell
+1643553,Ryan Conwell,MIA,
+1631107,Nikola Jović,MIA,Nikola Jovic
+203507,Giannis Antetokounmpo,MIA,Giannis Antetokounmpo
+1630208,Nick Richards,MIA,Nick Richards
+1641796,Pelle Larsson,MIA,Pelle Larsson
+203501,Tim Hardaway Jr.,MIA,Tim Hardaway Jr.
+1630696,Dru Smith,MIA,Dru Smith
+1628389,Bam Adebayo,MIA,Bam Adebayo
+1642066,Myron Gardner,MIA,Myron Gardner
+1642352,Keshad Johnson,MIA,Keshad Johnson
+202691,Klay Thompson,MIA,Klay Thompson
+203952,Andrew Wiggins,MIA,Andrew Wiggins
+1643621,Tre Donaldson,MIA,
+1642884,Vladislav Goldin,MIA,Vladislav Goldin
+1626171,Bobby Portis Jr.,MIA,Bobby Portis
+1630579,Jericho Sims,MIL,Jericho Sims
+1643415,Brayden Burries,MIL,
+1626167,Myles Turner,MIL,Myles Turner
+1629018,Gary Trent Jr.,MIL,Gary Trent Jr.
+1642276,Kel'el Ware,MIL,Kel'el Ware
+1629639,Tyler Herro,MIL,Tyler Herro
+1627747,Caris LeVert,MIL,Caris LeVert
+1631157,Ryan Rollins,MIL,Ryan Rollins
+1643417,Nate Ament,MIL,
+1628398,Kyle Kuzma,MIL,Kyle Kuzma
+1642880,Kam Jones,MIL,Kam Jones
+1631260,AJ Green,MIL,A.J. Green
+1631172,Ousmane Dieng,MIL,Ousmane Dieng
+1642881,Bogoljub Marković,MIL,
+1631170,Jaime Jaquez Jr.,MIL,Jaime Jaquez Jr.
+1642857,Kasparas Jakučionis,MIL,Kasparas Jakučionis
+1642504,Cormac Ryan,MIL,Cormac Ryan
+1631250,Pete Nance,MIL,Pete Nance
+1628978,Donte DiVincenzo,MIN,Donte DiVincenzo
+1630163,LaMelo Ball,MIN,LaMelo Ball
+1630183,Jaden McDaniels,MIN,Jaden McDaniels
+1630545,Terrence Shannon Jr,MIN,Terrence Shannon Jr.
+1630162,Anthony Edwards,MIN,Anthony Edwards
+1641740,Jaylen Clark,MIN,Jaylen Clark
+1630538,Bones Hyland,MIN,Nah'Shon Hyland
+1642262,Cody Williams,MIN,Cody Williams
+1630245,Ayo Dosunmu,MIN,Ayo Dosunmu
+1642389,Zyon Pullin,MIN,Zyon Pullin
+1642866,Joan Beringer,MIN,Joan Beringer
+1630228,Jonathan Kuminga,MIN,Jonathan Kuminga
+203497,Rudy Gobert,MIN,Rudy Gobert
+1642912,Isaiah Evans,MIN,
+1626168,Trey Lyles,MIN,Trey Lyles
+1642911,Rocco Zikarsky,MIN,Rocco Zikarsky
+1631169,Josh Minott,BKN,Josh Minott
+1643414,Mikel Brown Jr.,BKN,
+1631165,Keon Ellis,BKN,Keon Ellis
+1642874,Danny Wolf,BKN,Danny Wolf
+1642962,Drake Powell,BKN,Drake Powell
+1642856,Egor Dëmin,BKN,Egor Dëmin
+1643538,Joshua Jefferson,BKN,
+1642849,Nolan Traore,BKN,Nolan Traore
+1629021,Moritz Wagner,BKN,Moritz Wagner
+1629611,Terance Mann,BKN,Terance Mann
+1641761,Grant Nelson,BKN,Grant Nelson
+1629008,Michael Porter Jr.,BKN,Michael Porter Jr.
+1630549,Day'Ron Sharpe,BKN,Day'Ron Sharpe
+1641730,Noah Clowney,BKN,Noah Clowney
+203944,Julius Randle,BKN,Julius Randle
+1643052,Chaney Johnson,BKN,Chaney Johnson
+1643548,Tyler Bilodeau,BKN,
+1642879,Ben Saraf,BKN,Ben Saraf
+203083,Andre Drummond,NYK,Andre Drummond
+203903,Jordan Clarkson,NYK,Jordan Clarkson
+1630540,Miles McBride,NYK,Miles McBride
+1628404,Josh Hart,NYK,Josh Hart
+1642261,Dalton Knecht,NYK,Dalton Knecht
+1642359,Pacôme Dadiet,NYK,Pacôme Dadiet
+1630631,Jose Alvarado,NYK,Jose Alvarado
+1628384,OG Anunoby,NYK,OG Anunoby
+1630164,James Wiseman,NYK,James Wiseman
+1628973,Jalen Brunson,NYK,Jalen Brunson
+1642278,Tyler Kolek,NYK,Tyler Kolek
+1643022,Jaden Akins,NYK,
+1628969,Mikal Bridges,NYK,Mikal Bridges
+1626157,Karl-Anthony Towns,NYK,Karl-Anthony Towns
+1629013,Landry Shamet,NYK,Landry Shamet
+1642885,Mohamed Diawara,NYK,Mohamed Diawara
+1643589,Tyler Nickel,NYK,
+1641710,Anthony Black,ORL,Anthony Black
+1628371,Jonathan Isaac,ORL,Jonathan Isaac
+1628975,Jevon Carter,ORL,Jevon Carter
+1630217,Desmond Bane,ORL,Desmond Bane
+1630591,Jalen Suggs,ORL,Jalen Suggs
+1631094,Paolo Banchero,ORL,Paolo Banchero
+1631288,Jamal Cain,ORL,Jamal Cain
+202696,Nikola Vučević,ORL,Nikola Vucevic
+1642859,Jase Richardson,ORL,Jase Richardson
+1630658,Colin Castleton,ORL,Colin Castleton
+1630532,Franz Wagner,ORL,Franz Wagner
+1641783,Tristan da Silva,ORL,Tristan da Silva
+1643593,Izaiyah Nelson,ORL,
+1631457,Alex Morales,ORL,Alex Morales
+1628976,Wendell Carter Jr.,ORL,Wendell Carter Jr.
+1629048,Goga Bitadze,ORL,Goga Bitadze
+1642869,Noah Penda,ORL,Noah Penda
+1630169,Tyrese Haliburton,IND,Tyrese Haliburton
+1630167,Obi Toppin,IND,Obi Toppin
+1629614,Andrew Nembhard,IND,Andrew Nembhard
+1643552,Braden Smith,IND,
+1641716,Jarace Walker,IND,Jarace Walker
+204456,T.J. McConnell,IND,T.J. McConnell
+1626162,Kelly Oubre Jr.,IND,Kelly Oubre Jr.
+1642277,Johnny Furphy,IND,Johnny Furphy
+1641771,Jalen Slawson,IND,Jalen Slawson
+1626204,Larry Nance Jr.,IND,Larry Nance Jr.
+1630174,Aaron Nesmith,IND,Aaron Nesmith
+1641738,Kobe Brown,IND,Kobe Brown
+1641767,Ben Sheppard,IND,Ben Sheppard
+1631245,Quenton Jackson,IND,Quenton Jackson
+1630643,Jay Huff,IND,Jay Huff
+1627826,Ivica Zubac,IND,Ivica Zubac
+1627783,Pascal Siakam,IND,Pascal Siakam
+1630178,Tyrese Maxey,PHI,Tyrese Maxey
+1642889,Labaron Philon Jr.,PHI,
+203484,Kentavious Caldwell-Pope,PHI,Kentavious Caldwell-Pope
+1631126,Caleb Love,PHI,Caleb Love
+1629014,Anfernee Simons,PHI,Anfernee Simons
+1627759,Jaylen Brown,PHI,Jaylen Brown
+1642348,Justin Edwards,PHI,Justin Edwards
+1641712,Rayan Rupert,PHI,Rayan Rupert
+203954,Joel Embiid,PHI,Joel Embiid
+2544,LeBron James,PHI,LeBron James
+1631230,Dominick Barlow,PHI,Dominick Barlow
+1641737,Adem Bona,PHI,Adem Bona
+1631133,Jabari Walker,PHI,Jabari Walker
+1629731,Dean Wade,PHI,Dean Wade
+1630574,Ariel Hukporti,PHI,Ariel Hukporti
+1642845,VJ Edgecombe,PHI,VJ Edgecombe
+1629605,Tacko Fall,PHI,Tacko Fall
+1642346,Ryan Dunn,PHX,Ryan Dunn
+1628415,Dillon Brooks,PHX,Dillon Brooks
+1630224,Jalen Green,PHX,Jalen Green
+1628379,Luke Kennard,PHX,Luke Kennard
+1642863,Khaman Maluach,PHX,Khaman Maluach
+1642345,Oso Ighodaro,PHX,Oso Ighodaro
+1631221,Collin Gillespie,PHX,Collin Gillespie
+1626164,Devin Booker,PHX,Devin Booker
+1631123,Jamaree Bouyea,PHX,Jamaree Bouyea
+1631166,Drew Timme,PHX,Drew Timme
+1643520,Koa Peat,PHX,
+1642853,Rasheer Fleming,PHX,Rasheer Fleming
+1628970,Miles Bridges,PHX,Miles Bridges
+1630692,Jordan Goodwin,PHX,Jordan Goodwin
+1631109,Mark Williams,PHX,Mark Williams
+1641871,Duop Reath,PHX,Duop Reath
+1630311,Pat Spencer,PHX,Pat Spencer
+1643257,Jayson Kent,POR,Jayson Kent
+203081,Damian Lillard,POR,Damian Lillard
+1630703,Scoot Henderson,POR,Scoot Henderson
+1629630,Ja Morant,POR,Ja Morant
+1642959,Chris Youngblood,POR,Chris Youngblood
+201950,Jrue Holiday,POR,Jrue Holiday
+1630166,Deni Avdija,POR,Deni Avdija
+1642910,John Tonje,POR,John Tonje
+1630695,Micah Potter,POR,Micah Potter
+1642382,Branden Carlson,POR,Branden Carlson
+1642905,Yang Hansen,POR,Yang Hansen
+1631101,Shaedon Sharpe,POR,Shaedon Sharpe
+1642270,Donovan Clingan,POR,Donovan Clingan
+1630249,Vít Krejčí,POR,Vit Krejci
+1641739,Toumani Camara,POR,Toumani Camara
+1629057,Robert Williams III,POR,Robert Williams III
+1631321,Sidy Cissoko,POR,Sidy Cissoko
+1642951,Sean Pedulla,SAC,Sean Pedulla
+1628370,Malik Monk,SAC,Malik Monk
+1643411,Darius Acuff Jr.,SAC,
+203897,Zach LaVine,SAC,Zach LaVine
+1630173,Precious Achiuwa,SAC,Precious Achiuwa
+1642363,Nique Clifford,SAC,Nique Clifford
+1627734,Domantas Sabonis,SAC,Domantas Sabonis
+1631099,Keegan Murray,SAC,Keegan Murray
+1629631,De'Andre Hunter,SAC,De'Andre Hunter
+1641778,Leaky Black,SAC,Leaky Black
+1642367,Jonathan Mogbo,SAC,Jonathan Mogbo
+1627732,Ben Simmons,SAC,Ben Simmons
+1631342,Daeqwon Plowden,SAC,Daeqwon Plowden
+1642928,Dylan Cardwell,SAC,Dylan Cardwell
+1642284,Alex Karaban,SAC,
+1643567,Emanuel Sharp,SAC,
+1642875,Maxime Raynaud,SAC,Maxime Raynaud
+1629162,Jordan McLaughlin,SAS,Jordan McLaughlin
+1641705,Victor Wembanyama,SAS,Victor Wembanyama
+1642844,Dylan Harper,SAS,Dylan Harper
+1629640,Keldon Johnson,SAS,Keldon Johnson
+1628368,De'Aaron Fox,SAS,De'Aaron Fox
+1642264,Stephon Castle,SAS,Stephon Castle
+1628436,Luke Kornet,SAS,Luke Kornet
+1643542,Tarris Reed Jr.,SAS,
+1642868,Carter Bryant,SAS,Carter Bryant
+1643576,Maliq Brown,SAS,
+1643551,Ja'Kobi Gillespie,SAS,
+1643519,Jayden Quaintance,SAS,
+202699,Tobias Harris,SAS,Tobias Harris
+1630170,Devin Vassell,SAS,Devin Vassell
+1642357,David Jones Garcia,SAS,David Jones
+1630577,Julian Champagnie,SAS,Julian Champagnie
+203084,Harrison Barnes,SAS,Harrison Barnes
+1628983,Shai Gilgeous-Alexander,OKC,Shai Gilgeous-Alexander
+1642272,Jared McCain,OKC,Jared McCain
+1631119,Jaylin Williams,OKC,Jaylin Williams
+1631096,Chet Holmgren,OKC,Chet Holmgren
+1631114,Jalen Williams,OKC,Jalen Williams
+1627936,Alex Caruso,OKC,Alex Caruso
+1642850,Thomas Sorber,OKC,Thomas Sorber
+1642892,Bennett Stirtz,OKC,
+1643530,Aday Mara,OKC,
+1642877,Micah Peavy,OKC,Micah Peavy
+1643717,Josh Dix,OKC,
+1641717,Cason Wallace,OKC,Cason Wallace
+1642964,Brooks Barnhizer,OKC,Brooks Barnhizer
+1642349,Ajay Mitchell,OKC,Ajay Mitchell
+1629026,Kenrich Williams,OKC,Kenrich Williams
+1642260,Nikola Topić,OKC,Nikola Topić
+1628392,Isaiah Hartenstein,OKC,Isaiah Hartenstein
+1642927,Nate Bittle,TOR,
+1642347,Jamal Shead,TOR,Jamal Shead
+202695,Kawhi Leonard,TOR,Kawhi Leonard
+1630567,Scottie Barnes,TOR,Scottie Barnes
+1630193,Immanuel Quickley,TOR,Immanuel Quickley
+1643558,Jaden Bradley,TOR,
+1629628,RJ Barrett,TOR,RJ Barrett
+203937,Kyle Anderson,TOR,Kyle Anderson
+1642266,Ja'Kobe Walter,TOR,Ja'Kobe Walter
+1641869,Malachi Smith,TOR,Malachi Smith
+1627751,Jakob Poeltl,TOR,Jakob Poeltl
+1643512,Allen Graves,TOR,
+1642867,Collin Murray-Boyles,TOR,Collin Murray-Boyles
+1631218,Trayce Jackson-Davis,TOR,Trayce Jackson-Davis
+1642918,Alijah Martin,TOR,Alijah Martin
+1642419,Jamison Battle,TOR,Jamison Battle
+1631127,Harrison Ingram,UTA,Harrison Ingram
+1642271,Kyle Filipowski,UTA,Kyle Filipowski
+1641718,Keyonte George,UTA,Keyonte George
+1641723,Kobe Bufkin,UTA,Kobe Bufkin
+1630182,Josh Green,UTA,Josh Green
+1642268,Isaiah Collier,UTA,Isaiah Collier
+1629004,Svi Mykhailiuk,UTA,Svi Mykhailiuk
+1629637,Jaxson Hayes,UTA,Jaxson Hayes
+1628396,Tony Bradley,UTA,Tony Bradley
+1641725,Trey Alexander,UTA,Trey Alexander
+1642846,Ace Bailey,UTA,Ace Bailey
+1628991,Jaren Jackson Jr.,UTA,Jaren Jackson Jr.
+1629006,Josh Okogie,UTA,Josh Okogie
+1643408,Darryn Peterson,UTA,
+1628374,Lauri Markkanen,UTA,Lauri Markkanen
+1641729,Brice Sensabaugh,UTA,Brice Sensabaugh
+203994,Jusuf Nurkić,UTA,Jusuf Nurkic
+1628964,Mo Bamba,UTA,Mo Bamba
+1642377,Jaylen Wells,MEM,Jaylen Wells
+1630590,Scotty Pippen Jr.,MEM,Scotty Pippen Jr.
+1629660,Ty Jerome,MEM,Ty Jerome
+203924,Jerami Grant,MEM,Jerami Grant
+1642914,Javon Small,MEM,Javon Small
+1641744,Zach Edey,MEM,Zach Edey
+1631200,Kris Murray,MEM,Kris Murray
+1641765,Olivier-Maxence Prosper,MEM,Olivier-Maxence Prosper
+1643721,Carson Cooper,MEM,
+1642942,Jahmai Mashack,MEM,Jahmai Mashack
+1641707,Taylor Hendricks,MEM,Taylor Hendricks
+1642907,Cedric Coward,MEM,Cedric Coward
+1642285,Cam Spencer,MEM,Cam Spencer
+1643409,Cameron Boozer,MEM,
+1630191,Isaiah Stewart,MEM,Isaiah Stewart
+1643510,Karim López,MEM,
+1642366,Quinten Post,MEM,Quinten Post
+1641713,GG Jackson,MEM,GG Jackson
+1641731,Bilal Coulibaly,WAS,Bilal Coulibaly
+1641774,Tristan Vukčević,WAS,Tristan Vukcevic
+1630544,Tre Mann,WAS,Tre Mann
+1629027,Trae Young,WAS,Trae Young
+1643407,AJ Dybantsa,WAS,
+1642364,Jamir Watkins,WAS,Jamir Watkins
+1642267,Bub Carrington,WAS,Carlton Carrington
+1629028,Deandre Ayton,WAS,Deandre Ayton
+1630551,Justin Champagnie,WAS,Justin Champagnie
+1642848,Tre Johnson,WAS,Tre Johnson
+1630264,Anthony Gill,WAS,Anthony Gill
+1642273,Kyshawn George,WAS,Kyshawn George
+1642259,Alex Sarr,WAS,Alexandre Sarr
+203114,Khris Middleton,WAS,Khris Middleton
+203076,Anthony Davis,WAS,Anthony Davis
+1641736,Reece Beekman,WAS,Reece Beekman
+1642860,Will Riley,WAS,Will Riley
+1643590,Felix Okpara,WAS,
+1631105,Jalen Duren,DET,Jalen Duren
+1630595,Cade Cunningham,DET,Cade Cunningham
+1641842,Ronald Holland II,DET,Ronald Holland II
+1630194,Paul Reed,DET,Paul Reed
+1642404,Chaz Lanier,DET,Chaz Lanier
+1641709,Ausar Thompson,DET,Ausar Thompson
+1627752,Taurean Prince,DET,Taurean Prince
+1642403,Isaac Jones,DET,Isaac Jones
+1630198,Isaiah Joe,DET,Isaiah Joe
+1628381,John Collins,DET,John Collins
+1643536,Ebuka Okorie,DET,
+1642450,Daniss Jenkins,DET,Daniss Jenkins
+1628989,Kevin Huerter,DET,Kevin Huerter
+1629750,Javonte Green,DET,Javonte Green
+1642391,Ugonna Onyenso,DET,
+1642449,Tolu Smith,DET,Tolu Smith
+1629130,Duncan Robinson,DET,Duncan Robinson
+1641989,Elijah Harkless,DET,Elijah Harkless
+1642369,Michael Ajayi,CHA,
+1643573,Kylan Boswell,CHA,
+1626220,Royce O'Neale,CHA,Royce O'Neale
+1629675,Naz Reid,CHA,Naz Reid
+1629684,Grant Williams,CHA,Grant Williams
+1629632,Coby White,CHA,Coby White
+1642883,Sion James,CHA,Sion James
+1643515,Christian Anderson,CHA,
+1642851,Kon Knueppel,CHA,Kon Knueppel
+1628960,Grayson Allen,CHA,Grayson Allen
+1641750,Ryan Kalkbrenner,CHA,Ryan Kalkbrenner
+1631217,Moussa Diabaté,CHA,Moussa Diabate
+1641790,PJ Hall,CHA,PJ Hall
+203471,Dennis Schröder,CHA,Dennis Schroder
+1643419,Hannes Steinbach,CHA,
+1641706,Brandon Miller,CHA,Brandon Miller
+1642275,Tidjane Salaün,CHA,Tidjane Salaün
+1642862,Liam McNeeley,CHA,Liam McNeeley

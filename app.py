@@ -9,6 +9,8 @@ predictive (stabilized) EPM model and the observed (raw-season) EPM model.
 from __future__ import annotations
 import json
 import os
+import re
+import unicodedata
 
 import numpy as np
 import pandas as pd
@@ -45,6 +47,42 @@ def load_wins():
     """Hand-entered preseason win projections (artifacts/win_projections.csv)."""
     p = os.path.join(ART, "win_projections.csv")
     return pd.read_csv(p) if os.path.exists(p) else None
+
+
+@st.cache_data
+def load_current_teams():
+    """Current NBA rosters (artifacts/current_teams.csv, written by the notebook's roster cell)."""
+    p = os.path.join(ART, "current_teams.csv")
+    return pd.read_csv(p) if os.path.exists(p) else None
+
+
+def _name_key(s):
+    s = unicodedata.normalize("NFKD", str(s)).encode("ascii", "ignore").decode().lower()
+    s = re.sub(r"[`'.,]", "", s).replace("-", " ")
+    s = re.sub(r"\b(jr|sr|ii|iii|iv)\b", "", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def apply_current_teams(cur: pd.DataFrame) -> pd.DataFrame:
+    """Replace last season's team with the player's team now; not on a roster -> FA.
+    Matches on nba_id when the artifacts carry it, otherwise on the player's name."""
+    ct = load_current_teams()
+    if ct is None:
+        return cur
+    cur = cur.copy()
+    if "nba_id" in cur.columns:
+        team = cur["nba_id"].map(ct.drop_duplicates("nba_id").set_index("nba_id")["team"])
+    else:
+        names = [ct[["player_name", "team"]]]
+        if "data_name" in ct.columns:                    # spelling used in the data, if different
+            names.append(ct.dropna(subset=["data_name"])[["data_name", "team"]]
+                         .rename(columns={"data_name": "player_name"}))
+        by_name = (pd.concat(names).assign(k=lambda x: x["player_name"].map(_name_key))
+                   .drop_duplicates(["k", "team"]).drop_duplicates("k", keep=False)
+                   .set_index("k")["team"])
+        team = cur["player_name"].map(_name_key).map(by_name)
+    cur["team"] = team.fillna("FA")
+    return cur
 
 
 if not os.path.exists(os.path.join(ART, "predictions.parquet")):
@@ -159,7 +197,7 @@ _vals = pd.concat([df[c] for c in _pred_cols] + [df[NOW]]).dropna()
 Y_RANGE = [float(_vals.min()) - 0.7, float(_vals.max()) + 0.7]
 
 # current-season slice + league rank by current value
-current = smooth_paths(df[df["season"] == CUR])
+current = apply_current_teams(smooth_paths(df[df["season"] == CUR]))
 current["league_rank"] = current[NOW].rank(ascending=False, method="min")
 NAMES = current.dropna(subset=[NOW]).sort_values(NOW, ascending=False)["player_name"].dropna().unique().tolist()
 
