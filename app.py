@@ -40,6 +40,13 @@ def load_now():
     return pd.read_parquet(p) if os.path.exists(p) else None
 
 
+@st.cache_data
+def load_wins():
+    """Hand-entered preseason win projections (artifacts/win_projections.csv)."""
+    p = os.path.join(ART, "win_projections.csv")
+    return pd.read_csv(p) if os.path.exists(p) else None
+
+
 if not os.path.exists(os.path.join(ART, "predictions.parquet")):
     st.error("No artifacts found. Run `python build_artifacts.py` first.")
     st.stop()
@@ -164,8 +171,11 @@ def proj_values(row):
     return yrs, vals
 
 
-tab_board, tab_player, tab_compare, tab_method = st.tabs(
-    ["Leaderboards", "Player", "Compare", "Methodology"])
+wins = load_wins()
+_tabs = st.tabs(["Leaderboards", "Player", "Compare"]
+                + (["Win projections"] if wins is not None else []) + ["Methodology"])
+tab_board, tab_player, tab_compare, tab_method = _tabs[0], _tabs[1], _tabs[2], _tabs[-1]
+tab_wins = _tabs[3] if wins is not None else None
 
 # ============================================================ Player
 with tab_player:
@@ -304,6 +314,23 @@ with tab_board:
     st.download_button("Download CSV", csv.to_csv(index=False).encode(),
                        file_name=f"epm_{'predictive' if IS_PRED else 'observed'}_{h}y.csv",
                        mime="text/csv")
+
+# ============================================================ Win projections
+if tab_wins is not None:
+    with tab_wins:
+        st.caption(f"Preseason win projections for {season_label(wins['season'].max())} · "
+                   f"{wins['wins'].sum():g} total wins · based on the 1-year observed-EPM projections, "
+                   "made before the EPM methodology update")
+        for col, conf in zip(st.columns(2), ["West", "East"]):
+            t = wins[wins["conf"] == conf].sort_values("wins", ascending=False).reset_index(drop=True)
+            t.insert(0, "Rank", t.index + 1)
+            t["Record"] = t["wins"].map(lambda w: f"{w:g}-{82 - w:g}")
+            col.subheader(conf)
+            col.dataframe(
+                t[["Rank", "team", "wins", "Record"]].rename(columns={"team": "Team", "wins": "Wins"}),
+                hide_index=True, width="stretch", height=38 + 35 * len(t),
+                column_config={"Wins": st.column_config.ProgressColumn(
+                    format="%.1f", min_value=0, max_value=82)})
 
 # ============================================================ Methodology
 with tab_method:
