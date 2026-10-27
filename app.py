@@ -85,6 +85,36 @@ def apply_current_teams(cur: pd.DataFrame) -> pd.DataFrame:
     return cur
 
 
+@st.cache_data
+def load_players():
+    """Rookie season + draft info per player (artifacts/players.csv, NBA API all-players + draft history)."""
+    p = os.path.join(ART, "players.csv")
+    return pd.read_csv(p) if os.path.exists(p) else None
+
+
+def apply_player_info(cur: pd.DataFrame) -> pd.DataFrame:
+    """Add rookie_season, draft_year, draft_round, draft_pick. Matches on nba_id when the
+    artifacts carry it; otherwise via the roster file's nba_id, then on the player's name
+    (a name shared by two players goes to the more recent one)."""
+    pl = load_players()
+    if pl is None:
+        return cur
+    cur = cur.copy()
+    info = pl.drop_duplicates("nba_id").set_index("nba_id")
+    nid = cur["nba_id"] if "nba_id" in cur.columns else pd.Series(np.nan, index=cur.index)
+    ct = load_current_teams()
+    if ct is not None and "data_name" in ct.columns:
+        by_roster = (ct.dropna(subset=["data_name"]).assign(k=lambda x: x["data_name"].map(_name_key))
+                     .drop_duplicates("k", keep=False).set_index("k")["nba_id"])
+        nid = nid.fillna(cur["player_name"].map(_name_key).map(by_roster))
+    by_name = (pl.assign(k=pl["player_name"].map(_name_key)).sort_values("last_season")
+               .drop_duplicates("k", keep="last").set_index("k")["nba_id"])
+    nid = nid.fillna(cur["player_name"].map(_name_key).map(by_name))
+    for c in ["rookie_season", "draft_year", "draft_round", "draft_pick"]:
+        cur[c] = nid.map(info[c])
+    return cur
+
+
 if not os.path.exists(os.path.join(ART, "predictions.parquet")):
     st.error("No artifacts found. Run `python build_artifacts.py` first.")
     st.stop()
@@ -197,7 +227,9 @@ _vals = pd.concat([df[c] for c in _pred_cols] + [df[NOW]]).dropna()
 Y_RANGE = [float(_vals.min()) - 0.7, float(_vals.max()) + 0.7]
 
 # current-season slice + league rank by current value
-current = apply_current_teams(smooth_paths(df[df["season"] == CUR]))
+current = apply_player_info(apply_current_teams(smooth_paths(df[df["season"] == CUR])))
+if "rookie_season" in current.columns:
+    current["years_in_league"] = CUR - current["rookie_season"] + 1     # 1 = rookie in season CUR
 current["league_rank"] = current[NOW].rank(ascending=False, method="min")
 NAMES = current.dropna(subset=[NOW]).sort_values(NOW, ascending=False)["player_name"].dropna().unique().tolist()
 
@@ -324,14 +356,54 @@ with tab_board:
     b = current.dropna(subset=[pcol, NOW]).copy()
     if search:
         b = b[b["player_name"].str.contains(search, case=False, na=False)]
+
+    with st.expander("Filters"):
+        f1, f2, f3 = st.columns(3)
+        teams = sorted(t for t in b["team"].dropna().unique() if t != "FA") + ["FA"]
+        pick_teams = f1.multiselect("Team", teams, placeholder="All teams")
+        a_lo, a_hi = int(np.floor(b["age"].min())), int(np.ceil(b["age"].max()))
+        ages = f2.slider("Age", a_lo, a_hi, (a_lo, a_hi))
+        hide_dnp = f3.checkbox(f"Hide players who missed {season_label(CUR)}")
+        if "years_in_league" in b.columns:
+            g1, g2, g3 = st.columns(3)
+            y_hi = int(b["years_in_league"].max())
+            yrs_in = g1.slider(f"Years in league (1 = rookie in {season_label(CUR)})",
+                               1, y_hi, (1, y_hi))
+            classes = sorted(b["draft_year"].dropna().astype(int).unique(), reverse=True)
+            pick_classes = g2.multiselect("Draft class", classes + ["Undrafted"],
+                                          placeholder="All classes")
+            rnd = g3.radio("Draft round", ["Any", "1st", "2nd", "Undrafted"], horizontal=True)
+
+    if pick_teams:
+        b = b[b["team"].isin(pick_teams)]
+    b = b[b["age"].between(*ages) | b["age"].isna()]
+    if hide_dnp:
+        b = b[b["status"].eq("played")]
+    if "years_in_league" in b.columns:
+        if yrs_in != (1, y_hi):
+            b = b[b["years_in_league"].between(*yrs_in)]
+        if pick_classes:
+            yrs_pick = [c for c in pick_classes if c != "Undrafted"]
+            b = b[b["draft_year"].isin(yrs_pick)
+                  | (("Undrafted" in pick_classes) & b["draft_year"].isna() & b["rookie_season"].notna())]
+        if rnd != "Any":
+            b = b[b["draft_round"].eq({"1st": 1, "2nd": 2}[rnd])] if rnd != "Undrafted" else \
+                b[b["draft_year"].isna() & b["rookie_season"].notna()]
     b["change"] = (b[pcol] - b[NOW]).astype(float)
     b.loc[b[pcol] < -2, "change"] = float("nan")
     b = b.sort_values(pcol, ascending=False, na_position="last").reset_index(drop=True)
     b.insert(0, "Rank", b.index + 1)
     b["_player"] = b["player_name"].where(
         b["status"].eq("played"), b["player_name"] + "  · DNP")
-    out = b[["Rank", "_player", "team", "age", NOW, pcol, "change"]].copy()
-    out.columns = ["Rank", "Player", "Team", "Age", "EPM now", f"Proj {h}y", "Change"]
+    info = []
+    if "years_in_league" in b.columns:
+        b["_draft"] = np.where(b["draft_year"].notna(),
+                               b["draft_year"].astype("Int64").astype(str) + " #" + b["draft_pick"].astype("Int64").astype(str),
+                               np.where(b["rookie_season"].notna(), "Undrafted", None))
+        info = ["years_in_league", "_draft"]
+    out = b[["Rank", "_player", "team", "age"] + info + [NOW, pcol, "change"]].copy()
+    out.columns = (["Rank", "Player", "Team", "Age"] + (["Yrs", "Draft"] if info else [])
+                   + ["EPM now", f"Proj {h}y", "Change"])
 
     n_dnp = int(b["status"].ne("played").sum())
     st.caption(f"{len(out)} players · projections smoothed across horizons (see Methodology)"
@@ -342,6 +414,7 @@ with tab_board:
         out, hide_index=True, width="stretch", height=640,
         column_config={
             "Age": st.column_config.NumberColumn(format="%d"),
+            "Yrs": st.column_config.NumberColumn(format="%d", help=f"Seasons in the league through {season_label(CUR)}"),
             "EPM now": st.column_config.NumberColumn(format="%+.2f"),
             f"Proj {h}y": st.column_config.NumberColumn(format="%+.2f"),
             "Change": st.column_config.NumberColumn(format="%+.2f"),
