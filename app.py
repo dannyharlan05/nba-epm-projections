@@ -50,6 +50,13 @@ def load_wins():
 
 
 @st.cache_data
+def load_shap():
+    """Per-player SHAP grouped into categories (notebook's SHAP-by-category cell)."""
+    p = os.path.join(ART, "shap_groups.parquet")
+    return pd.read_parquet(p) if os.path.exists(p) else None
+
+
+@st.cache_data
 def load_current_teams():
     """Current NBA rosters (artifacts/current_teams.csv, written by the notebook's roster cell)."""
     p = os.path.join(ART, "current_teams.csv")
@@ -293,10 +300,16 @@ def proj_values(row):
 
 
 wins = load_wins()
-_tabs = st.tabs(["Leaderboards", "Player", "Compare", "Backtest"]
-                + (["Win projections"] if wins is not None else []) + ["Methodology"])
-tab_board, tab_player, tab_compare, tab_back, tab_method = _tabs[0], _tabs[1], _tabs[2], _tabs[3], _tabs[-1]
-tab_wins = _tabs[4] if wins is not None else None
+shap = load_shap()
+SHOW_WHY = shap is not None and not IS_NOW and int(shap["season"].max()) == CUR
+if shap is not None and int(shap["season"].max()) != CUR:      # stale export from an older season
+    shap = None
+_names = (["Leaderboards", "Player", "Compare"] + (["Why"] if SHOW_WHY else []) + ["Backtest"]
+          + (["Win projections"] if wins is not None else []) + ["Methodology"])
+_tabs = dict(zip(_names, st.tabs(_names)))
+tab_board, tab_player, tab_compare = _tabs["Leaderboards"], _tabs["Player"], _tabs["Compare"]
+tab_why, tab_back, tab_method = _tabs.get("Why"), _tabs["Backtest"], _tabs["Methodology"]
+tab_wins = _tabs.get("Win projections")
 
 # ============================================================ Player
 with tab_player:
@@ -446,6 +459,78 @@ with tab_board:
                        file_name=f"epm_{'predictive' if IS_PRED else 'observed'}_{h}y.csv",
                        mime="text/csv")
 
+# ============================================================ Why
+SHAP_ORDER = ["Current EPM", "Past seasons", "DARKO", "Impact x playing time",
+              "Playing time & availability", "Box score", "Age & experience", "Team", "Other"]
+SHAP_CAPTION = ("Starts from the model's average projection and adds what each group of inputs "
+                "pushes it up (green) or down (red), using SHAP values from the model that made the "
+                "projection. Impact x playing time = EPM and DARKO weighted by minutes and games.")
+
+
+def shap_rows(season, status="played", name=None, nba_id=None, age=None):
+    """This player-season's category breakdowns (all horizons) for the selected target."""
+    sp = shap[(shap["target"] == ("epm" if IS_PRED else "epm_actual"))
+              & (shap["season"] == season) & (shap["status"] == status)]
+    if nba_id is not None and pd.notna(nba_id):
+        return sp[sp["nba_id"] == nba_id]
+    sp = sp[sp["player_name"] == name]
+    if age is not None and pd.notna(age) and len(sp["nba_id"].unique()) > 1:   # shared name
+        sp = sp[(sp["age"] - age).abs() < 0.05]
+    return sp
+
+
+def shap_waterfall(sp, h, title, xlabel):
+    """Average player -> each category -> model projection, for horizon h. Returns raw output."""
+    r = sp[sp["horizon"] == h].iloc[0]
+    groups = [g for g in SHAP_ORDER if g in sp.columns] + \
+             [g for g in sp.columns[sp.columns.get_loc("Baseline") + 1:] if g not in SHAP_ORDER]
+    base, parts = float(r["Baseline"]), r[groups].astype(float)
+    raw = base + parts.sum()
+    fig = go.Figure(go.Waterfall(
+        orientation="h",
+        y=["Average player"] + groups + ["Model projection"],
+        x=[base] + list(parts.values) + [raw],
+        measure=["absolute"] + ["relative"] * len(groups) + ["total"],
+        text=[f"{base:+.2f}"] + [f"{v:+.2f}" for v in parts.values] + [f"{raw:+.2f}"],
+        textposition="outside",
+        increasing=dict(marker=dict(color="#2e7d32")), decreasing=dict(marker=dict(color="#c62828")),
+        totals=dict(marker=dict(color="#1f77b4")), connector=dict(line=dict(color="#bbb", width=1)),
+        hovertemplate="%{y}: %{text}<extra></extra>"))
+    fig.update_layout(height=470, xaxis_title=xlabel, title=title,
+                      yaxis=dict(autorange="reversed"), margin=dict(l=10, r=40, t=40, b=40))
+    st.plotly_chart(fig, width="stretch")
+    return raw, groups
+
+
+def shap_table(sp, groups, season):
+    t = sp.set_index("horizon")[["Baseline"] + groups].T
+    t.loc["Model projection"] = t.sum()
+    t = t.rename(index={"Baseline": "Average player"})
+    t.columns = [f"{x}y ({season_label(season + x)})" for x in t.columns]
+    st.dataframe(t.style.format("{:+.2f}"), width="stretch")
+
+
+if tab_why is not None:
+    with tab_why:
+        c1, c2 = st.columns(2)
+        wn = c1.selectbox("Player", NAMES, index=NAMES.index("Nikola Jokic") if "Nikola Jokic" in NAMES else 0,
+                          key="why_player")
+        wh = c2.selectbox("Years ahead", HORIZONS, index=0, key="why_h",
+                          format_func=lambda x: f"{x} ({season_label(CUR + x)})")
+        wr = current[current["player_name"] == wn].iloc[0]
+        sp = shap_rows(CUR, wr["status"], wn, wr.get("nba_id"), wr.get("age"))
+        if sp[sp["horizon"] == wh].empty:
+            st.info(f"No breakdown saved for {wn}.")
+        else:
+            raw, groups = shap_waterfall(sp, wh, f"{wn} · {wh}-year projection ({season_label(CUR + wh)})",
+                                         f"EPM, {season_label(CUR + wh)}")
+            shown = wr.get(pcolname(wh))
+            st.caption(SHAP_CAPTION
+                       + (f" The app shows {shown:+.2f} after path smoothing; this explains the raw "
+                          f"model output, {raw:+.2f}." if pd.notna(shown) and abs(shown - raw) >= 0.01 else ""))
+            st.markdown("**Every horizon**")
+            shap_table(sp, groups, CUR)
+
 # ============================================================ Backtest
 def _birth(d):
     """Approximate birth year: tells apart two players who share a name."""
@@ -520,6 +605,7 @@ with tab_back:
             st.dataframe(bo, hide_index=True, width="stretch", height=640,
                          column_config={"Age": st.column_config.NumberColumn(format="%d"),
                                         "Yrs": st.column_config.NumberColumn(format="%d"), **fmt})
+
 
         else:
             hist_names = (df[df["season"].isin(BT_SEASONS)].sort_values(NOW, ascending=False)
