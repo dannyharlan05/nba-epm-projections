@@ -460,11 +460,12 @@ with tab_board:
                        mime="text/csv")
 
 # ============================================================ Why
-SHAP_ORDER = ["Current EPM", "Past seasons", "DARKO", "Impact x playing time",
-              "Playing time & availability", "Box score", "Age & experience", "Team", "Other"]
+SHAP_ORDER = ["Impact (EPM & DARKO)", "Playing time & availability", "Age & experience",
+              "Scoring", "Playmaking", "Offensive rebounding", "Steals & blocks", "Team", "Other"]
 SHAP_CAPTION = ("Starts from the model's average projection and adds what each group of inputs "
                 "pushes it up (green) or down (red), using SHAP values from the model that made the "
-                "projection. Impact x playing time = EPM and DARKO weighted by minutes and games.")
+                "projection. Impact = current and past EPM, DARKO, and both weighted by minutes and games. "
+                "Scoring = points per 36 and FT%.")
 
 
 def shap_rows(season, status="played", name=None, nba_id=None, age=None):
