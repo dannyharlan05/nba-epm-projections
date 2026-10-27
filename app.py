@@ -107,9 +107,13 @@ def apply_player_info(cur: pd.DataFrame) -> pd.DataFrame:
         by_roster = (ct.dropna(subset=["data_name"]).assign(k=lambda x: x["data_name"].map(_name_key))
                      .drop_duplicates("k", keep=False).set_index("k")["nba_id"])
         nid = nid.fillna(cur["player_name"].map(_name_key).map(by_roster))
-    by_name = (pl.assign(k=pl["player_name"].map(_name_key)).sort_values("last_season")
-               .drop_duplicates("k", keep="last").set_index("k")["nba_id"])
-    nid = nid.fillna(cur["player_name"].map(_name_key).map(by_name))
+    # by name: of the players with that name, the one whose career covers the row's season
+    m = (pd.DataFrame({"k": cur["player_name"].map(_name_key), "season": cur["season"]}).reset_index()
+         .merge(pl.assign(k=pl["player_name"].map(_name_key))[["k", "nba_id", "rookie_season", "last_season"]],
+                on="k"))
+    m = m[(m["season"] >= m["rookie_season"] - 1) & (m["season"] <= m["last_season"] + 1)]
+    m = m.sort_values("last_season").drop_duplicates("index", keep="last").set_index("index")["nba_id"]
+    nid = nid.fillna(m.reindex(cur.index))
     for c in ["rookie_season", "draft_year", "draft_round", "draft_pick"]:
         cur[c] = nid.map(info[c])
     return cur
@@ -232,6 +236,53 @@ if "rookie_season" in current.columns:
     current["years_in_league"] = CUR - current["rookie_season"] + 1     # 1 = rookie in season CUR
 current["league_rank"] = current[NOW].rank(ascending=False, method="min")
 NAMES = current.dropna(subset=[NOW]).sort_values(NOW, ascending=False)["player_name"].dropna().unique().tolist()
+
+
+def filter_players(b: pd.DataFrame, key: str, season: int) -> pd.DataFrame:
+    """Team / age / years in league / draft filters (collapsed). `season` is the season
+    the rows describe, so years in league counts up to it."""
+    with st.expander("Filters"):
+        f1, f2, f3 = st.columns(3)
+        teams = sorted(t for t in b["team"].dropna().unique() if t != "FA")
+        teams += ["FA"] if (b["team"] == "FA").any() else []
+        pick_teams = f1.multiselect("Team", teams, placeholder="All teams", key=f"{key}_team")
+        a_lo, a_hi = int(np.floor(b["age"].min())), int(np.ceil(b["age"].max()))
+        ages = f2.slider("Age", a_lo, a_hi, (a_lo, a_hi), key=f"{key}_age")
+        has_dnp = b["status"].ne("played").any()
+        hide_dnp = f3.checkbox(f"Hide players who missed {season_label(season)}",
+                               key=f"{key}_dnp") if has_dnp else False
+        if "rookie_season" in b.columns:
+            b = b.assign(years_in_league=season - b["rookie_season"] + 1)
+            g1, g2, g3 = st.columns(3)
+            y_hi = max(int(b["years_in_league"].fillna(1).max()), 2)
+            yrs_in = g1.slider(f"Years in league (1 = rookie in {season_label(season)})",
+                               1, y_hi, (1, y_hi), key=f"{key}_yrs")
+            classes = sorted(b["draft_year"].dropna().astype(int).unique(), reverse=True)
+            pick_classes = g2.multiselect("Draft class", classes + ["Undrafted"],
+                                          placeholder="All classes", key=f"{key}_class")
+            rnd = g3.radio("Draft round", ["Any", "1st", "2nd", "Undrafted"], horizontal=True,
+                           key=f"{key}_round")
+
+    if pick_teams:
+        b = b[b["team"].isin(pick_teams)]
+    b = b[b["age"].between(*ages) | b["age"].isna()]
+    if hide_dnp:
+        b = b[b["status"].eq("played")]
+    if "rookie_season" in b.columns:
+        undrafted = b["draft_year"].isna() & b["rookie_season"].notna()
+        if yrs_in != (1, y_hi):
+            keep = b["years_in_league"].between(*yrs_in)
+            b, undrafted = b[keep], undrafted[keep]
+        if pick_classes:
+            keep = b["draft_year"].isin([c for c in pick_classes if c != "Undrafted"])
+            if "Undrafted" in pick_classes:
+                keep |= undrafted
+            b, undrafted = b[keep], undrafted[keep]
+        if rnd == "Undrafted":
+            b = b[undrafted]
+        elif rnd != "Any":
+            b = b[b["draft_round"].eq({"1st": 1, "2nd": 2}[rnd])]
+    return b
 
 
 def proj_values(row):
@@ -357,38 +408,7 @@ with tab_board:
     if search:
         b = b[b["player_name"].str.contains(search, case=False, na=False)]
 
-    with st.expander("Filters"):
-        f1, f2, f3 = st.columns(3)
-        teams = sorted(t for t in b["team"].dropna().unique() if t != "FA") + ["FA"]
-        pick_teams = f1.multiselect("Team", teams, placeholder="All teams")
-        a_lo, a_hi = int(np.floor(b["age"].min())), int(np.ceil(b["age"].max()))
-        ages = f2.slider("Age", a_lo, a_hi, (a_lo, a_hi))
-        hide_dnp = f3.checkbox(f"Hide players who missed {season_label(CUR)}")
-        if "years_in_league" in b.columns:
-            g1, g2, g3 = st.columns(3)
-            y_hi = int(b["years_in_league"].max())
-            yrs_in = g1.slider(f"Years in league (1 = rookie in {season_label(CUR)})",
-                               1, y_hi, (1, y_hi))
-            classes = sorted(b["draft_year"].dropna().astype(int).unique(), reverse=True)
-            pick_classes = g2.multiselect("Draft class", classes + ["Undrafted"],
-                                          placeholder="All classes")
-            rnd = g3.radio("Draft round", ["Any", "1st", "2nd", "Undrafted"], horizontal=True)
-
-    if pick_teams:
-        b = b[b["team"].isin(pick_teams)]
-    b = b[b["age"].between(*ages) | b["age"].isna()]
-    if hide_dnp:
-        b = b[b["status"].eq("played")]
-    if "years_in_league" in b.columns:
-        if yrs_in != (1, y_hi):
-            b = b[b["years_in_league"].between(*yrs_in)]
-        if pick_classes:
-            yrs_pick = [c for c in pick_classes if c != "Undrafted"]
-            b = b[b["draft_year"].isin(yrs_pick)
-                  | (("Undrafted" in pick_classes) & b["draft_year"].isna() & b["rookie_season"].notna())]
-        if rnd != "Any":
-            b = b[b["draft_round"].eq({"1st": 1, "2nd": 2}[rnd])] if rnd != "Undrafted" else \
-                b[b["draft_year"].isna() & b["rookie_season"].notna()]
+    b = filter_players(b, "lb", CUR)
     b["change"] = (b[pcol] - b[NOW]).astype(float)
     b.loc[b[pcol] < -2, "change"] = float("nan")
     b = b.sort_values(pcol, ascending=False, na_position="last").reset_index(drop=True)
@@ -466,33 +486,40 @@ with tab_back:
                               format_func=lambda x: f"{x} ({season_label(S + x)})")
             bsearch = c3.text_input("Search player", key="bt_search")
 
-            past = smooth_paths(df[df["season"] == S])
+            past = apply_player_info(smooth_paths(df[df["season"] == S]))
             past = past.dropna(subset=[NOW, pcolname(bh)]).copy()
             past["actual"] = with_actual(past, bh)
             past["miss"] = past["actual"] - past[pcolname(bh)]
+            past = filter_players(past, "bt", S)
             ok = past["actual"].notna()
             mae, base = past.loc[ok, "miss"].abs().mean(), (past.loc[ok, "actual"] - past.loc[ok, NOW]).abs().mean()
 
             m1, m2, m3, m4 = st.columns(4)
             m1.metric("Players with a result", f"{int(ok.sum())} / {len(past)}")
-            m2.metric("Model MAE", f"{mae:.2f}")
-            m3.metric("No-change MAE", f"{base:.2f}", help=f"Guessing every player stays at his {season_label(S)} EPM")
-            m4.metric("Within 1 point", f"{(past.loc[ok, 'miss'].abs() <= 1).mean():.0%}")
+            m2.metric("Model MAE", f"{mae:.2f}" if ok.any() else "n/a")
+            m3.metric("No-change MAE", f"{base:.2f}" if ok.any() else "n/a", help=f"Guessing every player stays at his {season_label(S)} EPM")
+            m4.metric("Within 1 point", f"{(past.loc[ok, 'miss'].abs() <= 1).mean():.0%}" if ok.any() else "n/a")
 
             if bsearch:
                 past = past[past["player_name"].str.contains(bsearch, case=False, na=False)]
             past = past.sort_values(pcolname(bh), ascending=False).reset_index(drop=True)
             past.insert(0, "Rank", past.index + 1)
-            bo = past[["Rank", "player_name", "team", "age", NOW, pcolname(bh), "actual", "miss"]]
-            bo.columns = ["Rank", "Player", f"Team ({season_label(S)})", "Age", f"EPM {season_label(S)}",
+            past["_draft"] = np.where(past["draft_year"].notna(),
+                                      past["draft_year"].astype("Int64").astype(str) + " #"
+                                      + past["draft_pick"].astype("Int64").astype(str),
+                                      np.where(past["rookie_season"].notna(), "Undrafted", None))
+            bo = past[["Rank", "player_name", "team", "age", "years_in_league", "_draft",
+                       NOW, pcolname(bh), "actual", "miss"]]
+            bo.columns = ["Rank", "Player", f"Team ({season_label(S)})", "Age", "Yrs", "Draft", f"EPM {season_label(S)}",
                           f"Proj {season_label(S + bh)}", f"Actual {season_label(S + bh)}", "Miss"]
             st.caption("Ranked by projection · Miss = actual minus projection (positive = beat it) · "
                        "blank Actual = didn't play that season"
                        + (" · 2+ years ahead reads slightly optimistic: the cross-validation let "
                           "training seasons' later targets overlap the test years" if bh > 1 else ""))
-            fmt = {c: st.column_config.NumberColumn(format="%+.2f") for c in bo.columns[4:]}
+            fmt = {c: st.column_config.NumberColumn(format="%+.2f") for c in bo.columns[6:]}
             st.dataframe(bo, hide_index=True, width="stretch", height=640,
-                         column_config={"Age": st.column_config.NumberColumn(format="%d"), **fmt})
+                         column_config={"Age": st.column_config.NumberColumn(format="%d"),
+                                        "Yrs": st.column_config.NumberColumn(format="%d"), **fmt})
 
         else:
             hist_names = (df[df["season"].isin(BT_SEASONS)].sort_values(NOW, ascending=False)
