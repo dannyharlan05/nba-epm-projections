@@ -242,10 +242,10 @@ def proj_values(row):
 
 
 wins = load_wins()
-_tabs = st.tabs(["Leaderboards", "Player", "Compare"]
+_tabs = st.tabs(["Leaderboards", "Player", "Compare", "Backtest"]
                 + (["Win projections"] if wins is not None else []) + ["Methodology"])
-tab_board, tab_player, tab_compare, tab_method = _tabs[0], _tabs[1], _tabs[2], _tabs[-1]
-tab_wins = _tabs[3] if wins is not None else None
+tab_board, tab_player, tab_compare, tab_back, tab_method = _tabs[0], _tabs[1], _tabs[2], _tabs[3], _tabs[-1]
+tab_wins = _tabs[4] if wins is not None else None
 
 # ============================================================ Player
 with tab_player:
@@ -425,6 +425,100 @@ with tab_board:
     st.download_button("Download CSV", csv.to_csv(index=False).encode(),
                        file_name=f"epm_{'predictive' if IS_PRED else 'observed'}_{h}y.csv",
                        mime="text/csv")
+
+# ============================================================ Backtest
+def _birth(d):
+    """Approximate birth year: tells apart two players who share a name."""
+    return (d["season"] - d["age"]).round()
+
+
+def with_actual(past: pd.DataFrame, h: int) -> pd.Series:
+    """What each player's EPM actually was h seasons later (NaN = didn't play that season)."""
+    later = df[(df["season"] == past["season"].iloc[0] + h) & df["status"].eq("played")]
+    later = later[["player_name", "season", "age", NOW]]
+    later = later.assign(b=_birth(later)).drop_duplicates(["player_name", "b"])
+    key = past.assign(b=_birth(past))[["player_name", "b"]].reset_index()
+    m = key.merge(later[["player_name", "b", NOW]], on="player_name", how="left")
+    m = m[(m["b_x"] - m["b_y"]).abs() <= 1].drop_duplicates("index")
+    return m.set_index("index")[NOW].reindex(past.index)
+
+
+_cov = df.groupby("season")[[pcolname(h) for h in HORIZONS]].apply(lambda x: x.notna().all(axis=1).mean())
+BT_SEASONS = [int(x) for x in _cov[(_cov > 0.9) & (_cov.index < CUR)].index]
+
+with tab_back:
+    if IS_NOW or not BT_SEASONS:
+        st.info("The backtest uses the going-into-the-season view.")
+    else:
+        st.caption("What the model would have said going into each past season. It was built "
+                   "afterwards, so this is a backtest, not a record of real-time calls: each season's "
+                   "numbers come from a model trained only on earlier seasons (out-of-fold), "
+                   "smoothed the same way as the current projections. Model design and "
+                   "settings were still chosen with hindsight.")
+        mode = st.radio("Show", ["Season", "Player history"], horizontal=True, key="bt_mode")
+
+        if mode == "Season":
+            c1, c2, c3 = st.columns(3)
+            S = c1.selectbox("Going into", BT_SEASONS[::-1], format_func=lambda x: season_label(x + 1),
+                             key="bt_s")
+            hs = [x for x in HORIZONS if S + x <= CUR]
+            bh = c2.selectbox("Years ahead", hs, index=0, key="bt_h",
+                              format_func=lambda x: f"{x} ({season_label(S + x)})")
+            bsearch = c3.text_input("Search player", key="bt_search")
+
+            past = smooth_paths(df[df["season"] == S])
+            past = past.dropna(subset=[NOW, pcolname(bh)]).copy()
+            past["actual"] = with_actual(past, bh)
+            past["miss"] = past["actual"] - past[pcolname(bh)]
+            ok = past["actual"].notna()
+            mae, base = past.loc[ok, "miss"].abs().mean(), (past.loc[ok, "actual"] - past.loc[ok, NOW]).abs().mean()
+
+            m1, m2, m3, m4 = st.columns(4)
+            m1.metric("Players with a result", f"{int(ok.sum())} / {len(past)}")
+            m2.metric("Model MAE", f"{mae:.2f}")
+            m3.metric("No-change MAE", f"{base:.2f}", help=f"Guessing every player stays at his {season_label(S)} EPM")
+            m4.metric("Within 1 point", f"{(past.loc[ok, 'miss'].abs() <= 1).mean():.0%}")
+
+            if bsearch:
+                past = past[past["player_name"].str.contains(bsearch, case=False, na=False)]
+            past = past.sort_values(pcolname(bh), ascending=False).reset_index(drop=True)
+            past.insert(0, "Rank", past.index + 1)
+            bo = past[["Rank", "player_name", "team", "age", NOW, pcolname(bh), "actual", "miss"]]
+            bo.columns = ["Rank", "Player", f"Team ({season_label(S)})", "Age", f"EPM {season_label(S)}",
+                          f"Proj {season_label(S + bh)}", f"Actual {season_label(S + bh)}", "Miss"]
+            st.caption("Ranked by projection · Miss = actual minus projection (positive = beat it) · "
+                       "blank Actual = didn't play that season"
+                       + (" · 2+ years ahead reads slightly optimistic: the cross-validation let "
+                          "training seasons' later targets overlap the test years" if bh > 1 else ""))
+            fmt = {c: st.column_config.NumberColumn(format="%+.2f") for c in bo.columns[4:]}
+            st.dataframe(bo, hide_index=True, width="stretch", height=640,
+                         column_config={"Age": st.column_config.NumberColumn(format="%d"), **fmt})
+
+        else:
+            hist_names = (df[df["season"].isin(BT_SEASONS)].sort_values(NOW, ascending=False)
+                          ["player_name"].dropna().unique().tolist())
+            default = hist_names.index("LeBron James") if "LeBron James" in hist_names else 0
+            nm = st.selectbox("Player", hist_names, index=default, key="bt_player")
+            ph = df[df["player_name"] == nm].assign(b=lambda d: _birth(d))
+            ph = ph[(ph["b"] - ph["b"].iloc[-1]).abs() <= 1].sort_values("season")   # same person
+            fig = go.Figure()
+            for _, r in smooth_paths(ph[ph["season"].isin(BT_SEASONS)]).iterrows():
+                yrs = [r["season"]] + [r["season"] + x for x in HORIZONS]
+                fig.add_trace(go.Scatter(
+                    x=yrs, y=[r[NOW]] + [r[pcolname(x)] for x in HORIZONS], mode="lines",
+                    line=dict(width=1.5, dash="dot"), opacity=0.55, showlegend=False,
+                    name=f"going into {season_label(r['season'] + 1)}",
+                    hovertemplate="%{x}: %{y:+.2f}<extra>going into " + season_label(r["season"] + 1) + "</extra>"))
+            fig.add_trace(go.Scatter(x=ph["season"], y=ph[NOW], mode="lines+markers",
+                                     line=dict(color="#111", width=3), marker=dict(size=7), name="actual",
+                                     hovertemplate="%{x}: %{y:+.2f}<extra>actual</extra>"))
+            fig.update_layout(xaxis_title="Season (end year)", yaxis_title="EPM", height=480,
+                              legend=dict(orientation="h", yanchor="bottom", y=1.02))
+            fig.update_yaxes(range=Y_RANGE)
+            st.plotly_chart(fig, width="stretch")
+            st.caption("Black = what actually happened. Each dotted line is the 5-year path the model "
+                       "would have projected going into that season. Backtest only: out-of-fold "
+                       "predictions from models trained on earlier seasons.")
 
 # ============================================================ Win projections
 if tab_wins is not None:
