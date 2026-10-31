@@ -7,25 +7,38 @@ draft history is pulled once from the NBA API and cached to data/draft_history.c
 from __future__ import annotations
 import glob
 import os
-import re
 
 import numpy as np
 import pandas as pd
 
 DATA_DIR = os.environ.get("EPM_DATA_DIR", "data")
 
-# browser download numbers of the current file sets -- older (N) files are ignored
-EPM_MIN_FILE = 29   # 'EPM data (N).csv'
-DT_MIN_FILE = 25    # 'Dunks & Threes Stats (N).csv'
-
-
 def _path(name: str) -> str:
     return os.path.join(DATA_DIR, name)
 
 
-def _filenum(f: str) -> int:
-    m = re.search(r"\((\d+)\)", f)
-    return int(m.group(1)) if m else 0
+def last_complete_season(today=None) -> int:
+    """Seasons are named by end year (2026 = 2025-26); one counts as finished from
+    July 1 of that year, so the season in progress never leaks into training."""
+    today = pd.Timestamp.today() if today is None else pd.Timestamp(today)
+    return today.year if today.month >= 7 else today.year - 1
+
+
+def _newest_per_season(pattern: str, through: int | None = None) -> pd.DataFrame:
+    """Every CSV matching `pattern`; for each season, the rows from the most recently
+    downloaded file (file modified time). File names don't matter, so browser download
+    numbers like '(29)' or a re-downloaded history are handled the same on any machine.
+    Seasons after `through` (default: last completed season) are dropped."""
+    through = last_complete_season() if through is None else through
+    files = glob.glob(_path(pattern))
+    if not files:
+        raise FileNotFoundError(f"no '{pattern}' files in {DATA_DIR}")
+    df = pd.concat([pd.read_csv(f).assign(_mtime=os.path.getmtime(f)) for f in files],
+                   ignore_index=True)
+    df = df.dropna(subset=["season"])
+    df = df[df["season"].astype(int) <= through]
+    df = df[df["_mtime"] == df.groupby("season")["_mtime"].transform("max")]
+    return df.drop(columns="_mtime")
 
 
 def load_game_logs() -> pd.DataFrame:
@@ -64,24 +77,22 @@ def load_draft(refresh: bool = False) -> pd.DataFrame:
     return draft
 
 
-def load_predictive_epm(min_file: int = EPM_MIN_FILE) -> pd.DataFrame:
-    """Dunks & Threes *predictive* EPM ('EPM data (N).csv'), N >= min_file."""
-    files = [f for f in glob.glob(_path("EPM data*.csv")) if _filenum(f) >= min_file]
-    if not files:
-        raise FileNotFoundError(f"no 'EPM data (>= {min_file}).csv' files in {DATA_DIR}")
-    epm = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
+def load_predictive_epm(through: int | None = None) -> pd.DataFrame:
+    """Dunks & Threes *predictive* EPM ('EPM data*.csv'), newest download per season."""
+    epm = _newest_per_season("EPM data*.csv", through)
     epm = epm[["season", "nba_id", "oepm", "depm", "epm", "p_usg"]].dropna(subset=["nba_id"])
     epm["nba_id"] = epm["nba_id"].astype(int)
     epm["season"] = epm["season"].astype(int)
     return epm.drop_duplicates(["nba_id", "season"])
 
 
-def load_actual_epm(min_file: int = DT_MIN_FILE) -> pd.DataFrame | None:
-    """Dunks & Threes *actual* (observed) EPM, N >= min_file. Returns None if files absent."""
-    files = [f for f in glob.glob(_path("Dunks & Threes Stats*.csv")) if _filenum(f) >= min_file]
-    if not files:
+def load_actual_epm(through: int | None = None) -> pd.DataFrame | None:
+    """Dunks & Threes *actual* (observed) EPM ('Dunks & Threes Stats*.csv'), newest
+    download per season. Returns None if the files are absent."""
+    try:
+        act = _newest_per_season("Dunks & Threes Stats*.csv", through)
+    except FileNotFoundError:
         return None
-    act = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
     act = act[act["seasontype"] == 2]  # regular season
     act = act.rename(columns={
         "player_id": "nba_id", "off": "oepm_actual",

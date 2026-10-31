@@ -12,7 +12,7 @@ from* and the two cases (mid-season vs. new season).
 | File in `data/` | How it updates | Who refreshes it |
 |---|---|---|
 | `player_game_logs_clean.csv` | re-pulled from the NBA API + cleaned | **the notebook** (`longterm_darko.ipynb`) |
-| `EPM data (N).csv` | re-downloaded from Dunks & Threes | **you** (manual download) |
+| `EPM data*.csv` | re-downloaded from Dunks & Threes | **you** (manual download) |
 | `Dunks & Threes Stats*.csv` | re-downloaded from Dunks & Threes | **you** (manual download) |
 | `DARKO ... Full DPM History.csv` | re-downloaded from DARKO | **you** (manual download) |
 | `draft_history.csv` | auto-pulled from NBA API | the repo (cached) |
@@ -34,7 +34,7 @@ the same files just get fresher data.
 
 2. **Re-download the current-season data files** from their sources and overwrite the
    ones in your main folder:
-   - the **current-season EPM file** (the highest-numbered `EPM data (N).csv`)
+   - the **current-season EPM file** (`EPM data*.csv`)
    - the **current-season Dunks & Threes Stats file**
    - the **DARKO** history CSV
 
@@ -61,10 +61,12 @@ before, so you must link the new ones once.
 
 The same goes for **any download that creates new filenames**, including re-downloading
 a full history (e.g. the Oct 2026 EPM methodology update came in as `EPM data (29)`–`(53)`).
-If a re-download gives you a second full set of seasons, also raise `EPM_MIN_FILE` /
-`DT_MIN_FILE` in `src/data.py` (and `MIN_FILE` / `DT_MIN_FILE` in the notebook) to the
-first number of the new set, otherwise both sets load and the dedupe keeps whichever
-file happens to load first.
+
+File names and download numbers don't matter to the loaders: for each season they use the
+**most recently downloaded** file (by file modified time) and ignore older copies, and they
+skip the season still in progress (a season counts as finished from July 1 of its end
+year). So a re-download simply replaces the older one. Just don't `cp` old files around
+without `-p`, since copying resets the modified time and would make an old file look new.
 
 1. Do everything in **Case A** (pull logs, download new season's files).
 

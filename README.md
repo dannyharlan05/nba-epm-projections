@@ -72,7 +72,7 @@ streamlit run app.py
 |---|---|---|
 | `player_game_logs_clean.csv` | NBA API player game logs | box-score rates, minutes, availability, team |
 | `DARKO ... Full DPM History.csv` | DARKO public history | DPM (box-prior impact) and age |
-| `EPM data (N).csv` | Dunks & Threes (predictive EPM) | the main signal and the targets |
+| `EPM data*.csv` | Dunks & Threes (predictive EPM) | the main signal and the targets |
 | `Dunks & Threes Stats*.csv` | Dunks & Threes (actual EPM) | observed EPM (late-season form) |
 
 Draft history pulls from the NBA API once and caches to `data/draft_history.csv`. When
