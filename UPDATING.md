@@ -59,6 +59,13 @@ A new season starts, so a **new** file appears (e.g. `EPM data (27).csv`,
 `Dunks & Threes Stats (25).csv`). The symlinks were made for the files that existed
 before, so you must link the new ones once.
 
+The same goes for **any download that creates new filenames**, including re-downloading
+a full history (e.g. the Oct 2026 EPM methodology update came in as `EPM data (29)`–`(53)`).
+If a re-download gives you a second full set of seasons, also raise `EPM_MIN_FILE` /
+`DT_MIN_FILE` in `src/data.py` (and `MIN_FILE` / `DT_MIN_FILE` in the notebook) to the
+first number of the new set, otherwise both sets load and the dedupe keeps whichever
+file happens to load first.
+
 1. Do everything in **Case A** (pull logs, download new season's files).
 
 2. **Re-link** so the loaders see the new filenames:
@@ -107,13 +114,13 @@ After any rebuild, restart the app (or Clear cache) to see the new numbers.
 
 ```
  horizon  train_mae  cv_mae
-       1      ~0.69    ~0.87
-       2      ~0.77    ~1.02
-       3      ~0.77    ~1.06
-       4      ~0.76    ~1.05
-       5      ~0.72    ~1.04
+       1      ~0.81    ~0.89
+       2      ~0.92    ~1.04
+       3      ~0.94    ~1.09
+       4      ~0.95    ~1.09
+       5      ~0.92    ~1.10
 ```
 
 If `cv_mae` jumps a lot, something in the data didn't load right (a download was
-truncated, a season is missing). The `df_train` shape it prints (~12.6k rows) is
-another quick tell — a big drop means an input file is missing or malformed.
+truncated, a season is missing). The `df_train` shape it prints is
+another quick tell (~12.6k rows as of the 2025-26 data) — a big drop means an input file is missing or malformed.

@@ -168,12 +168,14 @@ nba_id,player_name,team,data_name
 1643568,Nick Martinelli,LAC,
 1642949,Yanic Konan Niederhäuser,LAC,Yanic Konan Niederhäuser
 1642394,Baba Miller,LAC,
+1631104,Blake Wesley,LAC,Blake Wesley
+1629618,Jalen Pickett,LAC,Jalen Pickett
 1641757,Jordan Miller,LAC,Jordan Miller
 1630543,Isaiah Jackson,LAC,Isaiah Jackson
 1642353,Cam Christie,LAC,Cam Christie
-1629618,Jalen Pickett,LAC,Jalen Pickett
 1629060,Rui Hachimura,LAC,Rui Hachimura
 1629622,Max Strus,LAC,Max Strus
+1643133,Lawson Lovering,LAL,Lawson Lovering
 1642876,Adou Thiero,LAL,Adou Thiero
 1629020,Jarred Vanderbilt,LAL,Jarred Vanderbilt
 1629680,Matisse Thybulle,LAL,Matisse Thybulle
@@ -186,7 +188,6 @@ nba_id,player_name,team,data_name
 1631117,Walker Kessler,LAL,Walker Kessler
 1630559,Austin Reaves,LAL,Austin Reaves
 1643024,Chris Mañon,LAL,Chris Mañon
-1643758,AK Okereke,LAL,
 1643418,Cameron Carr,LAL,
 1641751,Arthur Kaluma,LAL,
 1630572,Sandro Mamukelashvili,LAL,Sandro Mamukelashvili
@@ -200,11 +201,11 @@ nba_id,player_name,team,data_name
 1630208,Nick Richards,MIA,Nick Richards
 1641796,Pelle Larsson,MIA,Pelle Larsson
 203501,Tim Hardaway Jr.,MIA,Tim Hardaway Jr.
+202691,Klay Thompson,MIA,Klay Thompson
 1630696,Dru Smith,MIA,Dru Smith
 1628389,Bam Adebayo,MIA,Bam Adebayo
 1642066,Myron Gardner,MIA,Myron Gardner
 1642352,Keshad Johnson,MIA,Keshad Johnson
-202691,Klay Thompson,MIA,Klay Thompson
 203952,Andrew Wiggins,MIA,Andrew Wiggins
 1643621,Tre Donaldson,MIA,
 1642884,Vladislav Goldin,MIA,Vladislav Goldin
@@ -239,6 +240,7 @@ nba_id,player_name,team,data_name
 1642389,Zyon Pullin,MIN,Zyon Pullin
 1642866,Joan Beringer,MIN,Joan Beringer
 1630228,Jonathan Kuminga,MIN,Jonathan Kuminga
+1642402,Enrique Freeman,MIN,Enrique Freeman
 203497,Rudy Gobert,MIN,Rudy Gobert
 1642912,Isaiah Evans,MIN,
 1626168,Trey Lyles,MIN,Trey Lyles
@@ -315,9 +317,9 @@ nba_id,player_name,team,data_name
 1630178,Tyrese Maxey,PHI,Tyrese Maxey
 1642889,Labaron Philon Jr.,PHI,
 203484,Kentavious Caldwell-Pope,PHI,Kentavious Caldwell-Pope
-1631126,Caleb Love,PHI,Caleb Love
 1629014,Anfernee Simons,PHI,Anfernee Simons
 1627759,Jaylen Brown,PHI,Jaylen Brown
+1631126,Caleb Love,PHI,Caleb Love
 1642348,Justin Edwards,PHI,Justin Edwards
 1641712,Rayan Rupert,PHI,Rayan Rupert
 203954,Joel Embiid,PHI,Joel Embiid
@@ -330,6 +332,7 @@ nba_id,player_name,team,data_name
 1642845,VJ Edgecombe,PHI,VJ Edgecombe
 1629605,Tacko Fall,PHI,Tacko Fall
 1642346,Ryan Dunn,PHX,Ryan Dunn
+1631166,Drew Timme,PHX,Drew Timme
 1628415,Dillon Brooks,PHX,Dillon Brooks
 1630224,Jalen Green,PHX,Jalen Green
 1628379,Luke Kennard,PHX,Luke Kennard
@@ -338,7 +341,6 @@ nba_id,player_name,team,data_name
 1631221,Collin Gillespie,PHX,Collin Gillespie
 1626164,Devin Booker,PHX,Devin Booker
 1631123,Jamaree Bouyea,PHX,Jamaree Bouyea
-1631166,Drew Timme,PHX,Drew Timme
 1643520,Koa Peat,PHX,
 1642853,Rasheer Fleming,PHX,Rasheer Fleming
 1628970,Miles Bridges,PHX,Miles Bridges
@@ -346,7 +348,6 @@ nba_id,player_name,team,data_name
 1631109,Mark Williams,PHX,Mark Williams
 1641871,Duop Reath,PHX,Duop Reath
 1630311,Pat Spencer,PHX,Pat Spencer
-1643257,Jayson Kent,POR,Jayson Kent
 203081,Damian Lillard,POR,Damian Lillard
 1630703,Scoot Henderson,POR,Scoot Henderson
 1629630,Ja Morant,POR,Ja Morant
@@ -360,11 +361,12 @@ nba_id,player_name,team,data_name
 1631101,Shaedon Sharpe,POR,Shaedon Sharpe
 1642270,Donovan Clingan,POR,Donovan Clingan
 1630249,Vít Krejčí,POR,Vit Krejci
+1643257,Jayson Kent,POR,Jayson Kent
 1641739,Toumani Camara,POR,Toumani Camara
 1629057,Robert Williams III,POR,Robert Williams III
 1631321,Sidy Cissoko,POR,Sidy Cissoko
-1642951,Sean Pedulla,SAC,Sean Pedulla
 1628370,Malik Monk,SAC,Malik Monk
+1642951,Sean Pedulla,SAC,
 1643411,Darius Acuff Jr.,SAC,
 203897,Zach LaVine,SAC,Zach LaVine
 1630173,Precious Achiuwa,SAC,Precious Achiuwa
@@ -403,7 +405,7 @@ nba_id,player_name,team,data_name
 1631096,Chet Holmgren,OKC,Chet Holmgren
 1631114,Jalen Williams,OKC,Jalen Williams
 1627936,Alex Caruso,OKC,Alex Caruso
-1642850,Thomas Sorber,OKC,Thomas Sorber
+1642850,Thomas Sorber,OKC,
 1642892,Bennett Stirtz,OKC,
 1643530,Aday Mara,OKC,
 1642877,Micah Peavy,OKC,Micah Peavy
@@ -414,13 +416,13 @@ nba_id,player_name,team,data_name
 1629026,Kenrich Williams,OKC,Kenrich Williams
 1642260,Nikola Topić,OKC,Nikola Topić
 1628392,Isaiah Hartenstein,OKC,Isaiah Hartenstein
-1642927,Nate Bittle,TOR,
 1642347,Jamal Shead,TOR,Jamal Shead
 202695,Kawhi Leonard,TOR,Kawhi Leonard
 1630567,Scottie Barnes,TOR,Scottie Barnes
 1630193,Immanuel Quickley,TOR,Immanuel Quickley
 1643558,Jaden Bradley,TOR,
 1629628,RJ Barrett,TOR,RJ Barrett
+1642927,Nate Bittle,TOR,
 203937,Kyle Anderson,TOR,Kyle Anderson
 1642266,Ja'Kobe Walter,TOR,Ja'Kobe Walter
 1641869,Malachi Smith,TOR,Malachi Smith
@@ -502,8 +504,6 @@ nba_id,player_name,team,data_name
 1642449,Tolu Smith,DET,Tolu Smith
 1629130,Duncan Robinson,DET,Duncan Robinson
 1641989,Elijah Harkless,DET,Elijah Harkless
-1642369,Michael Ajayi,CHA,
-1643573,Kylan Boswell,CHA,
 1626220,Royce O'Neale,CHA,Royce O'Neale
 1629675,Naz Reid,CHA,Naz Reid
 1629684,Grant Williams,CHA,Grant Williams
@@ -512,10 +512,12 @@ nba_id,player_name,team,data_name
 1643515,Christian Anderson,CHA,
 1642851,Kon Knueppel,CHA,Kon Knueppel
 1628960,Grayson Allen,CHA,Grayson Allen
+1642369,Michael Ajayi,CHA,
 1641750,Ryan Kalkbrenner,CHA,Ryan Kalkbrenner
 1631217,Moussa Diabaté,CHA,Moussa Diabate
 1641790,PJ Hall,CHA,PJ Hall
 203471,Dennis Schröder,CHA,Dennis Schroder
+1643573,Kylan Boswell,CHA,
 1643419,Hannes Steinbach,CHA,
 1641706,Brandon Miller,CHA,Brandon Miller
 1642275,Tidjane Salaün,CHA,Tidjane Salaün

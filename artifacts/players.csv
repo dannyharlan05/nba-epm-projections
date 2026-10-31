@@ -827,7 +827,7 @@ nba_id,player_name,rookie_season,last_season,draft_year,draft_round,draft_pick
 202690,Jimmer Fredette,2012,2019,2011,1,10
 202683,Enes Freedom,2012,2022,2011,1,3
 200777,Joel Freeland,2013,2015,2006,1,30
-1642402,Enrique Freeman,2025,2026,2024,2,50
+1642402,Enrique Freeman,2025,2027,2024,2,50
 1631241,Javon Freeman-Liberty,2024,2024,,,
 2782,Matt Freije,2005,2007,2004,2,53
 101112,Channing Frye,2006,2019,2005,1,8
@@ -1495,13 +1495,12 @@ nba_id,player_name,rookie_season,last_season,draft_year,draft_round,draft_pick
 1626172,Kevon Looney,2016,2027,2015,1,30
 201572,Brook Lopez,2009,2027,2008,1,10
 1732,Felipe Lopez,1999,2003,1998,1,24
-1643510,Karim Lopez,2027,2027,2026,1,21
 2221,Raul Lopez,2003,2005,2001,1,24
 201577,Robin Lopez,2009,2024,2008,1,15
 1629712,Didi Louzada,2021,2022,2019,2,35
 1631126,Caleb Love,2026,2027,,,
 201567,Kevin Love,2009,2026,2008,1,5
-1643133,Lawson Lovering,2026,2026,,,
+1643133,Lawson Lovering,2026,2027,,,
 200768,Kyle Lowry,2007,2026,2006,1,24
 1628070,Jordan Loyd,2019,2019,,,
 203564,Kalin Lucas,2015,2019,,,
@@ -1513,6 +1512,7 @@ nba_id,player_name,rookie_season,last_season,draft_year,draft_round,draft_pick
 1628399,Tyler Lydon,2018,2019,2017,1,24
 1626168,Trey Lyles,2016,2027,2015,1,12
 248,George Lynch,1994,2005,1993,1,12
+1643510,Karim López,2027,2027,2026,1,21
 1627815,Sheldon Mac,2017,2017,,,
 1928,Todd MacCulloch,2000,2004,1999,2,47
 931,Don MacLean,1993,2001,1992,1,19
@@ -1843,7 +1843,6 @@ nba_id,player_name,rookie_season,last_season,draft_year,draft_round,draft_pick
 1626143,Jahlil Okafor,2016,2025,2015,1,3
 1643253,Toby Okani,2026,2026,,,
 1629643,Chuma Okeke,2021,2025,2019,1,16
-1643758,AK Okereke,2027,2027,,,
 1629059,Elie Okobo,2019,2020,2018,2,31
 1629006,Josh Okogie,2019,2027,2018,1,20
 1630168,Onyeka Okongwu,2021,2027,2020,1,6
@@ -2595,7 +2594,7 @@ nba_id,player_name,rookie_season,last_season,draft_year,draft_round,draft_pick
 1629118,Thomas Welsh,2019,2019,2018,2,58
 1641705,Victor Wembanyama,2024,2027,2023,1,1
 82,Bill Wennington,1986,2000,1985,1,16
-1631104,Blake Wesley,2023,2026,2022,1,25
+1631104,Blake Wesley,2023,2027,2022,1,25
 133,David Wesley,1994,2007,,,
 2561,David West,2004,2018,2003,1,18
 2753,Delonte West,2005,2012,2004,1,24
