@@ -46,7 +46,9 @@ epm-projections/
 │   ├── features.py    # build the per-(player, season) training table
 │   └── model.py       # temporal CV, model training, OOF predictions
 ├── build_artifacts.py # run the pipeline once, save models + predictions
-├── app.py             # Streamlit UI (player view, leaderboards, methodology)
+├── app.py             # Streamlit entry point: top nav for the two pages below
+├── epm_app.py         # EPM projections page (player view, leaderboards, methodology)
+├── draft_rankings.py  # Draft Rankings page (reads artifacts/draft_rankings.csv)
 ├── data/              # raw CSVs go here (git-ignored)
 └── artifacts/         # saved models + predictions
 ```
@@ -107,3 +109,9 @@ sit in one place in `model.py` so the CV and the live numbers can't drift apart.
 ## Stack
 
 Python, XGBoost, scikit-learn, Streamlit, Plotly, pandas.
+
+## Draft Rankings page
+
+The site's second tab is a separate draft model (predicted peak NBA EPM for prospects).
+It is built in `Darko_Draft.ipynb` in the parent folder: its rankings cell writes
+`artifacts/draft_rankings.csv` and `artifacts/draft_meta.json`. Commit and push those to update the page.
