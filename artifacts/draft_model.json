@@ -1,0 +1,227 @@
+{
+ "features": [
+  "blk_per_rel",
+  "AST_per_rel",
+  "FT_per_rel",
+  "TO_per_rel",
+  "twoP_per_rel",
+  "ORtgXUsage_rel",
+  "stocks_rel",
+  "ht_inches_rel",
+  "stl_per_rel",
+  "power6",
+  "Usg/Ast_rel",
+  "ORB_per_rel",
+  "WEIGHT_rel",
+  "2PTXUsage_rel",
+  "ASTXUsage_rel",
+  "DRB_per_rel",
+  "projected_pick",
+  "age"
+ ],
+ "size_rel": {
+  "usgast_rel": "Usg/Ast",
+  "blk_per_rel": "blk_per",
+  "AST_per_rel": "AST_per",
+  "FT_per_rel": "FT_per",
+  "TO_per_rel": "TO_per",
+  "twoP_per_rel": "twoP_per",
+  "ORtgXUsage_rel": "ORtgXUsage",
+  "stocks_rel": "stocks",
+  "ht_inches_rel": "ht_inches",
+  "stl_per_rel": "stl_per",
+  "Usg/Ast_rel": "Usg/Ast",
+  "ORB_per_rel": "ORB_per",
+  "WEIGHT_rel": "WEIGHT",
+  "2PTXUsage_rel": "2PTXUsage",
+  "ASTXUsage_rel": "ASTXUsage",
+  "DRB_per_rel": "DRB_per"
+ },
+ "size_med": {
+  "usgast_rel": {
+   "big": 2.70111616370401,
+   "guard": 1.2067307692307692,
+   "wing": 2.0
+  },
+  "blk_per_rel": {
+   "big": 5.9,
+   "guard": 0.9,
+   "wing": 2.6
+  },
+  "AST_per_rel": {
+   "big": 8.649999999999999,
+   "guard": 21.2,
+   "wing": 12.1
+  },
+  "FT_per_rel": {
+   "big": 0.687,
+   "guard": 0.785,
+   "wing": 0.766
+  },
+  "TO_per_rel": {
+   "big": 16.55,
+   "guard": 15.7,
+   "wing": 15.5
+  },
+  "twoP_per_rel": {
+   "big": 0.5505,
+   "guard": 0.5,
+   "wing": 0.517
+  },
+  "ORtgXUsage_rel": {
+   "big": 2605.8050000000003,
+   "guard": 2827.96,
+   "wing": 2757.66
+  },
+  "stocks_rel": {
+   "big": 7.5,
+   "guard": 3.3,
+   "wing": 4.7
+  },
+  "ht_inches_rel": {
+   "big": 82.0,
+   "guard": 76.0,
+   "wing": 80.0
+  },
+  "stl_per_rel": {
+   "big": 1.4,
+   "guard": 2.3,
+   "wing": 1.9
+  },
+  "Usg/Ast_rel": {
+   "big": 2.70111616370401,
+   "guard": 1.2067307692307692,
+   "wing": 2.0
+  },
+  "ORB_per_rel": {
+   "big": 11.1,
+   "guard": 2.9,
+   "wing": 6.9
+  },
+  "WEIGHT_rel": {
+   "big": 236.0,
+   "guard": 198.1,
+   "wing": 220.1
+  },
+  "2PTXUsage_rel": {
+   "big": 13.086200000000002,
+   "guard": 12.5229,
+   "wing": 12.696000000000002
+  },
+  "ASTXUsage_rel": {
+   "big": 201.065,
+   "guard": 533.52,
+   "wing": 282.96000000000004
+  },
+  "DRB_per_rel": {
+   "big": 21.0,
+   "guard": 11.5,
+   "wing": 18.0
+  }
+ },
+ "position_mask": {},
+ "feature_caps": {},
+ "lin": {
+  "idx": [
+   16
+  ],
+  "coef": [
+   -0.08510990330911214
+  ],
+  "intercept": 1.6513509393125911,
+  "fill": [
+   38.23356807511737
+  ]
+ },
+ "inputs": {
+  "ORtg": {
+   "median": 111.8,
+   "lo": 91.606,
+   "hi": 130.049
+  },
+  "usg": {
+   "median": 24.2,
+   "lo": 15.2,
+   "hi": 34.949
+  },
+  "twoP_per": {
+   "median": 0.516,
+   "lo": 0.39690208285704515,
+   "hi": 0.6977993412886299
+  },
+  "FT_per": {
+   "median": 0.743,
+   "lo": 0.44051,
+   "hi": 0.89649
+  },
+  "AST_per": {
+   "median": 12.95,
+   "lo": 2.5378662868139097,
+   "hi": 41.647
+  },
+  "TO_per": {
+   "median": 16.1,
+   "lo": 9.300518597312363,
+   "hi": 27.34531511303584
+  },
+  "ORB_per": {
+   "median": 6.198150034683083,
+   "lo": 0.9,
+   "hi": 17.09773988368395
+  },
+  "DRB_per": {
+   "median": 15.95,
+   "lo": 6.818456105981413,
+   "hi": 29.0
+  },
+  "blk_per": {
+   "median": 2.3,
+   "lo": 0.1,
+   "hi": 13.902728839978472
+  },
+  "stl_per": {
+   "median": 1.9,
+   "lo": 0.6,
+   "hi": 4.6
+  },
+  "ht_inches": {
+   "median": 79.0,
+   "lo": 71.0,
+   "hi": 85.0
+  },
+  "WEIGHT": {
+   "median": 214.4,
+   "lo": 170.204,
+   "hi": 276.47
+  },
+  "age": {
+   "median": 21.297741273100616,
+   "lo": 18.398685831622178,
+   "hi": 24.051909650924024
+  },
+  "projected_pick": {
+   "median": 41.0,
+   "lo": 1.0,
+   "hi": 61.0
+  },
+  "power6": {
+   "median": 1.0,
+   "lo": 0.0,
+   "hi": 1.0
+  }
+ },
+ "unmapped_penalty": 3.0,
+ "train_years": [
+  2010,
+  2011,
+  2012,
+  2013,
+  2014,
+  2015,
+  2016,
+  2017,
+  2018,
+  2019,
+  2020
+ ]
+}
