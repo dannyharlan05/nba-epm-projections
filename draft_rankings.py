@@ -9,7 +9,7 @@ import os
 import pandas as pd
 import streamlit as st
 
-from draft_model import GROUPS, feature_matrix, pos_group, predict
+from draft_model import GROUPS, pos_group, predict
 import draft_model
 
 ART = "artifacts"
@@ -126,14 +126,16 @@ inputs = load_inputs()
 
 LABELS = {
     "ORtg": "Offensive rating", "usg": "Usage %", "twoP_per": "2P %", "FT_per": "FT %",
-    "AST_per": "Assist %", "TO_per": "Turnover %", "ORB_per": "Off. rebound %",
-    "DRB_per": "Def. rebound %", "blk_per": "Block %", "stl_per": "Steal %",
+    "3par": "3PA rate (3PA / FGA)", "AST_per": "Assist %", "TO_per": "Turnover %",
+    "ORB_per": "Off. rebound %", "DRB_per": "Def. rebound %", "blk_per": "Block %", "stl_per": "Steal %",
     "ht_inches": "Height (in)", "WEIGHT": "Weight (lb)", "age": "Age (Feb 1 of draft year)",
     "projected_pick": "Mock pick (1-61)",
 }
+# an older export may not have every input yet -- only show what the exported model knows about
+LABELS = {c: l for c, l in LABELS.items() if c in stats}
 SECTIONS = [
     ("Scoring", ["ORtg", "usg", "twoP_per", "FT_per"]),
-    ("Playmaking", ["AST_per", "TO_per"]),
+    ("Shooting profile and playmaking", ["3par", "AST_per", "TO_per"]),
     ("Rebounding and defense", ["ORB_per", "DRB_per", "blk_per", "stl_per"]),
     ("Size, age and draft slot", ["ht_inches", "WEIGHT", "age", "projected_pick"]),
 ]
@@ -153,7 +155,8 @@ def _fill():
     if inputs is not None and pick != BLANK:
         row = inputs.iloc[int(pick.rsplit("#", 1)[1])]
     for c in LABELS:
-        st.session_state[f"bp_{c}"] = _num(row[c]) if row is not None else round(stats[c]["median"], 3)
+        st.session_state[f"bp_{c}"] = (_num(row[c]) if c in row.index else None) if row is not None \
+            else round(stats[c]["median"], 3)
     p6 = _num(row["power6"]) if row is not None else stats["power6"]["median"]
     st.session_state["bp_power6"] = bool(p6 is not None and p6 >= 0.5)
     st.session_state["bp_pos"] = str(row["grp"]).title() if row is not None and str(row["grp"]) in GROUPS else POS[0]
@@ -195,6 +198,9 @@ def _box(col, c):
 
 
 for title, cols in SECTIONS:
+    cols = [c for c in cols if c in LABELS]
+    if not cols:
+        continue
     st.markdown(f"**{title}**")
     cc = st.columns(4)
     for i, c in enumerate(cols):
@@ -221,10 +227,3 @@ if cls != "All":
     r3.metric(f"Rank in {cls} class", f"{int((_cl['pred_epm'] > pred).sum()) + 1} of {len(_cl) + 1}")
 if st.session_state.get("bp_penalty", 0.0):
     st.caption(f"Includes the -{st.session_state['bp_penalty']:g} unmapped-league penalty this player gets on the board.")
-
-with st.expander("What the model sees"):
-    X = feature_matrix(raw_df, bundle)[0]
-    st.dataframe(pd.DataFrame({"feature": bundle["features"], "value": X}),
-                 hide_index=True, width="stretch",
-                 column_config={"value": st.column_config.NumberColumn(format="%.3f")})
-    st.caption("_rel = value minus the median for the position group. Blank = missing.")

@@ -21,7 +21,7 @@ import pandas as pd
 
 # Raw inputs the form asks for, in display order.
 RAW_INPUTS = [
-    "ORtg", "usg", "twoP_per", "FT_per", "AST_per", "TO_per",
+    "ORtg", "usg", "twoP_per", "FT_per", "3par", "AST_per", "TO_per",
     "ORB_per", "DRB_per", "blk_per", "stl_per",
     "ht_inches", "WEIGHT", "age", "projected_pick", "power6",
 ]
