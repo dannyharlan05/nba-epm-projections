@@ -17,7 +17,9 @@
   "ASTXUsage_rel",
   "DRB_per_rel",
   "projected_pick",
-  "age"
+  "age",
+  "3par_rel",
+  "Rec Rank_rel"
  ],
  "size_rel": {
   "blk_per_rel": "blk_per",
@@ -34,7 +36,9 @@
   "WEIGHT_rel": "WEIGHT",
   "2PTXUsage_rel": "2PTXUsage",
   "ASTXUsage_rel": "ASTXUsage",
-  "DRB_per_rel": "DRB_per"
+  "DRB_per_rel": "DRB_per",
+  "3par_rel": "3par",
+  "Rec Rank_rel": "Rec Rank"
  },
  "size_med": {
   "blk_per_rel": {
@@ -111,6 +115,16 @@
    "big": 21.0,
    "guard": 11.5,
    "wing": 17.6
+  },
+  "3par_rel": {
+   "big": 0.04868913857677903,
+   "guard": 0.3934002820682741,
+   "wing": 0.31851851851851853
+  },
+  "Rec Rank_rel": {
+   "big": 91.69999999999999,
+   "guard": 89.4,
+   "wing": 91.6
   }
  },
  "position_mask": {},
@@ -147,6 +161,11 @@
    "median": 0.742,
    "lo": 0.44043,
    "hi": 0.8951399999999999
+  },
+  "3par": {
+   "median": 0.3018105013848984,
+   "lo": 0.0,
+   "hi": 0.6322554009902129
   },
   "AST_per": {
    "median": 13.0,
@@ -202,6 +221,11 @@
    "median": 1.0,
    "lo": 0.0,
    "hi": 1.0
+  },
+  "Rec Rank": {
+   "median": 90.69999999999999,
+   "lo": 14.326,
+   "hi": 100.0
   }
  }
 }

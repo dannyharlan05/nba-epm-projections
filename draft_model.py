@@ -16,7 +16,7 @@ import pandas as pd
 RAW_INPUTS = [
     "ORtg", "usg", "twoP_per", "FT_per", "3par", "AST_per", "TO_per", "ast/tov",
     "ORB_per", "DRB_per", "blk_per", "stl_per",
-    "ht_inches", "WEIGHT", "age", "projected_pick", "power6",
+    "ht_inches", "WEIGHT", "age", "projected_pick", "Rec Rank", "power6",
 ]
 
 # engineered feature -> (raw columns it needs, recipe)

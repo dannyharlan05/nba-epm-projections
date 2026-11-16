@@ -124,7 +124,7 @@ LABELS = {
     "ast/tov": "Assist / turnover", "ORB_per": "Off. rebound %", "DRB_per": "Def. rebound %",
     "blk_per": "Block %", "stl_per": "Steal %",
     "ht_inches": "Height (in)", "WEIGHT": "Weight (lb)", "age": "Age (Feb 1 of draft year)",
-    "projected_pick": "Mock pick (1-61)",
+    "projected_pick": "Mock pick (1-61)", "Rec Rank": "Recruit rating (0 = unranked)",
 }
 # ask only for the inputs the exported model needs (power6 is the checkbox below)
 LABELS = {c: LABELS.get(c, c) for c in stats if c != "power6"}
@@ -133,6 +133,7 @@ SECTIONS = [
     ("Shooting profile and playmaking", ["3par", "AST_per", "TO_per", "ast/tov"]),
     ("Rebounding and defense", ["ORB_per", "DRB_per", "blk_per", "stl_per"]),
     ("Size, age and draft slot", ["ht_inches", "WEIGHT", "age", "projected_pick"]),
+    ("Recruiting", ["Rec Rank"]),
 ]
 _placed = {c for _, cols in SECTIONS for c in cols}
 _other = [c for c in LABELS if c not in _placed]
