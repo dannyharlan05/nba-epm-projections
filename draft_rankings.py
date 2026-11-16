@@ -127,18 +127,23 @@ inputs = load_inputs()
 LABELS = {
     "ORtg": "Offensive rating", "usg": "Usage %", "twoP_per": "2P %", "FT_per": "FT %",
     "3par": "3PA rate (3PA / FGA)", "AST_per": "Assist %", "TO_per": "Turnover %",
-    "ORB_per": "Off. rebound %", "DRB_per": "Def. rebound %", "blk_per": "Block %", "stl_per": "Steal %",
+    "ast/tov": "Assist / turnover", "ORB_per": "Off. rebound %", "DRB_per": "Def. rebound %",
+    "blk_per": "Block %", "stl_per": "Steal %",
     "ht_inches": "Height (in)", "WEIGHT": "Weight (lb)", "age": "Age (Feb 1 of draft year)",
     "projected_pick": "Mock pick (1-61)",
 }
-# an older export may not have every input yet -- only show what the exported model knows about
-LABELS = {c: l for c, l in LABELS.items() if c in stats}
+# the export lists exactly the raw stats the current FEATURES need -- ask for those and nothing else.
+# power6 is the conference checkbox below; any column without a label here shows under its own name.
+LABELS = {c: LABELS.get(c, c) for c in stats if c != "power6"}
 SECTIONS = [
     ("Scoring", ["ORtg", "usg", "twoP_per", "FT_per"]),
-    ("Shooting profile and playmaking", ["3par", "AST_per", "TO_per"]),
+    ("Shooting profile and playmaking", ["3par", "AST_per", "TO_per", "ast/tov"]),
     ("Rebounding and defense", ["ORB_per", "DRB_per", "blk_per", "stl_per"]),
     ("Size, age and draft slot", ["ht_inches", "WEIGHT", "age", "projected_pick"]),
 ]
+_placed = {c for _, cols in SECTIONS for c in cols}
+_other = [c for c in LABELS if c not in _placed]
+SECTIONS += [("Other inputs", _other[k:k + 4]) for k in range(0, len(_other), 4)]
 POS = ["Auto (from height)", "Guard", "Wing", "Big"]
 BLANK = "Blank (training medians)"
 
@@ -157,7 +162,7 @@ def _fill():
     for c in LABELS:
         st.session_state[f"bp_{c}"] = (_num(row[c]) if c in row.index else None) if row is not None \
             else round(stats[c]["median"], 3)
-    p6 = _num(row["power6"]) if row is not None else stats["power6"]["median"]
+    p6 = _num(row.get("power6")) if row is not None else stats.get("power6", {}).get("median", 1.0)
     st.session_state["bp_power6"] = bool(p6 is not None and p6 >= 0.5)
     st.session_state["bp_pos"] = str(row["grp"]).title() if row is not None and str(row["grp"]) in GROUPS else POS[0]
     st.session_state["bp_penalty"] = float(row["penalty"]) if row is not None else 0.0

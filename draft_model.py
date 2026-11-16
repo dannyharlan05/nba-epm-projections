@@ -19,21 +19,37 @@ import os
 import numpy as np
 import pandas as pd
 
-# Raw inputs the form asks for, in display order.
+# Display order for the raw inputs the form asks for. Which ones it actually needs depends on the
+# exported FEATURES (see raw_inputs below); a column not listed here is shown after these.
 RAW_INPUTS = [
-    "ORtg", "usg", "twoP_per", "FT_per", "3par", "AST_per", "TO_per",
+    "ORtg", "usg", "twoP_per", "FT_per", "3par", "AST_per", "TO_per", "ast/tov",
     "ORB_per", "DRB_per", "blk_per", "stl_per",
     "ht_inches", "WEIGHT", "age", "projected_pick", "power6",
 ]
 
-# Engineered features, rebuilt from the raw inputs (same recipes as the notebook's model cell).
+# Engineered features, rebuilt from the raw inputs (same recipes as the notebook's model cell):
+# name -> (the raw columns it needs, how to build it). Anything else in FEATURES is used as typed.
 DERIVED = {
-    "ORtgXUsage": lambda f: f["usg"] * f["ORtg"],
-    "2PTXUsage": lambda f: f["usg"] * f["twoP_per"],
-    "ASTXUsage": lambda f: f["usg"] * f["AST_per"],
-    "stocks": lambda f: f["blk_per"] + f["stl_per"],
-    "Usg/Ast": lambda f: f["usg"] / f["AST_per"],
+    "ORtgXUsage": (["usg", "ORtg"], lambda f: f["usg"] * f["ORtg"]),
+    "2PTXUsage": (["usg", "twoP_per"], lambda f: f["usg"] * f["twoP_per"]),
+    "ASTXUsage": (["usg", "AST_per"], lambda f: f["usg"] * f["AST_per"]),
+    "stocks": (["blk_per", "stl_per"], lambda f: f["blk_per"] + f["stl_per"]),
+    "Usg/Ast": (["usg", "AST_per"], lambda f: f["usg"] / f["AST_per"]),
 }
+
+
+def raw_inputs(features, size_rel):
+    """The raw columns the form must ask for to rebuild `features` (the notebook's FEATURES after
+    the _rel swap). Height is always included: the position group falls back to it."""
+    need = []
+    for feat in features:
+        base = size_rel.get(feat, feat)
+        for c in (DERIVED[base][0] if base in DERIVED else [base]):
+            if c not in need:
+                need.append(c)
+    if "ht_inches" not in need:
+        need.append("ht_inches")
+    return [c for c in RAW_INPUTS if c in need] + [c for c in need if c not in RAW_INPUTS]
 
 GROUPS = ["guard", "wing", "big"]
 
@@ -63,12 +79,13 @@ def load(art_dir="artifacts"):
 
 
 def feature_matrix(raw: pd.DataFrame, bundle: dict) -> np.ndarray:
-    """raw: one row per player with RAW_INPUTS + 'grp'. Returns X in the model's FEATURES order."""
+    """raw: one row per player with the bundle's raw inputs + 'grp'. Returns X in FEATURES order."""
     f = raw.copy()
-    for c in RAW_INPUTS:
+    for c in (list(bundle.get("inputs", {})) or RAW_INPUTS):
         f[c] = pd.to_numeric(f[c], errors="coerce") if c in f.columns else np.nan
-    for name, fn in DERIVED.items():
-        f[name] = fn(f)
+    for name, (deps, fn) in DERIVED.items():
+        if all(c in f.columns for c in deps):
+            f[name] = fn(f)
     f = f.replace([np.inf, -np.inf], np.nan)
     grp = f["grp"].astype(str)
     for new, base in bundle["size_rel"].items():

@@ -1,604 +1,604 @@
 player,year,school,type,mock_pick,model_rank,mock_rank,pred_epm
-Alperen Sengün,2021,T-BSL,INTL,9,1,9,6.65
-Evan Mobley,2021,USC,college,3,2,3,4.27
-Franz Wagner,2021,Michigan,college,7,3,7,3.78
-Cade Cunningham,2021,Oklahoma St.,college,1,4,1,3.06
-Jalen Johnson,2021,Duke,college,19,5,19,2.89
-Scottie Barnes,2021,Florida St.,college,5,6,5,2.39
-Josh Giddey,2021,AUS NBL,INTL,10,7,10,1.93
-Jalen Suggs,2021,Gonzaga,college,4,8,4,1.82
-Neemias Queta,2021,Utah St.,college,46,9,46,1.59
-Chris Duarte,2021,Oregon,college,14,10,14,1.5
-Trey Murphy III,2021,Virginia,college,20,11,20,1.33
+Alperen Sengün,2021,T-BSL,INTL,9,1,9,5.67
+Evan Mobley,2021,USC,college,3,2,3,4.15
+Franz Wagner,2021,Michigan,college,7,3,7,3.98
+Scottie Barnes,2021,Florida St.,college,5,4,5,2.69
+Cade Cunningham,2021,Oklahoma St.,college,1,5,1,2.68
+Josh Giddey,2021,AUS NBL,INTL,10,6,10,2.56
+Jalen Johnson,2021,Duke,college,19,7,19,2.21
+Trey Murphy III,2021,Virginia,college,20,8,20,1.83
+Jalen Suggs,2021,Gonzaga,college,4,9,4,1.83
+Chris Duarte,2021,Oregon,college,14,10,14,1.37
+Neemias Queta,2021,Utah St.,college,46,11,46,1.29
 Jalen Green,2021,G-League,INTL,2,12,2,1.26
-Usman Garuba,2021,ACB,INTL,12,13,12,1.19
-Day'Ron Sharpe,2021,North Carolina,college,27,14,27,1.07
-Jared Butler,2021,Baylor,college,22,15,22,0.96
-Corey Kispert,2021,Gonzaga,college,17,16,17,0.78
-Miles McBride,2021,West Virginia,college,21,17,21,0.67
-Jonathan Kuminga,2021,G-League,INTL,7,18,8,0.6
-Isaiah Jackson,2021,Kentucky,college,23,19,23,0.57
-Davion Mitchell,2021,Baylor,college,13,20,13,0.44
-Moses Moody,2021,Arkansas,college,11,21,11,0.4
-James Bouknight,2021,Connecticut,college,6,22,6,0.24
-Charles Bassey,2021,Western Kentucky,college,42,23,42,-0.19
-Kai Jones,2021,Texas,college,16,24,16,-0.28
-Tre Mann,2021,Florida,college,25,25,25,-0.38
-Ziaire Williams,2021,Stanford,college,15,26,15,-0.4
-Jay Huff,2021,Virginia,college,61,27,63,-0.58
-Nah'Shon Hyland,2021,VCU,college,24,28,24,-0.67
-Quentin Grimes,2021,Houston,college,31,29,31,-0.73
-Jeremiah Robinson-Earl,2021,Villanova,college,35,30,35,-0.8
-Herbert Jones,2021,Alabama,college,37,31,37,-0.92
-Jaden Springer,2021,Tennessee,college,28,32,28,-0.99
-Keon Johnson,2021,Tennessee,college,18,33,18,-1.13
-Joshua Primo,2021,Alabama,college,30,34,30,-1.19
-Ayo Dosunmu,2021,Illinois,college,32,35,33,-1.22
-Sharife Cooper,2021,Auburn,college,29,36,29,-1.23
-Aaron Henry,2021,Michigan St.,college,40,37,40,-1.23
-Vrenz Bleijenbergh,2021,BSL,INTL,39,38,39,-1.59
-Joe Wieskamp,2021,Iowa,college,36,39,36,-1.63
-Isaiah Todd,2021,G-League,INTL,31,40,32,-1.76
-Cameron Thomas,2021,LSU,college,26,41,26,-1.78
-Cameron Krutwig,2021,Loyola Chicago,college,61,42,80,-1.8
-Josh Christopher,2021,Arizona St.,college,38,43,38,-1.82
-JT Thor,2021,Auburn,college,34,44,34,-2.0
-Joel Ayayi,2021,Gonzaga,college,43,45,43,-2.21
-Sam Hauser,2021,Virginia,college,61,46,61,-2.24
-Filip Petrusev,2021,Liga ABA,INTL,44,47,44,-2.25
-Kessler Edwards,2021,Pepperdine,college,48,48,48,-2.26
-Moses Wright,2021,Georgia Tech,college,61,49,81,-2.31
-Oscar da Silva,2021,Stanford,college,61,50,83,-2.33
-Alan Griffin,2021,Syracuse,college,61,51,92,-2.34
-Santi Aldama,2021,Loyola MD,college,61,52,99,-2.37
-Matthew Hurt,2021,Duke,college,61,53,98,-2.41
-Amar Sylla,2021,BSL,INTL,47,54,47,-2.49
-Brandon Boston Jr.,2021,Kentucky,college,41,55,41,-2.57
-JaQuori McLaughlin,2021,UC Santa Barbara,college,61,56,65,-2.6
-Luka Garza,2021,Iowa,college,59,57,58,-2.61
-Raiquan Gray,2021,Florida St.,college,57,58,56,-2.62
-Jason Preston,2021,Ohio,college,52,59,51,-2.68
-Duane Washington Jr.,2021,Ohio St.,college,49,60,49,-2.81
-Dalano Banton,2021,Nebraska,college,58,61,57,-2.89
-Jose Alvarado,2021,Georgia Tech,college,61,62,70,-2.92
-Austin Reaves,2021,Oklahoma,college,53,63,52,-2.94
-Isaiah Livers,2021,Michigan,college,61,64,69,-3.03
-Chris Smith,2021,UCLA,college,54,65,53,-3.14
-Marcus Zegarowski,2021,Creighton,college,61,66,85,-3.22
-Jordan Schakel,2021,San Diego St.,college,61,67,75,-3.35
-McKinley Wright IV,2021,Colorado,college,61,68,82,-3.36
-Olivier Sarr,2021,Kentucky,college,61,69,71,-3.38
-Justin Champagnie,2021,Pittsburgh,college,61,70,96,-3.39
-Feron Hunt,2021,SMU,college,51,71,50,-3.42
-DeJon Jarreau,2021,Houston,college,61,72,64,-3.54
-Jericho Sims,2021,Texas,college,60,73,59,-3.58
-Mark Vital,2021,Baylor,college,61,74,62,-3.64
-Aaron Wiggins,2021,Maryland,college,61,75,91,-3.67
-Ethan Thompson,2021,Oregon St.,college,61,76,84,-3.69
-Scottie Lewis,2021,Florida,college,61,77,97,-3.69
-Derrick Alston Jr.,2021,Boise St.,college,61,78,67,-3.72
-Trendon Watford,2021,LSU,college,61,79,100,-3.73
-Javonte Smart,2021,LSU,college,61,80,89,-3.74
-David Duke,2021,Providence,college,61,81,88,-3.76
-Balsa Koprivica,2021,Florida St.,college,61,82,102,-3.81
-D.J. Carton,2021,Marquette,college,61,83,101,-3.94
-John Petty Jr.,2021,Alabama,college,61,84,79,-3.94
-D'Mitrik Trice,2021,Wisconsin,college,61,85,60,-4.02
-Sandro Mamukelashvili,2021,Citta Di Roma,INTL,55,86,54,-4.12
-Yves Pons,2021,Tennessee,college,61,87,78,-4.14
-Javion Hamlet,2021,North Texas,college,61,88,93,-4.14
-Matt Mitchell,2021,San Diego St.,college,61,89,76,-4.15
-Derek Culver,2021,West Virginia,college,61,90,90,-4.16
-Colbey Ross,2021,Pepperdine,college,61,91,77,-4.23
-DJ Steward,2021,Duke,college,61,92,103,-4.24
-Carlik Jones,2021,Louisville,college,61,93,66,-4.31
-Greg Brown III,2021,Texas,college,56,94,55,-4.33
-MaCio Teague,2021,Baylor,college,61,95,68,-4.35
-Rokas Jokubaitis,2021,LKL,INTL,45,96,45,-4.37
-Marcus Garrett,2021,Kansas,college,61,97,73,-4.39
-David Johnson,2021,Louisville,college,61,98,94,-4.6
-D.J. Stewart Jr.,2021,Mississippi St.,college,61,99,87,-4.65
-Mac McClung,2021,Texas Tech,college,61,100,86,-4.71
-RJ Nembhard,2021,TCU,college,61,101,72,-4.77
-M.J. Walker,2021,Florida St.,college,61,102,74,-5.21
-Romeo Weems,2021,DePaul,college,61,103,95,-5.53
-Juhann Begarin,2021,LNB Pro B,INTL,61,104,105,-6.48
-Biram Faye,2021,Primera FEB,INTL,61,105,104,-7.83
-Chet Holmgren,2022,Gonzaga,college,2,1,2,5.2
-Jabari Smith,2022,Auburn,college,3,2,3,3.39
-Paolo Banchero,2022,Duke,college,1,3,1,3.25
-Mark Williams,2022,Duke,college,13,4,12,3.16
-Keegan Murray,2022,Iowa,college,5,5,5,2.72
-Dyson Daniels,2022,G-League,INTL,8,6,7,2.59
-Tari Eason,2022,LSU,college,17,7,16,2.27
-Walker Kessler,2022,Auburn,college,26,8,24,2.16
-Jalen Duren,2022,Memphis,college,9,9,8,1.81
-Jeremy Sochan,2022,Baylor,college,12,10,11,1.4
-Bennedict Mathurin,2022,Arizona,college,6,11,6,1.14
-Jaden Ivey,2022,Purdue,college,4,12,4,1.06
-AJ Griffin,2022,Duke,college,14,13,13,0.84
-E.J. Liddell,2022,Ohio St.,college,27,14,25,0.73
-Jake LaRavia,2022,Wake Forest,college,24,15,22,0.7
-Dalen Terry,2022,Arizona,college,21,16,20,0.51
-Jaylin Williams,2022,Arkansas,college,42,17,40,0.41
-Christian Koloko,2022,Arizona,college,33,18,31,0.29
-Jalen Williams,2022,Santa Clara,college,15,19,14,0.29
-Johnny Davis,2022,Wisconsin,college,11,20,10,0.15
-Nikola Jović,2022,Liga ABA,INTL,20,21,19,0.07
-Malaki Branham,2022,Ohio St.,college,16,22,15,-0.18
-Trevion Williams,2022,Purdue,college,57,23,54,-0.19
-Tyty Washington Jr.,2022,Kentucky,college,19,24,18,-0.19
-Gabriele Procida,2022,Lega A,INTL,28,25,26,-0.45
-Blake Wesley,2022,Notre Dame,college,22,26,21,-0.48
-Josh Minott,2022,Memphis,college,47,27,45,-0.53
-Ochai Agbaji,2022,Kansas,college,18,28,17,-0.71
-David Roddy,2022,Colorado St.,college,49,29,47,-0.75
-Ousmane Dieng,2022,AUS NBL,INTL,10,30,9,-0.75
-Wendell Moore Jr.,2022,Duke,college,31,31,29,-0.85
-Marcus Bingham Jr.,2022,Michigan St.,college,61,32,70,-1.11
-Ismael Kamagate,2022,Jeep Elite,INTL,29,33,27,-1.4
-Trevor Keels,2022,Duke,college,40,34,38,-1.4
-Andrew Nembhard,2022,Gonzaga,college,45,35,43,-1.52
-Ryan Rollins,2022,Toledo,college,38,36,36,-1.61
-Kendall Brown,2022,Baylor,college,30,37,28,-1.7
-Kennedy Chandler,2022,Tennessee,college,41,38,39,-1.88
-"Kenneth Lofton, Jr.",2022,Louisiana Tech,college,61,39,95,-1.92
-MarJon Beauchamp,2022,G-League,INTL,24,40,23,-1.93
-Christian Braun,2022,Kansas,college,35,41,33,-1.94
-Vince Williams Jr.,2022,VCU,college,61,42,74,-1.97
-Isaiah Mobley,2022,USC,college,61,43,87,-2.22
-Keon Ellis,2022,Alabama,college,51,44,49,-2.27
-Alondes Williams,2022,Wake Forest,college,52,45,50,-2.28
-Bryce McGowens,2022,Nebraska,college,39,46,37,-2.28
-John Butler,2022,Florida St.,college,36,47,34,-2.29
-Max Christie,2022,Michigan St.,college,32,48,30,-2.47
-Jaden Hardy,2022,G-League,INTL,37,49,35,-2.5
-Jordan Hall,2022,Saint Joseph's,college,61,50,96,-2.54
-Caleb Houstan,2022,Michigan,college,34,51,32,-2.57
-Patrick Baldwin Jr.,2022,Milwaukee,college,44,52,42,-2.63
-Justin Lewis,2022,Marquette,college,50,53,48,-2.64
-JD Davison,2022,Alabama,college,61,54,97,-2.75
-Brady Manek,2022,North Carolina,college,61,55,67,-2.76
-Scotty Pippen Jr.,2022,Vanderbilt,college,60,56,57,-2.88
-JD Notae,2022,Arkansas,college,61,57,68,-2.97
-Collin Gillespie,2022,Villanova,college,61,58,69,-2.98
-Keve Aluma,2022,Virginia Tech,college,61,59,66,-3.03
-Jabari Walker,2022,Colorado,college,61,60,94,-3.06
-Ziga Samar,2022,ACB,INTL,61,61,106,-3.14
-Quenton Jackson,2022,Texas A&M,college,61,62,83,-3.14
-Gabe Brown,2022,Michigan St.,college,56,63,53,-3.28
-Hugo Besson,2022,AUS NBL,INTL,48,64,46,-3.31
-AJ Green,2022,Northern Iowa,college,61,65,72,-3.31
-Ron Harper Jr.,2022,Rutgers,college,61,66,79,-3.35
-Peyton Watson,2022,UCLA,college,43,67,41,-3.4
-Tevin Brown,2022,Murray St.,college,61,68,81,-3.41
-Darius Days,2022,LSU,college,61,69,73,-3.42
-Jamaree Bouyea,2022,San Francisco,college,61,70,60,-3.56
-Hyunjung Lee,2022,Davidson,college,61,71,88,-3.63
-Jean Montero,2022,Segunda FEB,INTL,53,72,51,-3.65
-Kameron McGusty,2022,Miami FL,college,61,73,58,-3.66
-Luke Travers,2022,AUS NBL,INTL,61,74,103,-3.7
-Jermaine Samuels,2022,Villanova,college,61,75,63,-3.72
-Cole Swider,2022,Syracuse,college,61,76,71,-3.75
-Julian Champagnie,2022,St. John's,college,61,77,86,-3.78
-Buddy Boeheim,2022,Syracuse,college,61,78,80,-3.79
-Karlo Matkovic,2022,Liga ABA,INTL,61,79,101,-3.8
-Giordano Bortolani,2022,Lega A,INTL,61,80,98,-3.81
-Michael Devoe,2022,Georgia Tech,college,61,81,76,-3.82
-Kofi Cockburn,2022,Illinois,college,61,82,84,-3.83
-Jules Bernard,2022,UCLA,college,61,83,77,-3.85
-James Akinjo,2022,Baylor,college,61,84,75,-4.02
-Khalifa Diop,2022,ACB,INTL,61,85,102,-4.11
-Remy Martin,2022,Kansas,college,61,86,64,-4.19
-Tyrese Martin,2022,Connecticut,college,61,87,78,-4.2
-Moussa Diabate,2022,Michigan,college,46,88,44,-4.21
-Lester Quinones,2022,Memphis,college,61,89,89,-4.23
-Kellan Grady,2022,Kentucky,college,61,90,65,-4.23
-Izaiah Brockington,2022,Iowa St.,college,61,91,61,-4.33
-Aminu Mohammed,2022,Georgetown,college,55,92,52,-4.39
-Dereon Seabron,2022,N.C. State,college,61,93,85,-4.4
-Iverson Molinar,2022,Mississippi St.,college,61,94,90,-4.58
-Alfonso Plummer,2022,Illinois,college,61,95,92,-4.66
-Johnny Juzang,2022,UCLA,college,61,96,93,-4.73
-Tyson Etienne,2022,Wichita St.,college,61,97,91,-4.76
-Makur Maker,2022,AUS NBL,INTL,61,98,104,-4.78
-Stanley Umude,2022,Arkansas,college,61,99,62,-4.84
-Kai Sotto,2022,AUS NBL,INTL,61,100,100,-4.91
-Bryson Williams,2022,Texas Tech,college,61,101,59,-4.92
-Matteo Spagnolo,2022,Lega A,INTL,61,102,105,-4.97
-Jared Rhoden,2022,Seton Hall,college,61,103,82,-5.12
-Yannick Nzosa,2022,ACB,INTL,59,104,56,-5.87
-Guilherme Santos,2022,P-LPB,INTL,61,105,99,-6.97
-Ibou Dianko Badji,2022,Primera FEB,INTL,58,106,55,-7.47
-Victor Wembanyama,2023,Jeep Elite,INTL,1,1,1,5.2
-Brandon Miller,2023,Alabama,college,2,2,2,3.05
-Dereck Lively II,2023,Duke,college,12,3,10,2.96
-Jarace Walker,2023,Houston,college,7,4,5,2.1
-Cam Whitmore,2023,Villanova,college,9,5,7,1.89
-Scoot Henderson,2023,G-League,INTL,3,6,3,1.85
-Anthony Black,2023,Arkansas,college,6,7,4,1.35
-Taylor Hendricks,2023,UCF,college,8,8,6,1.35
-Cason Wallace,2023,Kentucky,college,16,9,14,1.21
-Kobe Bufkin,2023,Michigan,college,11,10,9,0.92
-Kris Murray,2023,Iowa,college,20,11,18,0.92
-Keyonte George,2023,Baylor,college,17,12,15,0.68
-Gradey Dick,2023,Kansas,college,14,13,12,0.6
-Noah Clowney,2023,Alabama,college,18,14,16,0.59
-Trayce Jackson-Davis,2023,Indiana,college,33,15,30,0.46
-Jordan Hawkins,2023,Connecticut,college,15,16,13,0.39
-Tristan Vukcevic,2023,Liga ABA,INTL,37,17,34,0.34
-Brandin Podziemski,2023,Santa Clara,college,25,18,22,0.08
-Jake Stephens,2023,Chattanooga,college,61,19,72,-0.2
-Jaime Jaquez Jr.,2023,UCLA,college,22,20,20,-0.2
-Leonard Miller,2023,G-League,INTL,33,21,31,-0.43
-James Nnaji,2023,ACB,INTL,26,22,23,-0.46
-Kobe Brown,2023,Missouri,college,55,23,53,-0.54
-Jett Howard,2023,Michigan,college,27,24,24,-0.56
-Jalen Hood-Schifino,2023,Indiana,college,13,25,11,-0.56
-Adama Sanogo,2023,Connecticut,college,40,26,37,-0.6
-Bilal Coulibaly,2023,Jeep Elite,INTL,10,27,8,-0.8
-Olivier-Maxence Prosper,2023,Marquette,college,24,28,21,-1.02
-Dariq Whitehead,2023,Duke,college,28,29,25,-1.13
-Ben Sheppard,2023,Belmont,college,29,30,26,-1.15
-Brice Sensabaugh,2023,Ohio St.,college,30,31,27,-1.4
-Andre Jackson Jr.,2023,Connecticut,college,44,32,41,-1.45
-Nick Smith Jr.,2023,Arkansas,college,19,33,17,-1.54
-Colby Jones,2023,Xavier,college,32,34,29,-1.56
-Maxwell Lewis,2023,Pepperdine,college,31,35,28,-1.57
-Toumani Camara,2023,Dayton,college,53,36,52,-1.69
-Jalen Slawson,2023,Furman,college,61,37,66,-1.79
-Marcus Sasser,2023,Houston,college,38,38,35,-1.79
-Mouhamed Gueye,2023,Washington St.,college,45,39,43,-1.89
-Julian Strawther,2023,Gonzaga,college,34,40,32,-1.9
-D'Moi Hodge,2023,Missouri,college,61,41,84,-1.96
-Colin Castleton,2023,Florida,college,58,42,56,-2.09
-Seth Lundy,2023,Penn St.,college,42,43,39,-2.37
-Oscar Tshiebwe,2023,Kentucky,college,61,44,82,-2.37
-Jordan Miller,2023,Miami FL,college,52,45,51,-2.44
-Terquavion Smith,2023,N.C. State,college,48,46,47,-2.46
-Julian Phillips,2023,Tennessee,college,39,47,36,-2.47
-Sidy Cissoko,2023,G-League,INTL,44,48,42,-2.5
-Craig Porter Jr.,2023,Wichita St.,college,57,49,55,-2.53
-Azuolas Tubelis,2023,Arizona,college,61,50,86,-2.62
-Emoni Bates,2023,Eastern Michigan,college,46,51,44,-2.69
-Rayan Rupert,2023,AUS NBL,INTL,21,52,19,-2.81
+Usman Garuba,2021,ACB,INTL,12,13,12,1.18
+Davion Mitchell,2021,Baylor,college,13,14,13,1.08
+Corey Kispert,2021,Gonzaga,college,17,15,17,0.96
+Isaiah Jackson,2021,Kentucky,college,23,16,23,0.88
+Jared Butler,2021,Baylor,college,22,17,22,0.82
+Miles McBride,2021,West Virginia,college,21,18,21,0.62
+Jonathan Kuminga,2021,G-League,INTL,7,19,8,0.59
+Day'Ron Sharpe,2021,North Carolina,college,27,20,27,0.57
+Moses Moody,2021,Arkansas,college,11,21,11,0.35
+James Bouknight,2021,Connecticut,college,6,22,6,0.34
+Charles Bassey,2021,Western Kentucky,college,42,23,42,-0.17
+Kai Jones,2021,Texas,college,16,24,16,-0.31
+Jay Huff,2021,Virginia,college,61,25,63,-0.42
+Ziaire Williams,2021,Stanford,college,15,26,15,-0.49
+Tre Mann,2021,Florida,college,25,27,25,-0.52
+Jeremiah Robinson-Earl,2021,Villanova,college,35,28,35,-0.55
+Nah'Shon Hyland,2021,VCU,college,24,29,24,-0.72
+Quentin Grimes,2021,Houston,college,31,30,31,-0.82
+Sharife Cooper,2021,Auburn,college,29,31,29,-0.85
+Keon Johnson,2021,Tennessee,college,18,32,18,-0.92
+Jaden Springer,2021,Tennessee,college,28,33,28,-1.08
+Joshua Primo,2021,Alabama,college,30,34,30,-1.22
+Ayo Dosunmu,2021,Illinois,college,32,35,33,-1.34
+Aaron Henry,2021,Michigan St.,college,40,36,40,-1.49
+Herbert Jones,2021,Alabama,college,37,37,37,-1.52
+Joel Ayayi,2021,Gonzaga,college,43,38,43,-1.66
+Joe Wieskamp,2021,Iowa,college,36,39,36,-1.74
+Sam Hauser,2021,Virginia,college,61,40,61,-1.76
+Isaiah Todd,2021,G-League,INTL,31,41,32,-1.93
+JT Thor,2021,Auburn,college,34,42,34,-2.03
+Vrenz Bleijenbergh,2021,BSL,INTL,39,43,39,-2.04
+Josh Christopher,2021,Arizona St.,college,38,44,38,-2.06
+Cameron Thomas,2021,LSU,college,26,45,26,-2.07
+Cameron Krutwig,2021,Loyola Chicago,college,61,46,80,-2.12
+Alan Griffin,2021,Syracuse,college,61,47,92,-2.19
+Jason Preston,2021,Ohio,college,52,48,51,-2.25
+Kessler Edwards,2021,Pepperdine,college,48,49,48,-2.33
+Luka Garza,2021,Iowa,college,59,50,58,-2.34
+Filip Petrusev,2021,Liga ABA,INTL,44,51,44,-2.34
+Dalano Banton,2021,Nebraska,college,58,52,57,-2.35
+Moses Wright,2021,Georgia Tech,college,61,53,81,-2.35
+Amar Sylla,2021,BSL,INTL,47,54,47,-2.39
+Jose Alvarado,2021,Georgia Tech,college,61,55,70,-2.46
+JaQuori McLaughlin,2021,UC Santa Barbara,college,61,56,65,-2.47
+Matthew Hurt,2021,Duke,college,61,57,98,-2.6
+Santi Aldama,2021,Loyola MD,college,61,58,99,-2.7
+Isaiah Livers,2021,Michigan,college,61,59,69,-2.73
+Raiquan Gray,2021,Florida St.,college,57,60,56,-2.75
+Marcus Zegarowski,2021,Creighton,college,61,61,85,-2.76
+Duane Washington Jr.,2021,Ohio St.,college,49,62,49,-2.77
+Brandon Boston Jr.,2021,Kentucky,college,41,63,41,-2.78
+Oscar da Silva,2021,Stanford,college,61,64,83,-2.94
+Chris Smith,2021,UCLA,college,54,65,53,-3.06
+Austin Reaves,2021,Oklahoma,college,53,66,52,-3.07
+McKinley Wright IV,2021,Colorado,college,61,67,82,-3.3
+Feron Hunt,2021,SMU,college,51,68,50,-3.42
+Jordan Schakel,2021,San Diego St.,college,61,69,75,-3.46
+Mark Vital,2021,Baylor,college,61,70,62,-3.46
+Justin Champagnie,2021,Pittsburgh,college,61,71,96,-3.52
+Scottie Lewis,2021,Florida,college,61,72,97,-3.61
+Balsa Koprivica,2021,Florida St.,college,61,73,102,-3.62
+Colbey Ross,2021,Pepperdine,college,61,74,77,-3.65
+DeJon Jarreau,2021,Houston,college,61,75,64,-3.65
+Jericho Sims,2021,Texas,college,60,76,59,-3.67
+Ethan Thompson,2021,Oregon St.,college,61,77,84,-3.7
+Olivier Sarr,2021,Kentucky,college,61,78,71,-3.71
+D'Mitrik Trice,2021,Wisconsin,college,61,79,60,-3.74
+Aaron Wiggins,2021,Maryland,college,61,80,91,-3.74
+Javonte Smart,2021,LSU,college,61,81,89,-3.85
+Trendon Watford,2021,LSU,college,61,82,100,-3.86
+David Duke,2021,Providence,college,61,83,88,-3.88
+Derrick Alston Jr.,2021,Boise St.,college,61,84,67,-3.89
+Marcus Garrett,2021,Kansas,college,61,85,73,-3.98
+John Petty Jr.,2021,Alabama,college,61,86,79,-4.04
+Greg Brown III,2021,Texas,college,56,87,55,-4.09
+D.J. Carton,2021,Marquette,college,61,88,101,-4.09
+Derek Culver,2021,West Virginia,college,61,89,90,-4.1
+Matt Mitchell,2021,San Diego St.,college,61,90,76,-4.11
+Yves Pons,2021,Tennessee,college,61,91,78,-4.15
+Carlik Jones,2021,Louisville,college,61,92,66,-4.2
+Javion Hamlet,2021,North Texas,college,61,93,93,-4.29
+DJ Steward,2021,Duke,college,61,94,103,-4.32
+MaCio Teague,2021,Baylor,college,61,95,68,-4.34
+Rokas Jokubaitis,2021,LKL,INTL,45,96,45,-4.38
+David Johnson,2021,Louisville,college,61,97,94,-4.53
+Sandro Mamukelashvili,2021,Citta Di Roma,INTL,55,98,54,-4.61
+D.J. Stewart Jr.,2021,Mississippi St.,college,61,99,87,-4.63
+RJ Nembhard,2021,TCU,college,61,100,72,-4.7
+Mac McClung,2021,Texas Tech,college,61,101,86,-4.79
+M.J. Walker,2021,Florida St.,college,61,102,74,-5.02
+Romeo Weems,2021,DePaul,college,61,103,95,-5.64
+Juhann Begarin,2021,LNB Pro B,INTL,61,104,105,-6.66
+Biram Faye,2021,Primera FEB,INTL,61,105,104,-7.92
+Chet Holmgren,2022,Gonzaga,college,2,1,2,5.4
+Paolo Banchero,2022,Duke,college,1,2,1,3.42
+Jabari Smith,2022,Auburn,college,3,3,3,3.32
+Mark Williams,2022,Duke,college,13,4,12,3.05
+Keegan Murray,2022,Iowa,college,5,5,5,2.94
+Tari Eason,2022,LSU,college,17,6,16,2.23
+Walker Kessler,2022,Auburn,college,26,7,24,2.09
+Dyson Daniels,2022,G-League,INTL,8,8,7,1.96
+Jalen Duren,2022,Memphis,college,9,9,8,1.93
+Dalen Terry,2022,Arizona,college,21,10,20,1.31
+Jeremy Sochan,2022,Baylor,college,12,11,11,1.27
+Bennedict Mathurin,2022,Arizona,college,6,12,6,1.24
+Jaden Ivey,2022,Purdue,college,4,13,4,0.99
+AJ Griffin,2022,Duke,college,14,14,13,0.84
+Jake LaRavia,2022,Wake Forest,college,24,15,22,0.75
+Jaylin Williams,2022,Arkansas,college,42,16,40,0.7
+Jalen Williams,2022,Santa Clara,college,15,17,14,0.69
+Tyty Washington Jr.,2022,Kentucky,college,19,18,18,0.28
+E.J. Liddell,2022,Ohio St.,college,27,19,25,0.24
+Trevion Williams,2022,Purdue,college,57,20,54,0.13
+Johnny Davis,2022,Wisconsin,college,11,21,10,0.08
+Christian Koloko,2022,Arizona,college,33,22,31,0.06
+Wendell Moore Jr.,2022,Duke,college,31,23,29,-0.14
+Malaki Branham,2022,Ohio St.,college,16,24,15,-0.22
+Blake Wesley,2022,Notre Dame,college,22,25,21,-0.49
+Trevor Keels,2022,Duke,college,40,26,38,-0.51
+Gabriele Procida,2022,Lega A,INTL,28,27,26,-0.52
+Josh Minott,2022,Memphis,college,47,28,45,-0.61
+Nikola Jović,2022,Liga ABA,INTL,20,29,19,-0.66
+Ousmane Dieng,2022,AUS NBL,INTL,10,30,9,-0.84
+Ochai Agbaji,2022,Kansas,college,18,31,17,-0.86
+Marcus Bingham Jr.,2022,Michigan St.,college,61,32,70,-1.04
+Andrew Nembhard,2022,Gonzaga,college,45,33,43,-1.15
+David Roddy,2022,Colorado St.,college,49,34,47,-1.26
+Ismael Kamagate,2022,Jeep Elite,INTL,29,35,27,-1.43
+Kennedy Chandler,2022,Tennessee,college,41,36,39,-1.6
+Ryan Rollins,2022,Toledo,college,38,37,36,-1.6
+Kendall Brown,2022,Baylor,college,30,38,28,-1.74
+Christian Braun,2022,Kansas,college,35,39,33,-1.81
+MarJon Beauchamp,2022,G-League,INTL,24,40,23,-2.0
+Vince Williams Jr.,2022,VCU,college,61,41,74,-2.12
+Isaiah Mobley,2022,USC,college,61,42,87,-2.12
+Keon Ellis,2022,Alabama,college,51,43,49,-2.36
+Alondes Williams,2022,Wake Forest,college,52,44,50,-2.37
+Max Christie,2022,Michigan St.,college,32,45,30,-2.41
+Jaden Hardy,2022,G-League,INTL,37,46,35,-2.45
+Caleb Houstan,2022,Michigan,college,34,47,32,-2.45
+Bryce McGowens,2022,Nebraska,college,39,48,37,-2.49
+Patrick Baldwin Jr.,2022,Milwaukee,college,44,49,42,-2.54
+John Butler,2022,Florida St.,college,36,50,34,-2.55
+Justin Lewis,2022,Marquette,college,50,51,48,-2.56
+Ziga Samar,2022,ACB,INTL,61,52,106,-2.68
+Collin Gillespie,2022,Villanova,college,61,53,69,-2.82
+"Kenneth Lofton, Jr.",2022,Louisiana Tech,college,61,54,95,-2.84
+Keve Aluma,2022,Virginia Tech,college,61,55,66,-2.87
+Jordan Hall,2022,Saint Joseph's,college,61,56,96,-2.88
+Brady Manek,2022,North Carolina,college,61,57,67,-2.93
+JD Davison,2022,Alabama,college,61,58,97,-2.98
+Peyton Watson,2022,UCLA,college,43,59,41,-3.07
+Gabe Brown,2022,Michigan St.,college,56,60,53,-3.14
+Jabari Walker,2022,Colorado,college,61,61,94,-3.18
+JD Notae,2022,Arkansas,college,61,62,68,-3.18
+Hugo Besson,2022,AUS NBL,INTL,48,63,46,-3.3
+AJ Green,2022,Northern Iowa,college,61,64,72,-3.32
+Tevin Brown,2022,Murray St.,college,61,65,81,-3.39
+Quenton Jackson,2022,Texas A&M,college,61,66,83,-3.41
+Scotty Pippen Jr.,2022,Vanderbilt,college,60,67,57,-3.43
+Ron Harper Jr.,2022,Rutgers,college,61,68,79,-3.43
+Darius Days,2022,LSU,college,61,69,73,-3.49
+Jamaree Bouyea,2022,San Francisco,college,61,70,60,-3.64
+Hyunjung Lee,2022,Davidson,college,61,71,88,-3.67
+Jermaine Samuels,2022,Villanova,college,61,72,63,-3.68
+Karlo Matkovic,2022,Liga ABA,INTL,61,73,101,-3.69
+Julian Champagnie,2022,St. John's,college,61,74,86,-3.7
+Kameron McGusty,2022,Miami FL,college,61,75,58,-3.78
+Cole Swider,2022,Syracuse,college,61,76,71,-3.78
+Kofi Cockburn,2022,Illinois,college,61,77,84,-3.78
+Luke Travers,2022,AUS NBL,INTL,61,78,103,-3.81
+Jules Bernard,2022,UCLA,college,61,79,77,-3.81
+Moussa Diabate,2022,Michigan,college,46,80,44,-3.83
+Buddy Boeheim,2022,Syracuse,college,61,81,80,-3.84
+James Akinjo,2022,Baylor,college,61,82,75,-3.86
+Remy Martin,2022,Kansas,college,61,83,64,-3.95
+Giordano Bortolani,2022,Lega A,INTL,61,84,98,-3.96
+Michael Devoe,2022,Georgia Tech,college,61,85,76,-3.97
+Khalifa Diop,2022,ACB,INTL,61,86,102,-4.17
+Jean Montero,2022,Segunda FEB,INTL,53,87,51,-4.22
+Tyrese Martin,2022,Connecticut,college,61,88,78,-4.24
+Lester Quinones,2022,Memphis,college,61,89,89,-4.24
+Kellan Grady,2022,Kentucky,college,61,90,65,-4.28
+Aminu Mohammed,2022,Georgetown,college,55,91,52,-4.38
+Dereon Seabron,2022,N.C. State,college,61,92,85,-4.43
+Makur Maker,2022,AUS NBL,INTL,61,93,104,-4.52
+Izaiah Brockington,2022,Iowa St.,college,61,94,61,-4.53
+Kai Sotto,2022,AUS NBL,INTL,61,95,100,-4.55
+Iverson Molinar,2022,Mississippi St.,college,61,96,90,-4.67
+Johnny Juzang,2022,UCLA,college,61,97,93,-4.7
+Stanley Umude,2022,Arkansas,college,61,98,62,-4.83
+Matteo Spagnolo,2022,Lega A,INTL,61,99,105,-4.9
+Bryson Williams,2022,Texas Tech,college,61,100,59,-4.97
+Tyson Etienne,2022,Wichita St.,college,61,101,91,-5.0
+Alfonso Plummer,2022,Illinois,college,61,102,92,-5.05
+Jared Rhoden,2022,Seton Hall,college,61,103,82,-5.35
+Yannick Nzosa,2022,ACB,INTL,59,104,56,-5.99
+Guilherme Santos,2022,P-LPB,INTL,61,105,99,-6.76
+Ibou Dianko Badji,2022,Primera FEB,INTL,58,106,55,-7.62
+Victor Wembanyama,2023,Jeep Elite,INTL,1,1,1,4.87
+Dereck Lively II,2023,Duke,college,12,2,10,3.19
+Brandon Miller,2023,Alabama,college,2,3,2,2.76
+Cason Wallace,2023,Kentucky,college,16,4,14,2.26
+Jarace Walker,2023,Houston,college,7,5,5,2.21
+Cam Whitmore,2023,Villanova,college,9,6,7,1.82
+Scoot Henderson,2023,G-League,INTL,3,7,3,1.41
+Taylor Hendricks,2023,UCF,college,8,8,6,1.24
+Anthony Black,2023,Arkansas,college,6,9,4,1.23
+Kris Murray,2023,Iowa,college,20,10,18,1.18
+Gradey Dick,2023,Kansas,college,14,11,12,0.95
+Kobe Bufkin,2023,Michigan,college,11,12,9,0.91
+Keyonte George,2023,Baylor,college,17,13,15,0.63
+Noah Clowney,2023,Alabama,college,18,14,16,0.58
+Jordan Hawkins,2023,Connecticut,college,15,15,13,0.36
+Trayce Jackson-Davis,2023,Indiana,college,33,16,30,0.24
+Brandin Podziemski,2023,Santa Clara,college,25,17,22,0.18
+Tristan Vukcevic,2023,Liga ABA,INTL,37,18,34,0.16
+Jett Howard,2023,Michigan,college,27,19,24,0.06
+Jake Stephens,2023,Chattanooga,college,61,20,72,0.06
+Jaime Jaquez Jr.,2023,UCLA,college,22,21,20,-0.01
+Kobe Brown,2023,Missouri,college,55,22,53,-0.46
+Leonard Miller,2023,G-League,INTL,33,23,31,-0.49
+Jalen Hood-Schifino,2023,Indiana,college,13,24,11,-0.52
+James Nnaji,2023,ACB,INTL,26,25,23,-0.55
+Andre Jackson Jr.,2023,Connecticut,college,44,26,41,-0.67
+Bilal Coulibaly,2023,Jeep Elite,INTL,10,27,8,-0.83
+Adama Sanogo,2023,Connecticut,college,40,28,37,-0.91
+Colby Jones,2023,Xavier,college,32,29,29,-1.13
+Olivier-Maxence Prosper,2023,Marquette,college,24,30,21,-1.14
+Ben Sheppard,2023,Belmont,college,29,31,26,-1.17
+Dariq Whitehead,2023,Duke,college,28,32,25,-1.24
+Marcus Sasser,2023,Houston,college,38,33,35,-1.4
+Brice Sensabaugh,2023,Ohio St.,college,30,34,27,-1.47
+Maxwell Lewis,2023,Pepperdine,college,31,35,28,-1.58
+D'Moi Hodge,2023,Missouri,college,61,36,84,-1.68
+Julian Strawther,2023,Gonzaga,college,34,37,32,-1.74
+Nick Smith Jr.,2023,Arkansas,college,19,38,17,-1.8
+Jordan Miller,2023,Miami FL,college,52,39,51,-1.9
+Jalen Slawson,2023,Furman,college,61,40,66,-2.13
+Colin Castleton,2023,Florida,college,58,41,56,-2.23
+Toumani Camara,2023,Dayton,college,53,42,52,-2.25
+Mouhamed Gueye,2023,Washington St.,college,45,43,43,-2.28
+Terquavion Smith,2023,N.C. State,college,48,44,47,-2.4
+Julian Phillips,2023,Tennessee,college,39,45,36,-2.4
+Seth Lundy,2023,Penn St.,college,42,46,39,-2.42
+Oscar Tshiebwe,2023,Kentucky,college,61,47,82,-2.43
+Craig Porter Jr.,2023,Wichita St.,college,57,48,55,-2.5
+Drew Timme,2023,Gonzaga,college,61,49,80,-2.59
+Sidy Cissoko,2023,G-League,INTL,44,50,42,-2.6
+Drew Peterson,2023,USC,college,61,51,67,-2.73
+Emoni Bates,2023,Eastern Michigan,college,46,52,44,-2.76
 Jordan Walsh,2023,Arkansas,college,43,53,40,-2.82
 Jalen Wilson,2023,Kansas,college,51,54,50,-2.83
-Gregory Jackson,2023,South Carolina,college,36,55,33,-2.85
-Drew Timme,2023,Gonzaga,college,61,56,80,-2.97
-Jalen Pickett,2023,Penn St.,college,61,57,69,-3.0
-Omari Moore,2023,San Jose St.,college,59,58,57,-3.02
-Justyn Mutts,2023,Virginia Tech,college,61,59,59,-3.04
-Keyontae Johnson,2023,Kansas St.,college,50,60,49,-3.09
-Isaiah Wong,2023,Miami FL,college,49,61,48,-3.14
-Jaylen Clark,2023,UCLA,college,60,62,58,-3.24
-Adam Flagler,2023,Baylor,college,61,63,74,-3.25
-Joey Hauser,2023,Michigan St.,college,61,64,63,-3.25
-Pete Nance,2023,North Carolina,college,61,65,71,-3.3
-Amari Bailey,2023,UCLA,college,41,66,38,-3.31
-Drew Peterson,2023,USC,college,61,67,67,-3.35
-Sir'Jabari Rice,2023,Texas,college,61,68,70,-3.44
-Jarkel Joiner,2023,N.C. State,college,61,69,61,-3.51
-Hunter Tyson,2023,Clemson,college,61,70,62,-3.51
-Mojave King,2023,G-League,INTL,47,71,46,-3.59
-Souley Boum,2023,Xavier,college,61,72,60,-3.69
-Landers Nolley II,2023,Cincinnati,college,61,73,68,-3.77
-Matthew Mayer,2023,Illinois,college,61,74,76,-3.77
-Malcolm Cazalon,2023,Liga ABA,INTL,61,75,89,-3.79
-Mike Miles Jr.,2023,TCU,college,47,76,45,-3.82
-Armaan Franklin,2023,Virginia,college,61,77,78,-3.88
-Kendric Davis,2023,Memphis,college,61,78,64,-3.93
-Nikos Rogkavopoulos,2023,T-BSL,INTL,61,79,91,-3.94
-Justin Powell,2023,Washington St.,college,61,80,87,-3.97
-Malachi Smith,2023,Gonzaga,college,61,81,77,-4.04
-Tosan Evbuomwan,2023,Princeton,college,61,82,81,-4.04
-Tevian Jones,2023,Southern Utah,college,61,83,75,-4.2
-Jacob Toppin,2023,Kentucky,college,61,84,79,-4.24
-Ricky Council IV,2023,Arkansas,college,61,85,85,-4.28
-Grant Sherfield,2023,Oklahoma,college,61,86,83,-4.33
-Taevion Kinsey,2023,Marshall,college,61,87,65,-4.34
-Nadir Hifi,2023,Jeep Elite,INTL,61,88,90,-4.46
-Tyger Campbell,2023,UCLA,college,61,89,73,-4.55
-Chris Livingston,2023,Kentucky,college,56,90,54,-4.77
-Alex Fudge,2023,Florida,college,61,91,88,-4.85
-Tom Digbeu,2023,LNB Pro B,INTL,61,92,92,-6.4
-Donovan Clingan,2024,Connecticut,college,5,1,4,5.54
-Reed Sheppard,2024,Kentucky,college,3,2,2,4.49
-Zach Edey,2024,Purdue,college,13,3,12,3.33
-Nikola Topic,2024,Liga ABA,INTL,12,4,11,2.17
-Kyle Filipowski,2024,Duke,college,28,5,27,2.12
-Stephon Castle,2024,Connecticut,college,4,6,3,1.86
-Devin Carter,2024,Providence,college,10,7,9,1.56
-DaRon Holmes II,2024,Dayton,college,24,8,23,1.53
-Rob Dillingham,2024,Kentucky,college,14,9,13,1.43
-Carlton Carrington,2024,Pittsburgh,college,19,10,18,1.11
-Jonathan Mogbo,2024,San Francisco,college,41,11,39,0.86
-Jared McCain,2024,Duke,college,16,12,15,0.83
-Ron Holland,2024,G-League,INTL,5,13,5,0.62
-Tyler Kolek,2024,Marquette,college,22,14,21,0.6
-Kel'el Ware,2024,Indiana,college,21,15,20,0.51
-Ja'Kobe Walter,2024,Baylor,college,17,16,16,0.43
-Zaccharie Risacher,2024,Jeep Elite,INTL,1,17,1,0.37
-Johnny Furphy,2024,Kansas,college,26,18,25,0.34
-Dalton Knecht,2024,Tennessee,college,9,19,8,0.19
-Ryan Dunn,2024,Virginia,college,29,20,28,0.09
-Baylor Scheierman,2024,Creighton,college,30,21,29,0.09
-Tidjane Salaun,2024,Jeep Elite,INTL,8,22,7,-0.08
-Tristan da Silva,2024,Colorado,college,18,23,17,-0.11
-Matas Buzelis,2024,G-League,INTL,11,24,10,-0.34
-Yves Missi,2024,Baylor,college,15,25,14,-0.38
-Terrence Shannon Jr.,2024,Illinois,college,23,26,22,-0.39
-Kyshawn George,2024,Miami FL,college,20,27,19,-0.57
-Dillon Jones,2024,Weber St.,college,46,28,44,-0.73
-Tristen Newton,2024,Connecticut,college,43,29,41,-0.74
-Quinten Post,2024,Boston College,college,61,30,72,-0.79
-Cody Williams,2024,Colorado,college,6,31,6,-0.85
-Pacome Dadiet,2024,G-BBL,INTL,27,32,26,-0.9
-Tyler Smith,2024,G-League,INTL,33,33,31,-1.06
-Isaiah Collier,2024,USC,college,25,34,24,-1.14
-Jaylon Tyson,2024,California,college,33,35,30,-1.47
-Ajay Mitchell,2024,UC Santa Barbara,college,37,36,35,-1.57
-N'Faly Dante,2024,Oregon,college,61,37,67,-1.59
-Adem Bona,2024,UCLA,college,36,38,34,-1.6
-Kevin McCullar Jr.,2024,Kansas,college,38,39,36,-1.67
-KJ Simpson,2024,Colorado,college,44,40,42,-1.68
-Cam Spencer,2024,Connecticut,college,59,41,57,-1.7
-PJ Hall,2024,Clemson,college,39,42,37,-1.7
-Juan Nunez,2024,G-BBL,INTL,45,43,43,-1.71
-Cam Christie,2024,Minnesota,college,42,44,40,-1.77
-Enrique Freeman,2024,Akron,college,40,45,38,-1.88
-Harrison Ingram,2024,North Carolina,college,51,46,49,-1.89
-Oso Ighodaro,2024,Marquette,college,54,47,52,-1.94
-Isaiah Crawford,2024,Louisiana Tech,college,60,48,58,-2.19
-Bobi Klintman,2024,AUS NBL,INTL,35,49,33,-2.25
-Jamarion Sharp,2024,Mississippi,college,61,50,78,-2.49
-Riley Minix,2024,Morehead St.,college,61,51,85,-2.5
-Jamal Shead,2024,Houston,college,58,52,56,-2.54
-Nikola Durišić,2024,Liga ABA,INTL,34,53,32,-2.57
-David Jones,2024,Memphis,college,61,54,77,-2.62
-Bronny James,2024,USC,college,55,55,53,-2.65
-Jaylin Williams,2024,Auburn,college,61,56,63,-2.65
-Reece Beekman,2024,Virginia,college,61,57,75,-2.69
-Jesse Edwards,2024,West Virginia,college,61,58,73,-2.9
-Armel Traore,2024,Jeep Elite,INTL,61,59,87,-2.93
-Josiah-Jordan James,2024,Tennessee,college,61,60,74,-2.95
-Justin Edwards,2024,Kentucky,college,48,61,46,-2.99
-Eric Gaines,2024,UAB,college,61,62,76,-3.0
-Keshad Johnson,2024,Arizona,college,57,63,55,-3.2
-Armando Bacot,2024,North Carolina,college,61,64,62,-3.21
-Ulrich Chomche,2024,BAL - Qual,INTL,49,65,47,-3.25
-Spencer Jones,2024,Stanford,college,61,66,65,-3.29
-Pelle Larsson,2024,Arizona,college,56,67,54,-3.31
-Antonio Reeves,2024,Kentucky,college,50,68,48,-3.35
-Anton Watson,2024,Gonzaga,college,61,69,66,-3.36
-Jalen Bridges,2024,Baylor,college,61,70,69,-3.41
-Dylan Disu,2024,Texas,college,61,71,70,-3.44
-Trey Alexander,2024,Creighton,college,61,72,79,-3.5
-Ariel Hukporti,2024,AUS NBL,INTL,61,73,86,-3.63
-Malevy Leons,2024,Bradley,college,61,74,80,-3.66
-Yannick Kraag,2024,ACB,INTL,61,75,96,-3.69
-Jaylen Wells,2024,Washington St.,college,52,76,50,-3.75
-Ousmane N'Diaye,2024,ACB,INTL,61,77,92,-3.84
-Mantas Rubštavičius,2024,AUS NBL,INTL,61,78,91,-3.86
-Boogie Ellis,2024,USC,college,61,79,64,-3.88
-Melvin Ajinca,2024,Jeep Elite,INTL,53,80,51,-3.89
-Bryson Warren,2024,G-League,INTL,61,81,89,-4.0
-Jaedon LeDee,2024,San Diego St.,college,61,82,61,-4.04
-Quinn Ellis,2024,Lega A,INTL,61,83,93,-4.1
-Zyon Pullin,2024,Florida,college,61,84,71,-4.1
-Nae'Qwan Tomlin,2024,Memphis,college,61,85,81,-4.15
-DJ Burns Jr.,2024,N.C. State,college,61,86,59,-4.16
-Marcus Domask,2024,Illinois,college,61,87,68,-4.26
-Judah Mintz,2024,Syracuse,college,61,88,82,-4.27
-Isaac Jones,2024,Washington St.,college,61,89,84,-4.4
-Trentyn Flowers,2024,AUS NBL,INTL,47,90,45,-4.62
-Taran Armstrong,2024,AUS NBL,INTL,61,91,94,-4.66
-Blake Hinson,2024,Pittsburgh,college,61,92,60,-4.83
-Mark Armstrong,2024,Villanova,college,61,93,83,-4.9
-Babacar Sane,2024,Intercontinental Cup,INTL,61,94,88,-6.59
-Tristen Enaruna,2024,DBL,INTL,61,95,95,-6.62
-London Johnson,2024,Intercontinental Cup,INTL,61,96,90,-6.94
-Cooper Flagg,2025,Duke,college,1,1,1,4.76
-Dylan Harper,2025,Rutgers,college,2,2,2,4.15
-Thomas Sorber,2025,Georgetown,college,17,3,17,3.84
-Kon Knueppel,2025,Duke,college,6,4,6,3.42
-V.J. Edgecombe,2025,Baylor,college,3,5,3,3.21
-Collin Murray-Boyles,2025,South Carolina,college,12,6,12,3.01
-Jeremiah Fears,2025,Oklahoma,college,5,7,5,2.36
-Khaman Maluach,2025,Duke,college,7,8,7,2.2
-Derik Queen,2025,Maryland,college,9,9,9,2.07
-Danny Wolf,2025,Michigan,college,18,10,18,1.99
-Carter Bryant,2025,Arizona,college,10,11,10,1.98
-Kasparas Jakucionis,2025,Illinois,college,16,12,16,1.94
-Egor Demin,2025,BYU,college,13,13,13,1.93
-Nique Clifford,2025,Colorado St.,college,20,14,20,1.4
+Gregory Jackson,2023,South Carolina,college,36,55,33,-2.86
+Jalen Pickett,2023,Penn St.,college,61,56,69,-2.89
+Rayan Rupert,2023,AUS NBL,INTL,21,57,19,-2.93
+Isaiah Wong,2023,Miami FL,college,49,58,48,-2.97
+Adam Flagler,2023,Baylor,college,61,59,74,-3.07
+Hunter Tyson,2023,Clemson,college,61,60,62,-3.07
+Justyn Mutts,2023,Virginia Tech,college,61,61,59,-3.09
+Jaylen Clark,2023,UCLA,college,60,62,58,-3.1
+Souley Boum,2023,Xavier,college,61,63,60,-3.11
+Amari Bailey,2023,UCLA,college,41,64,38,-3.15
+Azuolas Tubelis,2023,Arizona,college,61,65,86,-3.16
+Omari Moore,2023,San Jose St.,college,59,66,57,-3.17
+Keyontae Johnson,2023,Kansas St.,college,50,67,49,-3.2
+Jarkel Joiner,2023,N.C. State,college,61,68,61,-3.24
+Joey Hauser,2023,Michigan St.,college,61,69,63,-3.33
+Pete Nance,2023,North Carolina,college,61,70,71,-3.4
+Sir'Jabari Rice,2023,Texas,college,61,71,70,-3.41
+Justin Powell,2023,Washington St.,college,61,72,87,-3.53
+Mojave King,2023,G-League,INTL,47,73,46,-3.57
+Mike Miles Jr.,2023,TCU,college,47,74,45,-3.82
+Malcolm Cazalon,2023,Liga ABA,INTL,61,75,89,-3.82
+Landers Nolley II,2023,Cincinnati,college,61,76,68,-3.83
+Jacob Toppin,2023,Kentucky,college,61,77,79,-3.84
+Tosan Evbuomwan,2023,Princeton,college,61,78,81,-3.86
+Malachi Smith,2023,Gonzaga,college,61,79,77,-3.91
+Matthew Mayer,2023,Illinois,college,61,80,76,-3.93
+Nikos Rogkavopoulos,2023,T-BSL,INTL,61,81,91,-3.95
+Armaan Franklin,2023,Virginia,college,61,82,78,-3.97
+Taevion Kinsey,2023,Marshall,college,61,83,65,-4.18
+Kendric Davis,2023,Memphis,college,61,84,64,-4.18
+Tevian Jones,2023,Southern Utah,college,61,85,75,-4.24
+Ricky Council IV,2023,Arkansas,college,61,86,85,-4.31
+Chris Livingston,2023,Kentucky,college,56,87,54,-4.48
+Grant Sherfield,2023,Oklahoma,college,61,88,83,-4.5
+Tyger Campbell,2023,UCLA,college,61,89,73,-4.51
+Nadir Hifi,2023,Jeep Elite,INTL,61,90,90,-4.75
+Alex Fudge,2023,Florida,college,61,91,88,-4.81
+Tom Digbeu,2023,LNB Pro B,INTL,61,92,92,-6.48
+Donovan Clingan,2024,Connecticut,college,5,1,4,5.74
+Reed Sheppard,2024,Kentucky,college,3,2,2,5.16
+Zach Edey,2024,Purdue,college,13,3,12,2.97
+Stephon Castle,2024,Connecticut,college,4,4,3,2.72
+Nikola Topic,2024,Liga ABA,INTL,12,5,11,2.44
+Kyle Filipowski,2024,Duke,college,28,6,27,2.11
+Carlton Carrington,2024,Pittsburgh,college,19,7,18,1.98
+Rob Dillingham,2024,Kentucky,college,14,8,13,1.89
+DaRon Holmes II,2024,Dayton,college,24,9,23,1.75
+Devin Carter,2024,Providence,college,10,10,9,1.42
+Tyler Kolek,2024,Marquette,college,22,11,21,0.92
+Jared McCain,2024,Duke,college,16,12,15,0.8
+Ron Holland,2024,G-League,INTL,5,13,5,0.69
+Jonathan Mogbo,2024,San Francisco,college,41,14,39,0.65
+Baylor Scheierman,2024,Creighton,college,30,15,29,0.56
+Kel'el Ware,2024,Indiana,college,21,16,20,0.29
+Tristan da Silva,2024,Colorado,college,18,17,17,0.27
+Ja'Kobe Walter,2024,Baylor,college,17,18,16,0.23
+Johnny Furphy,2024,Kansas,college,26,19,25,0.18
+Zaccharie Risacher,2024,Jeep Elite,INTL,1,20,1,0.17
+Dalton Knecht,2024,Tennessee,college,9,21,8,0.09
+Tristen Newton,2024,Connecticut,college,43,22,41,0.05
+Ryan Dunn,2024,Virginia,college,29,23,28,-0.01
+Kyshawn George,2024,Miami FL,college,20,24,19,-0.06
+Tidjane Salaun,2024,Jeep Elite,INTL,8,25,7,-0.15
+Matas Buzelis,2024,G-League,INTL,11,26,10,-0.34
+Yves Missi,2024,Baylor,college,15,27,14,-0.43
+Quinten Post,2024,Boston College,college,61,28,72,-0.54
+Terrence Shannon Jr.,2024,Illinois,college,23,29,22,-0.59
+Cody Williams,2024,Colorado,college,6,30,6,-0.93
+Pacome Dadiet,2024,G-BBL,INTL,27,31,26,-1.04
+Dillon Jones,2024,Weber St.,college,46,32,44,-1.11
+Tyler Smith,2024,G-League,INTL,33,33,31,-1.17
+Isaiah Collier,2024,USC,college,25,34,24,-1.24
+Cam Spencer,2024,Connecticut,college,59,35,57,-1.25
+KJ Simpson,2024,Colorado,college,44,36,42,-1.4
+Cam Christie,2024,Minnesota,college,42,37,40,-1.44
+Jaylon Tyson,2024,California,college,33,38,30,-1.52
+Harrison Ingram,2024,North Carolina,college,51,39,49,-1.52
+Adem Bona,2024,UCLA,college,36,40,34,-1.53
+Kevin McCullar Jr.,2024,Kansas,college,38,41,36,-1.58
+PJ Hall,2024,Clemson,college,39,42,37,-1.77
+N'Faly Dante,2024,Oregon,college,61,43,67,-1.79
+Ajay Mitchell,2024,UC Santa Barbara,college,37,44,35,-1.81
+Juan Nunez,2024,G-BBL,INTL,45,45,43,-1.91
+Enrique Freeman,2024,Akron,college,40,46,38,-1.97
+Bronny James,2024,USC,college,55,47,53,-2.08
+Bobi Klintman,2024,AUS NBL,INTL,35,48,33,-2.12
+Oso Ighodaro,2024,Marquette,college,54,49,52,-2.16
+Isaiah Crawford,2024,Louisiana Tech,college,60,50,58,-2.23
+Jaylin Williams,2024,Auburn,college,61,51,63,-2.31
+Jamarion Sharp,2024,Mississippi,college,61,52,78,-2.37
+Jamal Shead,2024,Houston,college,58,53,56,-2.59
+Josiah-Jordan James,2024,Tennessee,college,61,54,74,-2.63
+Nikola Durišić,2024,Liga ABA,INTL,34,55,32,-2.64
+Riley Minix,2024,Morehead St.,college,61,56,85,-2.68
+Eric Gaines,2024,UAB,college,61,57,76,-2.7
+Reece Beekman,2024,Virginia,college,61,58,75,-2.72
+David Jones,2024,Memphis,college,61,59,77,-2.76
+Pelle Larsson,2024,Arizona,college,56,60,54,-2.81
+Jalen Bridges,2024,Baylor,college,61,61,69,-2.92
+Jesse Edwards,2024,West Virginia,college,61,62,73,-3.01
+Justin Edwards,2024,Kentucky,college,48,63,46,-3.02
+Anton Watson,2024,Gonzaga,college,61,64,66,-3.09
+Armel Traore,2024,Jeep Elite,INTL,61,65,87,-3.19
+Trey Alexander,2024,Creighton,college,61,66,79,-3.22
+Jaylen Wells,2024,Washington St.,college,52,67,50,-3.23
+Keshad Johnson,2024,Arizona,college,57,68,55,-3.31
+Spencer Jones,2024,Stanford,college,61,69,65,-3.35
+Armando Bacot,2024,North Carolina,college,61,70,62,-3.37
+Antonio Reeves,2024,Kentucky,college,50,71,48,-3.39
+Ariel Hukporti,2024,AUS NBL,INTL,61,72,86,-3.45
+Dylan Disu,2024,Texas,college,61,73,70,-3.51
+Malevy Leons,2024,Bradley,college,61,74,80,-3.56
+Yannick Kraag,2024,ACB,INTL,61,75,96,-3.68
+Zyon Pullin,2024,Florida,college,61,76,71,-3.76
+Boogie Ellis,2024,USC,college,61,77,64,-3.87
+Ousmane N'Diaye,2024,ACB,INTL,61,78,92,-3.93
+Quinn Ellis,2024,Lega A,INTL,61,79,93,-3.95
+Ulrich Chomche,2024,BAL - Qual,INTL,49,80,47,-3.96
+Jaedon LeDee,2024,San Diego St.,college,61,81,61,-4.01
+Melvin Ajinca,2024,Jeep Elite,INTL,53,82,51,-4.06
+Mantas Rubštavičius,2024,AUS NBL,INTL,61,83,91,-4.1
+DJ Burns Jr.,2024,N.C. State,college,61,84,59,-4.12
+Marcus Domask,2024,Illinois,college,61,85,68,-4.16
+Bryson Warren,2024,G-League,INTL,61,86,89,-4.26
+Judah Mintz,2024,Syracuse,college,61,87,82,-4.27
+Nae'Qwan Tomlin,2024,Memphis,college,61,88,81,-4.33
+Isaac Jones,2024,Washington St.,college,61,89,84,-4.36
+Trentyn Flowers,2024,AUS NBL,INTL,47,90,45,-4.57
+Taran Armstrong,2024,AUS NBL,INTL,61,91,94,-4.71
+Blake Hinson,2024,Pittsburgh,college,61,92,60,-4.94
+Mark Armstrong,2024,Villanova,college,61,93,83,-4.98
+Tristen Enaruna,2024,DBL,INTL,61,94,95,-6.08
+Babacar Sane,2024,Intercontinental Cup,INTL,61,95,88,-6.33
+London Johnson,2024,Intercontinental Cup,INTL,61,96,90,-6.63
+Cooper Flagg,2025,Duke,college,1,1,1,4.74
+Kon Knueppel,2025,Duke,college,6,2,6,4.47
+Dylan Harper,2025,Rutgers,college,2,3,2,3.8
+Thomas Sorber,2025,Georgetown,college,17,4,17,3.69
+V.J. Edgecombe,2025,Baylor,college,3,5,3,3.3
+Egor Demin,2025,BYU,college,13,6,13,2.64
+Collin Murray-Boyles,2025,South Carolina,college,12,7,12,2.41
+Khaman Maluach,2025,Duke,college,7,8,7,2.13
+Danny Wolf,2025,Michigan,college,18,9,18,2.07
+Jeremiah Fears,2025,Oklahoma,college,5,10,5,1.89
+Carter Bryant,2025,Arizona,college,10,11,10,1.86
+Derik Queen,2025,Maryland,college,9,12,9,1.77
+Kasparas Jakucionis,2025,Illinois,college,16,13,16,1.7
+Nique Clifford,2025,Colorado St.,college,20,14,20,1.65
 Cedric Coward,2025,Eastern Washington,college,15,15,15,1.31
-Ace Bailey,2025,Rutgers,college,4,16,4,1.22
-Noa Essengue,2025,G-BBL,INTL,11,17,11,1.21
-Johni Broome,2025,Auburn,college,43,18,43,1.03
-Rasheer Fleming,2025,Saint Joseph's,college,21,19,21,1.02
-Asa Newell,2025,Georgia,college,22,20,22,0.96
-Joan Beringer,2025,Liga ABA,INTL,14,21,14,0.88
-Tre Johnson,2025,Texas,college,8,22,8,0.61
-Ryan Kalkbrenner,2025,Creighton,college,29,23,29,0.57
-Maxime Raynaud,2025,Stanford,college,26,24,26,0.43
-Jase Richardson,2025,Michigan St.,college,25,25,25,0.41
-Noah Penda,2025,Jeep Elite,INTL,33,26,33,0.32
-Walter Clayton Jr.,2025,Florida,college,24,27,24,0.3
-Liam McNeeley,2025,Connecticut,college,23,28,23,0.06
-Adou Thiero,2025,Arkansas,college,34,29,34,-0.05
-Kam Jones,2025,Marquette,college,40,30,40,-0.08
-Bogoljub Marković,2025,Liga ABA,INTL,37,31,37,-0.2
-Amari Williams,2025,Kentucky,college,47,32,47,-0.46
-Yanic Konan Niederhauser,2025,Penn St.,college,36,33,36,-0.67
-Hansen Yang,2025,CBA,INTL,28,34,28,-0.83
-Nolan Traore,2025,Jeep Elite,INTL,19,35,19,-0.89
-Ben Saraf,2025,G-BBL,INTL,32,36,32,-0.93
-Will Riley,2025,Illinois,college,27,37,27,-1.03
-Sion James,2025,Duke,college,38,38,38,-1.29
-Javon Small,2025,West Virginia,college,55,39,55,-1.36
-Hunter Dickinson,2025,Kansas,college,61,40,75,-1.38
-Koby Brea,2025,Kentucky,college,41,41,41,-1.38
-Igor Milicic Jr.,2025,Tennessee,college,61,42,87,-1.5
-Drake Powell,2025,North Carolina,college,31,43,31,-1.56
-Coleman Hawkins,2025,Kansas St.,college,61,44,67,-1.75
-Chaz Lanier,2025,Tennessee,college,35,45,35,-1.76
-Brooks Barnhizer,2025,Northwestern,college,61,46,86,-1.77
-Hugo Gonzalez,2025,ACB,INTL,30,47,30,-1.9
-Tyrese Proctor,2025,Duke,college,39,48,39,-1.96
-Viktor Lakhin,2025,Clemson,college,61,49,66,-1.97
-Chucky Hepburn,2025,Louisville,college,61,50,95,-2.06
-Jacksen Moni,2025,North Dakota St.,college,61,51,61,-2.1
-Micah Peavy,2025,Georgetown,college,45,52,45,-2.1
-Tamar Bates,2025,Missouri,college,53,53,53,-2.21
-John Tonje,2025,Wisconsin,college,49,54,49,-2.23
-Dylan Cardwell,2025,Auburn,college,61,55,80,-2.23
-Alijah Martin,2025,Florida,college,51,56,51,-2.29
-RJ Luis Jr.,2025,St. John's,college,46,57,46,-2.36
-Eric Dixon,2025,Villanova,college,48,58,48,-2.39
-Kobe Sanders,2025,Nevada,college,50,59,50,-2.39
-Alex Toohey,2025,AUS NBL,INTL,44,60,44,-2.42
-Payton Sandfort,2025,Iowa,college,61,61,97,-2.43
-Rocco Zikarsky,2025,AUS NBL,INTL,42,62,42,-2.46
-Ben Gregg,2025,Gonzaga,college,61,63,81,-2.5
-Max Shulga,2025,VCU,college,60,64,60,-2.6
-Andrew Carr,2025,Kentucky,college,61,65,68,-2.71
-Kobe Johnson,2025,UCLA,college,61,66,96,-2.72
-Caleb Love,2025,Arizona,college,54,67,54,-2.79
-Clifford Omoruyi,2025,Alabama,college,61,68,72,-2.82
-Vladislav Goldin,2025,Michigan,college,57,69,57,-2.92
-Will Richard,2025,Florida,college,61,70,92,-2.96
-Kadary Richmond,2025,St. John's,college,61,71,78,-3.0
-Arthur Kaluma,2025,Texas,college,58,72,58,-3.2
-Jonas Aidoo,2025,Arkansas,college,61,73,99,-3.22
-Norchad Omier,2025,Baylor,college,61,74,73,-3.24
-Grant Nelson,2025,Alabama,college,61,75,77,-3.36
-Nolan Hickman,2025,Gonzaga,college,61,76,101,-3.36
-Jamir Watkins,2025,Florida St.,college,52,77,52,-3.37
-Miles Kelly,2025,Auburn,college,61,78,93,-3.45
-Matthew Murrell,2025,Mississippi,college,61,79,71,-3.49
+Noa Essengue,2025,G-BBL,INTL,11,16,11,1.27
+Jase Richardson,2025,Michigan St.,college,25,17,25,1.22
+Ace Bailey,2025,Rutgers,college,4,18,4,1.17
+Rasheer Fleming,2025,Saint Joseph's,college,21,19,21,1.06
+Joan Beringer,2025,Liga ABA,INTL,14,20,14,0.92
+Johni Broome,2025,Auburn,college,43,21,43,0.81
+Asa Newell,2025,Georgia,college,22,22,22,0.75
+Ryan Kalkbrenner,2025,Creighton,college,29,23,29,0.51
+Noah Penda,2025,Jeep Elite,INTL,33,24,33,0.48
+Tre Johnson,2025,Texas,college,8,25,8,0.46
+Maxime Raynaud,2025,Stanford,college,26,26,26,0.21
+Walter Clayton Jr.,2025,Florida,college,24,27,24,0.14
+Liam McNeeley,2025,Connecticut,college,23,28,23,0.03
+Kam Jones,2025,Marquette,college,40,29,40,-0.09
+Adou Thiero,2025,Arkansas,college,34,30,34,-0.23
+Amari Williams,2025,Kentucky,college,47,31,47,-0.24
+Bogoljub Marković,2025,Liga ABA,INTL,37,32,37,-0.53
+Yanic Konan Niederhauser,2025,Penn St.,college,36,33,36,-0.55
+Sion James,2025,Duke,college,38,34,38,-0.61
+Koby Brea,2025,Kentucky,college,41,35,41,-0.66
+Will Riley,2025,Illinois,college,27,36,27,-0.72
+Ben Saraf,2025,G-BBL,INTL,32,37,32,-1.07
+Nolan Traore,2025,Jeep Elite,INTL,19,38,19,-1.2
+Javon Small,2025,West Virginia,college,55,39,55,-1.2
+Igor Milicic Jr.,2025,Tennessee,college,61,40,87,-1.34
+Coleman Hawkins,2025,Kansas St.,college,61,41,67,-1.46
+Drake Powell,2025,North Carolina,college,31,42,31,-1.51
+Hansen Yang,2025,CBA,INTL,28,43,28,-1.51
+Tyrese Proctor,2025,Duke,college,39,44,39,-1.54
+Jacksen Moni,2025,North Dakota St.,college,61,45,61,-1.64
+Brooks Barnhizer,2025,Northwestern,college,61,46,86,-1.64
+Chucky Hepburn,2025,Louisville,college,61,47,95,-1.88
+Payton Sandfort,2025,Iowa,college,61,48,97,-1.89
+Hugo Gonzalez,2025,ACB,INTL,30,49,30,-1.89
+Chaz Lanier,2025,Tennessee,college,35,50,35,-1.92
+Viktor Lakhin,2025,Clemson,college,61,51,66,-1.95
+Max Shulga,2025,VCU,college,60,52,60,-2.01
+Micah Peavy,2025,Georgetown,college,45,53,45,-2.02
+Hunter Dickinson,2025,Kansas,college,61,54,75,-2.02
+Kobe Johnson,2025,UCLA,college,61,55,96,-2.05
+Ben Gregg,2025,Gonzaga,college,61,56,81,-2.06
+Kobe Sanders,2025,Nevada,college,50,57,50,-2.08
+Dylan Cardwell,2025,Auburn,college,61,58,80,-2.31
+Eric Dixon,2025,Villanova,college,48,59,48,-2.32
+Alijah Martin,2025,Florida,college,51,60,51,-2.33
+Tamar Bates,2025,Missouri,college,53,61,53,-2.38
+RJ Luis Jr.,2025,St. John's,college,46,62,46,-2.39
+John Tonje,2025,Wisconsin,college,49,63,49,-2.41
+Alex Toohey,2025,AUS NBL,INTL,44,64,44,-2.45
+Rocco Zikarsky,2025,AUS NBL,INTL,42,65,42,-2.59
+Andrew Carr,2025,Kentucky,college,61,66,68,-2.61
+Nolan Hickman,2025,Gonzaga,college,61,67,101,-2.68
+Clifford Omoruyi,2025,Alabama,college,61,68,72,-2.68
+Caleb Love,2025,Arizona,college,54,69,54,-2.69
+Kadary Richmond,2025,St. John's,college,61,70,78,-2.87
+Vladislav Goldin,2025,Michigan,college,57,71,57,-2.96
+Will Richard,2025,Florida,college,61,72,92,-3.0
+Matthew Murrell,2025,Mississippi,college,61,73,71,-3.03
+Steve Settle,2025,Temple,college,61,74,65,-3.13
+Arthur Kaluma,2025,Texas,college,58,75,58,-3.29
+Norchad Omier,2025,Baylor,college,61,76,73,-3.29
+Grant Nelson,2025,Alabama,college,61,77,77,-3.33
+Jamir Watkins,2025,Florida St.,college,52,78,52,-3.37
+Jonas Aidoo,2025,Arkansas,college,61,79,99,-3.43
 Julian Reese,2025,Maryland,college,61,80,84,-3.5
-Jaxson Robinson,2025,Kentucky,college,61,81,69,-3.56
-Steve Settle,2025,Temple,college,61,82,65,-3.63
-Jahmai Mashack,2025,Tennessee,college,61,83,90,-3.65
-Wooga Poplar,2025,Villanova,college,61,84,100,-3.73
-Mohamed Diawara,2025,Jeep Elite,INTL,59,85,59,-3.74
-Brice Williams,2025,Nebraska,college,61,86,63,-3.75
-Saint Thomas,2025,USC,college,61,87,91,-3.75
-Adama Bal,2025,Santa Clara,college,61,88,82,-3.8
-Johnell Davis,2025,Arkansas,college,61,89,76,-3.82
-Eli Ndiaye,2025,ACB,INTL,61,90,103,-3.84
-RJ Davis,2025,North Carolina,college,61,91,79,-3.84
-Mark Sears,2025,Alabama,college,61,92,70,-3.88
-Izan Almansa,2025,AUS NBL,INTL,61,93,104,-3.96
-Dajuan Harris Jr.,2025,Kansas,college,61,94,64,-3.96
-John Poulakidas,2025,Yale,college,61,95,88,-4.01
-Matthew Cleveland,2025,Miami FL,college,61,96,98,-4.03
-Chase Hunter,2025,Clemson,college,61,97,62,-4.04
-Lachlan Olbrich,2025,AUS NBL,INTL,61,98,105,-4.06
-Hunter Sallis,2025,Wake Forest,college,61,99,102,-4.06
-Zeke Mayo,2025,Kansas,college,61,100,89,-4.11
-Lamont Butler,2025,Kentucky,college,61,101,74,-4.15
-Stefan Todorovic,2025,Pepperdine,college,61,102,83,-4.24
-Jalon Moore,2025,Oklahoma,college,61,103,94,-4.89
-Dink Pate,2025,G-League,INTL,56,104,56,-4.9
-Ryan Nembhard,2025,Gonzaga,college,61,105,85,-5.01
-Saliou Niang,2025,Lega A,INTL,61,106,106,-5.84
-Cameron Boozer,2026,Duke,college,3,1,3,5.87
-Caleb Wilson,2026,North Carolina,college,4,2,4,5.2
-Aday Mara,2026,Michigan,college,11,3,11,4.33
-Yaxel Lendeborg,2026,Michigan,college,17,4,17,3.66
-Allen Graves,2026,Santa Clara,college,22,5,22,3.46
-Mikel Brown Jr.,2026,Louisville,college,6,6,6,2.78
-AJ Dybantsa,2026,BYU,college,1,7,1,2.71
-Kingston Flemings,2026,Houston,college,8,8,8,2.66
-Darryn Peterson,2026,Kansas,college,2,9,2,2.64
-Keaton Wagler,2026,Illinois,college,5,10,5,2.46
-Tarris Reed Jr.,2026,Connecticut,college,25,11,25,2.29
-Hannes Steinbach,2026,Washington,college,13,12,13,2.22
-Morez Johnson Jr.,2026,Michigan,college,12,13,12,2.14
-Nate Ament,2026,Tennessee,college,9,14,9,1.79
-Zuby Ejiofor,2026,St. John's,college,31,15,31,1.72
-Labaron Philon,2026,Alabama,college,16,16,16,1.61
-Jayden Quaintance,2026,Arizona St.,college,29,17,29,1.47
-Brayden Burries,2026,Arizona,college,10,18,10,1.45
-Bennett Stirtz,2026,Iowa,college,15,19,15,1.3
-Darius Acuff Jr.,2026,Arkansas,college,7,20,7,1.21
-Christian Anderson,2026,Texas Tech,college,18,21,18,1.17
-Dailyn Swain,2026,Texas,college,23,22,23,0.88
-Cameron Carr,2026,Baylor,college,14,23,14,0.86
-Ebuka Okorie,2026,Stanford,college,21,24,21,0.84
-Joshua Jefferson,2026,Iowa St.,college,41,25,41,0.65
-Baba Miller,2026,Cincinnati,college,35,26,35,0.52
-Karim Lopez,2026,AUS NBL,INTL,20,27,20,0.34
-Chris Cenac Jr,2026,Houston,college,19,28,19,0.26
-Ugonna Onyenso,2026,Virginia,college,46,29,46,0.08
-Sergio de Larrea,2026,ACB,INTL,30,30,30,0.05
-Henri Veesaar,2026,North Carolina,college,27,31,27,-0.23
-Richie Saunders,2026,BYU,college,39,32,39,-0.37
-Meleek Thomas,2026,Arkansas,college,26,33,26,-0.39
-Koa Peat,2026,Arizona,college,24,34,24,-0.5
-Isaiah Evans,2026,Duke,college,28,35,28,-0.51
-Trevon Brazile,2026,Arkansas,college,36,36,36,-0.55
-Izaiyah Nelson,2026,South Florida,college,44,37,44,-0.63
-Alex Karaban,2026,Connecticut,college,33,38,33,-0.65
-Ryan Conwell,2026,Louisville,college,34,39,34,-0.75
-Trey Kaufman-Renn,2026,Purdue,college,43,40,43,-0.91
-Jack Kayil,2026,G-BBL,INTL,32,41,32,-0.96
-Ja'Kobi Gillespie,2026,Tennessee,college,40,42,40,-1.24
-Dillon Mitchell,2026,St. John's,college,42,43,42,-1.34
-Bruce Thornton,2026,Ohio St.,college,51,44,51,-1.43
-Rafael Castro,2026,George Washington,college,61,45,67,-1.65
-Maliq Brown,2026,Duke,college,59,46,59,-1.78
-Nate Bittle,2026,Oregon,college,61,47,69,-1.78
-Quadir Copeland,2026,N.C. State,college,55,48,55,-2.03
-Oscar Cluff,2026,Purdue,college,61,49,95,-2.11
-Jaden Bradley,2026,Arizona,college,37,50,37,-2.21
-Aaron Nkrumah,2026,Tennessee St.,college,49,51,49,-2.24
-Tyler Bilodeau,2026,UCLA,college,38,52,38,-2.24
-Vesvolod Ishchenko,2026,VTB United,INTL,47,53,47,-2.26
-Jaxon Kohler,2026,Michigan St.,college,61,54,89,-2.28
-Tucker DeVries,2026,Indiana,college,61,55,68,-2.51
-Otega Oweh,2026,Kentucky,college,48,56,48,-2.53
-Keyshawn Hall,2026,Auburn,college,50,57,50,-2.56
-Lamar Wilkerson,2026,Indiana,college,61,58,82,-2.56
-Malique Lewis,2026,AUS NBL,INTL,61,59,98,-2.58
-Tamin Lipsey,2026,Iowa St.,college,61,60,87,-2.6
-Emanuel Sharp,2026,Houston,college,53,61,53,-2.73
-Xaivian Lee,2026,Florida,college,61,62,79,-2.79
-Tyler Nickel,2026,Vanderbilt,college,60,63,60,-2.87
-Braden Smith,2026,Purdue,college,58,64,58,-2.9
-Tre Donaldson,2026,Miami FL,college,61,65,72,-2.92
-Nick Boyd,2026,Wisconsin,college,61,66,64,-3.01
-Graham Ike,2026,Gonzaga,college,61,67,62,-3.03
-Malik Reneau,2026,Miami FL,college,61,68,86,-3.04
-Nick Martinelli,2026,Northwestern,college,45,69,45,-3.04
-Tre'Von Spillers,2026,Wake Forest,college,61,70,94,-3.11
-Fletcher Loyer,2026,Purdue,college,54,71,54,-3.34
-Peter Suder,2026,Miami OH,college,61,72,85,-3.34
-Darrion Williams,2026,N.C. State,college,61,73,71,-3.46
-Kylan Boswell,2026,Illinois,college,61,74,81,-3.49
-Jaden Henley,2026,Grand Canyon,college,61,75,73,-3.5
-Bryce Hopkins,2026,St. John's,college,61,76,70,-3.54
-Chase Ross,2026,Marquette,college,61,77,92,-3.54
-Keba Keita,2026,BYU,college,61,78,90,-3.59
-Milos Uzan,2026,Houston,college,57,79,57,-3.64
-Melvin Council Jr.,2026,Kansas,college,61,80,96,-3.67
-Ben Henshall,2026,AUS NBL,INTL,61,81,97,-3.69
-Tobe Awaka,2026,Arizona,college,61,82,93,-3.72
-Robert McCray V,2026,Florida St.,college,61,83,65,-3.74
-Mark Mitchell,2026,Missouri,college,61,84,77,-3.76
-Cade Tyson,2026,Minnesota,college,61,85,83,-3.82
-Tobi Lawal,2026,Virginia Tech,college,61,86,84,-3.87
-Jaron Pierre Jr.,2026,SMU,college,61,87,63,-3.88
-Isaac McKneely,2026,Louisville,college,61,88,91,-3.97
-Donovan Dent,2026,UCLA,college,61,89,76,-4.04
-Tre White,2026,Kansas,college,61,90,88,-4.04
-AJ Storr,2026,Mississippi,college,61,91,80,-4.19
-Felix Okpara,2026,Tennessee,college,52,92,52,-4.33
-Malik Dia,2026,Mississippi,college,61,93,78,-4.37
-Seth Trimble,2026,North Carolina,college,61,94,75,-4.39
-Kowacie Reeves Jr.,2026,Georgia Tech,college,61,95,66,-4.45
-Tyon Grant-Foster,2026,Gonzaga,college,61,96,61,-4.47
-Roddy Gayle Jr.,2026,Michigan,college,61,97,74,-4.93
-Noam Yaacov,2026,BNXT,INTL,56,98,56,-5.1
+Jahmai Mashack,2025,Tennessee,college,61,81,90,-3.52
+Miles Kelly,2025,Auburn,college,61,82,93,-3.53
+RJ Davis,2025,North Carolina,college,61,83,79,-3.55
+Adama Bal,2025,Santa Clara,college,61,84,82,-3.57
+Mark Sears,2025,Alabama,college,61,85,70,-3.62
+Jaxson Robinson,2025,Kentucky,college,61,86,69,-3.67
+Saint Thomas,2025,USC,college,61,87,91,-3.68
+Izan Almansa,2025,AUS NBL,INTL,61,88,104,-3.72
+Brice Williams,2025,Nebraska,college,61,89,63,-3.78
+Lamont Butler,2025,Kentucky,college,61,90,74,-3.8
+Mohamed Diawara,2025,Jeep Elite,INTL,59,91,59,-3.81
+Johnell Davis,2025,Arkansas,college,61,92,76,-3.83
+Dajuan Harris Jr.,2025,Kansas,college,61,93,64,-3.88
+Wooga Poplar,2025,Villanova,college,61,94,100,-3.9
+Eli Ndiaye,2025,ACB,INTL,61,95,103,-3.97
+Lachlan Olbrich,2025,AUS NBL,INTL,61,96,105,-3.97
+Matthew Cleveland,2025,Miami FL,college,61,97,98,-3.98
+John Poulakidas,2025,Yale,college,61,98,88,-4.0
+Chase Hunter,2025,Clemson,college,61,99,62,-4.19
+Zeke Mayo,2025,Kansas,college,61,100,89,-4.19
+Hunter Sallis,2025,Wake Forest,college,61,101,102,-4.2
+Stefan Todorovic,2025,Pepperdine,college,61,102,83,-4.25
+Ryan Nembhard,2025,Gonzaga,college,61,103,85,-4.78
+Dink Pate,2025,G-League,INTL,56,104,56,-4.86
+Jalon Moore,2025,Oklahoma,college,61,105,94,-5.04
+Saliou Niang,2025,Lega A,INTL,61,106,106,-5.82
+Cameron Boozer,2026,Duke,college,3,1,3,5.85
+Caleb Wilson,2026,North Carolina,college,4,2,4,5.34
+Aday Mara,2026,Michigan,college,11,3,11,4.51
+Allen Graves,2026,Santa Clara,college,22,4,22,4.04
+Yaxel Lendeborg,2026,Michigan,college,17,5,17,3.77
+Keaton Wagler,2026,Illinois,college,5,6,5,3.52
+Kingston Flemings,2026,Houston,college,8,7,8,3.01
+Mikel Brown Jr.,2026,Louisville,college,6,8,6,2.64
+AJ Dybantsa,2026,BYU,college,1,9,1,2.36
+Darryn Peterson,2026,Kansas,college,2,10,2,2.28
+Tarris Reed Jr.,2026,Connecticut,college,25,11,25,2.1
+Hannes Steinbach,2026,Washington,college,13,12,13,2.07
+Christian Anderson,2026,Texas Tech,college,18,13,18,1.99
+Morez Johnson Jr.,2026,Michigan,college,12,14,12,1.96
+Bennett Stirtz,2026,Iowa,college,15,15,15,1.7
+Zuby Ejiofor,2026,St. John's,college,31,16,31,1.67
+Nate Ament,2026,Tennessee,college,9,17,9,1.65
+Labaron Philon,2026,Alabama,college,16,18,16,1.61
+Darius Acuff Jr.,2026,Arkansas,college,7,19,7,1.6
+Brayden Burries,2026,Arizona,college,10,20,10,1.51
+Ebuka Okorie,2026,Stanford,college,21,21,21,1.19
+Cameron Carr,2026,Baylor,college,14,22,14,0.82
+Jayden Quaintance,2026,Arizona St.,college,29,23,29,0.81
+Dailyn Swain,2026,Texas,college,23,24,23,0.8
+Baba Miller,2026,Cincinnati,college,35,25,35,0.7
+Meleek Thomas,2026,Arkansas,college,26,26,26,0.61
+Karim Lopez,2026,AUS NBL,INTL,20,27,20,0.38
+Joshua Jefferson,2026,Iowa St.,college,41,28,41,0.37
+Ugonna Onyenso,2026,Virginia,college,46,29,46,0.2
+Chris Cenac Jr,2026,Houston,college,19,30,19,0.17
+Sergio de Larrea,2026,ACB,INTL,30,31,30,0.13
+Koa Peat,2026,Arizona,college,24,32,24,-0.15
+Henri Veesaar,2026,North Carolina,college,27,33,27,-0.2
+Trevon Brazile,2026,Arkansas,college,36,34,36,-0.24
+Alex Karaban,2026,Connecticut,college,33,35,33,-0.34
+Richie Saunders,2026,BYU,college,39,36,39,-0.54
+Isaiah Evans,2026,Duke,college,28,37,28,-0.72
+Ja'Kobi Gillespie,2026,Tennessee,college,40,38,40,-0.82
+Trey Kaufman-Renn,2026,Purdue,college,43,39,43,-0.85
+Jack Kayil,2026,G-BBL,INTL,32,40,32,-0.89
+Ryan Conwell,2026,Louisville,college,34,41,34,-0.91
+Izaiyah Nelson,2026,South Florida,college,44,42,44,-0.98
+Bruce Thornton,2026,Ohio St.,college,51,43,51,-1.22
+Dillon Mitchell,2026,St. John's,college,42,44,42,-1.44
+Maliq Brown,2026,Duke,college,59,45,59,-1.52
+Jaden Bradley,2026,Arizona,college,37,46,37,-1.63
+Nate Bittle,2026,Oregon,college,61,47,69,-1.75
+Rafael Castro,2026,George Washington,college,61,48,67,-1.82
+Quadir Copeland,2026,N.C. State,college,55,49,55,-1.88
+Oscar Cluff,2026,Purdue,college,61,50,95,-2.03
+Xaivian Lee,2026,Florida,college,61,51,79,-2.06
+Tucker DeVries,2026,Indiana,college,61,52,68,-2.14
+Tyler Bilodeau,2026,UCLA,college,38,53,38,-2.22
+Malique Lewis,2026,AUS NBL,INTL,61,54,98,-2.24
+Aaron Nkrumah,2026,Tennessee St.,college,49,55,49,-2.26
+Vesvolod Ishchenko,2026,VTB United,INTL,47,56,47,-2.3
+Braden Smith,2026,Purdue,college,58,57,58,-2.33
+Jaxon Kohler,2026,Michigan St.,college,61,58,89,-2.34
+Tre Donaldson,2026,Miami FL,college,61,59,72,-2.5
+Graham Ike,2026,Gonzaga,college,61,60,62,-2.56
+Tamin Lipsey,2026,Iowa St.,college,61,61,87,-2.57
+Otega Oweh,2026,Kentucky,college,48,62,48,-2.61
+Nick Martinelli,2026,Northwestern,college,45,63,45,-2.67
+Keyshawn Hall,2026,Auburn,college,50,64,50,-2.73
+Lamar Wilkerson,2026,Indiana,college,61,65,82,-2.77
+Peter Suder,2026,Miami OH,college,61,66,85,-2.8
+Emanuel Sharp,2026,Houston,college,53,67,53,-2.84
+Nick Boyd,2026,Wisconsin,college,61,68,64,-2.86
+Fletcher Loyer,2026,Purdue,college,54,69,54,-2.88
+Kylan Boswell,2026,Illinois,college,61,70,81,-2.9
+Tre'Von Spillers,2026,Wake Forest,college,61,71,94,-2.94
+Tyler Nickel,2026,Vanderbilt,college,60,72,60,-2.98
+Milos Uzan,2026,Houston,college,57,73,57,-3.36
+Malik Reneau,2026,Miami FL,college,61,74,86,-3.38
+Melvin Council Jr.,2026,Kansas,college,61,75,96,-3.39
+Bryce Hopkins,2026,St. John's,college,61,76,70,-3.46
+Darrion Williams,2026,N.C. State,college,61,77,71,-3.5
+Chase Ross,2026,Marquette,college,61,78,92,-3.61
+Ben Henshall,2026,AUS NBL,INTL,61,79,97,-3.63
+Tobe Awaka,2026,Arizona,college,61,80,93,-3.63
+Jaden Henley,2026,Grand Canyon,college,61,81,73,-3.64
+Keba Keita,2026,BYU,college,61,82,90,-3.7
+Mark Mitchell,2026,Missouri,college,61,83,77,-3.74
+Cade Tyson,2026,Minnesota,college,61,84,83,-3.82
+Robert McCray V,2026,Florida St.,college,61,85,65,-3.83
+Tobi Lawal,2026,Virginia Tech,college,61,86,84,-3.9
+Seth Trimble,2026,North Carolina,college,61,87,75,-3.95
+Isaac McKneely,2026,Louisville,college,61,88,91,-3.96
+Felix Okpara,2026,Tennessee,college,52,89,52,-3.98
+Jaron Pierre Jr.,2026,SMU,college,61,90,63,-4.03
+Tre White,2026,Kansas,college,61,91,88,-4.09
+Tyon Grant-Foster,2026,Gonzaga,college,61,92,61,-4.25
+Donovan Dent,2026,UCLA,college,61,93,76,-4.26
+AJ Storr,2026,Mississippi,college,61,94,80,-4.36
+Malik Dia,2026,Mississippi,college,61,95,78,-4.46
+Kowacie Reeves Jr.,2026,Georgia Tech,college,61,96,66,-4.62
+Noam Yaacov,2026,BNXT,INTL,56,97,56,-4.83
+Roddy Gayle Jr.,2026,Michigan,college,61,98,74,-5.04
