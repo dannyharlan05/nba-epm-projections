@@ -17,11 +17,9 @@
   "ASTXUsage_rel",
   "DRB_per_rel",
   "projected_pick",
-  "age",
-  "3par_rel"
+  "age"
  ],
  "size_rel": {
-  "usgast_rel": "Usg/Ast",
   "blk_per_rel": "blk_per",
   "AST_per_rel": "AST_per",
   "FT_per_rel": "FT_per",
@@ -36,15 +34,9 @@
   "WEIGHT_rel": "WEIGHT",
   "2PTXUsage_rel": "2PTXUsage",
   "ASTXUsage_rel": "ASTXUsage",
-  "DRB_per_rel": "DRB_per",
-  "3par_rel": "3par"
+  "DRB_per_rel": "DRB_per"
  },
  "size_med": {
-  "usgast_rel": {
-   "big": 2.707317073170732,
-   "guard": 1.2031322237632915,
-   "wing": 2.0165289256198347
-  },
   "blk_per_rel": {
    "big": 5.9,
    "guard": 0.9,
@@ -119,11 +111,6 @@
    "big": 21.0,
    "guard": 11.5,
    "wing": 17.6
-  },
-  "3par_rel": {
-   "big": 0.04868913857677903,
-   "guard": 0.3934002820682741,
-   "wing": 0.31851851851851853
   }
  },
  "position_mask": {},
@@ -160,11 +147,6 @@
    "median": 0.742,
    "lo": 0.44043,
    "hi": 0.8951399999999999
-  },
-  "3par": {
-   "median": 0.3018105013848984,
-   "lo": 0.0,
-   "hi": 0.6322554009902129
   },
   "AST_per": {
    "median": 13.0,
@@ -221,19 +203,5 @@
    "lo": 0.0,
    "hi": 1.0
   }
- },
- "unmapped_penalty": 3.0,
- "train_years": [
-  2010,
-  2011,
-  2012,
-  2013,
-  2014,
-  2015,
-  2016,
-  2017,
-  2018,
-  2019,
-  2020
- ]
+ }
 }

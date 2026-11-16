@@ -1,7 +1,6 @@
-"""Draft Rankings page: predicted peak NBA EPM for draft classes the model never trained on.
+"""Draft Rankings page: predicted peak NBA EPM for classes the model never trained on.
 
-Reads artifacts/draft_rankings.csv, written by the RANKINGS PAGE cell of Darko_Draft.ipynb
-(re-run that cell after a refit, then commit the CSV).
+Everything in artifacts/draft_* is written by the last cell of Darko_Draft.ipynb.
 """
 import json
 import os
@@ -41,7 +40,7 @@ def load():
 st.title("Draft Rankings")
 
 if not os.path.exists(CSV):
-    st.error("artifacts/draft_rankings.csv not found. Run the rankings cell in Darko_Draft.ipynb.")
+    st.error("artifacts/draft_rankings.csv not found. Run the last cell of Darko_Draft.ipynb.")
     st.stop()
 
 df, meta = load()
@@ -63,7 +62,7 @@ st.info(
 
 years = sorted(df["year"].unique(), reverse=True)
 c1, c2, c3 = st.columns([2, 2, 3])
-year = c1.selectbox("Draft class", [int(y) for y in years] + ["All"])   # opens on the newest class
+year = c1.selectbox("Draft class", [int(y) for y in years] + ["All"])
 kind = c2.segmented_control("Type", ["All", "College", "International"], default="All")
 query = c3.text_input("Search player or school", placeholder="e.g. Boozer, Duke")
 
@@ -107,18 +106,13 @@ st.dataframe(
 st.caption(f"{len(out)} players. Board is limited to players on the mock board (pick 61 or better).")
 
 
-# =========================================================
-# BUILD A PROSPECT -- type in raw stats, get the model's predicted peak EPM.
-# Only raw inputs are asked for; interactions (ORtg x usage, ...), stocks, Usg/Ast and the
-# size-relative versions are rebuilt from them in draft_model.py, the same way the notebook does.
-# =========================================================
+# Build a prospect: raw stats in, predicted peak EPM out (features are rebuilt in draft_model.py)
 st.divider()
 st.subheader("Build a prospect")
 
 _m = load_model()
 if _m is None:
-    st.info("Model not exported yet. Re-run the RANKINGS PAGE cell in Darko_Draft.ipynb; it writes "
-            "artifacts/draft_model.json, draft_xgb.json and draft_inputs.csv.")
+    st.info("Model not exported yet. Run the last cell of Darko_Draft.ipynb.")
     st.stop()
 bundle, booster = _m
 stats = bundle["inputs"]
@@ -132,8 +126,7 @@ LABELS = {
     "ht_inches": "Height (in)", "WEIGHT": "Weight (lb)", "age": "Age (Feb 1 of draft year)",
     "projected_pick": "Mock pick (1-61)",
 }
-# the export lists exactly the raw stats the current FEATURES need -- ask for those and nothing else.
-# power6 is the conference checkbox below; any column without a label here shows under its own name.
+# ask only for the inputs the exported model needs (power6 is the checkbox below)
 LABELS = {c: LABELS.get(c, c) for c in stats if c != "power6"}
 SECTIONS = [
     ("Scoring", ["ORtg", "usg", "twoP_per", "FT_per"]),
@@ -194,7 +187,7 @@ s3.button("Reset", on_click=_fill, help="Back to the 'Start from' values", width
 
 def _box(col, c):
     med = stats[c]["median"]
-    small = abs(med) <= 1.5          # 0-1 scaled stat (e.g. 2P% stored as .52)
+    small = abs(med) <= 1.5          # stored as a fraction (2P% = .52)
     col.number_input(
         LABELS[c], key=f"bp_{c}", value=None, step=0.01 if small else (1.0 if c in ("projected_pick", "WEIGHT") else 0.1),
         format="%.3f" if small else "%.1f",
@@ -220,7 +213,7 @@ raw["grp"] = pos_group(None if _pos == POS[0] else _pos.lower(), raw["ht_inches"
 raw_df = pd.DataFrame([raw])
 pred = float(predict(raw_df, bundle, booster)[0]) - st.session_state.get("bp_penalty", 0.0)
 
-# where he'd land in a class: the 'Start from' player's class, else the class picked above
+# rank within the 'Start from' player's class, else the class picked above
 _start = st.session_state.get("bp_start", BLANK)
 cls = int(inputs.iloc[int(_start.rsplit("#", 1)[1])]["year"]) if inputs is not None and _start != BLANK else year
 r1, r2, r3 = st.columns(3)
