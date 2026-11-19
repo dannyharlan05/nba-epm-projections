@@ -113,5 +113,5 @@ Python, XGBoost, scikit-learn, Streamlit, Plotly, pandas.
 ## Draft Rankings page
 
 The site's second tab is a separate draft model (predicted peak NBA EPM for prospects).
-It is built in `Darko_Draft.ipynb` in the parent folder: its rankings cell writes
+It is built in `EPM_Draft.ipynb` in the parent folder: its rankings cell writes
 `artifacts/draft_rankings.csv` and `artifacts/draft_meta.json`. Commit and push those to update the page.

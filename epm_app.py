@@ -184,9 +184,7 @@ if SHOW_SEASON_SO_FAR and df_now is not None and len(df_now):
 
 st.title("NBA EPM Projections")
 view = st.radio("View", views, horizontal=True,
-                help="Going into the season: projections from last season's full numbers. "
-                     "Ended today: the same models run on this season's numbers so far, "
-                     "as if the season stopped now.") if len(views) > 1 else VIEW_INTO
+                help="Ended today runs the same models on this season's numbers so far.") if len(views) > 1 else VIEW_INTO
 IS_NOW = view != VIEW_INTO
 if IS_NOW:
     df, CUR = df_now, NOW_SEASON
@@ -195,12 +193,11 @@ if IS_NOW:
     has_actual = False          # observed EPM isn't used for the season in progress
     _asof = df["as_of"].max() if "as_of" in df.columns else pd.NaT
     st.caption(f"{season_label(CUR)} so far"
-               + (f" · regular-season games through {pd.Timestamp(_asof):%b %d}" if pd.notna(_asof)
-                  else " · no regular-season games yet (box stats are EPM's own estimates)")
-               + " · predictive EPM only · early-season numbers swing a lot")
+               + (f", regular-season games through {pd.Timestamp(_asof):%b %d}" if pd.notna(_asof)
+                  else ", no regular-season games yet (box stats are EPM's own estimates)")
+               + ". Predictive EPM only, and early-season numbers swing a lot.")
 else:
-    st.caption(f"Multi-year Estimated Plus-Minus forecasts · current season {CUR} · "
-               "time-ordered cross-validation")
+    st.caption(f"EPM projections 1 to 5 years out. Current season: {CUR}.")
 NOW_LABEL = "so far" if IS_NOW else "current"
 
 # ----- projection target toggle (click to switch model; drives every tab) -----
@@ -209,8 +206,7 @@ if has_actual:
         "Projection target",
         ["Predictive EPM (stabilized)", "Observed EPM (raw season)"],
         horizontal=True,
-        help="Predictive EPM is the smoothed, next-day number (easier to project). "
-             "Observed EPM is the raw full-season result (noisier, harder to project).",
+        help="Predictive is the smoothed daily EPM. Observed is the raw season result.",
     )
 else:
     target = "Predictive EPM (stabilized)"
@@ -307,11 +303,11 @@ with tab_player:
     row = current[current["player_name"] == name].iloc[0]
 
     age = f"Age {row['age']:.0f}" if pd.notna(row.get("age")) else ""
-    st.markdown(f"### {name} · {age}")
+    st.markdown(f"### {name}, {age}")
 
     if row.get("status", "played") != "played":
         st.warning(
-            f"Did not play in {season_label(CUR)} — every projection below assumes he "
+            f"Did not play in {season_label(CUR)}. Every projection below assumes he "
             + ("returns. Predictive EPM is still published for him, so the current value "
                "is a live estimate, not a result."
                if IS_PRED else
@@ -366,7 +362,7 @@ with tab_player:
 
 # ============================================================ Compare
 with tab_compare:
-    picks = st.multiselect("Players (2–4)", NAMES,
+    picks = st.multiselect("Players (2-4)", NAMES,
                            default=[n for n in ["Nikola Jokic", "Victor Wembanyama"] if n in NAMES],
                            max_selections=4)
     if len(picks) < 2:
@@ -416,7 +412,7 @@ with tab_board:
     b = b.sort_values(pcol, ascending=False, na_position="last").reset_index(drop=True)
     b.insert(0, "Rank", b.index + 1)
     b["_player"] = b["player_name"].where(
-        b["status"].eq("played"), b["player_name"] + "  · DNP")
+        b["status"].eq("played"), b["player_name"] + " (DNP)")
     info = []
     if "years_in_league" in b.columns:
         b["_draft"] = np.where(b["draft_year"].notna(),
@@ -428,10 +424,10 @@ with tab_board:
                    + ["EPM now", f"Proj {h}y", "Change"])
 
     n_dnp = int(b["status"].ne("played").sum())
-    st.caption(f"{len(out)} players · projections smoothed across horizons (see Methodology)"
-               " · blank Change = projected below -2"
-               + (f" · DNP = did not play in {season_label(CUR)} ({n_dnp} players), "
-                  f"projection assumes a return" if n_dnp else ""))
+    st.caption(f"{len(out)} players. Projections are smoothed across horizons (see Methodology). "
+               "Blank Change = projected below -2."
+               + (f" DNP = did not play in {season_label(CUR)} ({n_dnp} players), "
+                  f"projection assumes a return." if n_dnp else ""))
     st.dataframe(
         out, hide_index=True, width="stretch", height=640,
         column_config={
@@ -514,10 +510,10 @@ with tab_back:
                        NOW, pcolname(bh), "actual", "miss"]]
             bo.columns = ["Rank", "Player", f"Team ({season_label(S)})", "Age", "Yrs", "Draft", f"EPM {season_label(S)}",
                           f"Proj {season_label(S + bh)}", f"Actual {season_label(S + bh)}", "Miss"]
-            st.caption("Ranked by projection · Miss = actual minus projection (positive = beat it) · "
-                       "blank Actual = didn't play that season"
-                       + (" · 2+ years ahead reads slightly optimistic: the cross-validation let "
-                          "training seasons' later targets overlap the test years" if bh > 1 else ""))
+            st.caption("Ranked by projection. Miss = actual minus projection (positive = beat it). "
+                       "Blank Actual = didn't play that season."
+                       + (" 2+ years ahead runs a bit optimistic since CV training targets "
+                          "overlapped the test years." if bh > 1 else ""))
             fmt = {c: st.column_config.NumberColumn(format="%+.2f") for c in bo.columns[6:]}
             st.dataframe(bo, hide_index=True, width="stretch", height=640,
                          column_config={"Age": st.column_config.NumberColumn(format="%d"),
@@ -553,9 +549,9 @@ with tab_back:
 # ============================================================ Win projections
 if tab_wins is not None:
     with tab_wins:
-        st.caption(f"Preseason win projections for {season_label(wins['season'].max())} · "
-                   f"{wins['wins'].sum():g} total wins · based on the 1-year observed-EPM projections, "
-                   "made before the EPM methodology update")
+        st.caption(f"Preseason win projections for {season_label(wins['season'].max())}, "
+                   f"{wins['wins'].sum():g} total wins. Based on the 1-year observed-EPM projections, "
+                   "made before the EPM methodology update.")
         for col, conf in zip(st.columns(2), ["West", "East"]):
             t = wins[wins["conf"] == conf].sort_values("wins", ascending=False).reset_index(drop=True)
             t.insert(0, "Rank", t.index + 1)
@@ -587,10 +583,10 @@ early in the year it rests on a handful of games, so expect it to move a lot wee
 A model that projects each NBA player's Estimated Plus-Minus (EPM) one to five
 seasons into the future. You can switch the **projection target** in the sidebar:
 
-- **Predictive EPM (stabilized)** — the smoothed, next-day impact estimate. Already
+- **Predictive EPM (stabilized)**: the smoothed, next-day impact estimate. Already
   noise-reduced, so it's the easier, better-behaved thing to project.
-  Out-of-fold MAE by horizon (1–5y): **{pmae}**.
-- **Observed EPM (raw season)** — the actual full-season result. It swings with
+  Out-of-fold MAE by horizon (1-5y): **{pmae}**.
+- **Observed EPM (raw season)**: the actual full-season result. It swings with
   injuries, hot/cold stretches, and role changes, so it's genuinely harder to predict.
   Out-of-fold MAE by horizon: **{amae}**.
 
@@ -615,7 +611,7 @@ on the observed-EPM model.
 
 Each horizon (1y through 5y) is its own model, so left alone a player's path can go
 down and then come back up purely from model-to-model noise. Before display, every
-current path (current EPM → 1y … 5y) is replaced by its closest **single-peaked** fit:
+current path (current EPM, then 1y to 5y) is replaced by its closest **single-peaked** fit:
 it can rise to a peak and then decline, but it never declines and then recovers. Current
 EPM is a real result, so it is never changed; only the projections move.
 

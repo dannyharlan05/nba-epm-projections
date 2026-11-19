@@ -25,7 +25,6 @@ nba_id,player_name,team,data_name
 1643416,Chris Cenac Jr.,BOS,
 202331,Paul George,BOS,Paul George
 1641759,Dillon Mitchell,BOS,
-1642269,Devin Carter,BOS,Devin Carter
 1641775,Jordan Walsh,BOS,Jordan Walsh
 1642864,Hugo González,BOS,Hugo González
 1630573,Sam Hauser,BOS,Sam Hauser
@@ -34,6 +33,7 @@ nba_id,player_name,team,data_name
 1631248,Baylor Scheierman,BOS,Baylor Scheierman
 1642873,Amari Williams,BOS,Amari Williams
 1629674,Neemias Queta,BOS,Neemias Queta
+1642269,Devin Carter,BOS,Devin Carter
 201935,James Harden,CLE,James Harden
 1628418,Thomas Bryant,CLE,Thomas Bryant
 1630596,Evan Mobley,CLE,Evan Mobley
@@ -44,12 +44,12 @@ nba_id,player_name,team,data_name
 1643509,Meleek Thomas,CLE,
 1631215,Khalifa Diop,CLE,
 1642281,Jaylon Tyson,CLE,Jaylon Tyson
-1642400,Tristan Enaruna,CLE,Tristan Enaruna
 1642878,Tyrese Proctor,CLE,Tyrese Proctor
 1628386,Jarrett Allen,CLE,Jarrett Allen
 1626209,Mario Hezonja,CLE,Mario Hezonja
 1641772,Nae'Qwan Tomlin,CLE,Nae'Qwan Tomlin
 1628378,Donovan Mitchell,CLE,Donovan Mitchell
+1641807,Norchad Omier,CLE,
 1643640,"Ernest Udeh, Jr.",CLE,
 1642847,Jeremiah Fears,NOP,Jeremiah Fears
 1629627,Zion Williamson,NOP,Zion Williamson
@@ -87,9 +87,9 @@ nba_id,player_name,team,data_name
 1630171,Isaac Okoro,CHI,Isaac Okoro
 1630172,Patrick Williams,CHI,Patrick Williams
 1631108,Max Christie,DAL,Max Christie
+1642383,Walter Clayton Jr.,DAL,Walter Clayton Jr.
 1641726,Dereck Lively II,DAL,Dereck Lively II
 1630230,Naji Marshall,DAL,Naji Marshall
-1642383,Walter Clayton Jr.,DAL,Walter Clayton Jr.
 1631204,Marcus Sasser,DAL,Marcus Sasser
 1641724,Jett Howard,DAL,Jett Howard
 1642258,Zaccharie Risacher,DAL,Zaccharie Risacher
@@ -145,6 +145,7 @@ nba_id,player_name,team,data_name
 1627832,Fred VanVleet,HOU,Fred VanVleet
 201142,Kevin Durant,HOU,Kevin Durant
 1630256,Jae'Sean Tate,HOU,Jae'Sean Tate
+1631131,Oscar Tshiebwe,HOU,Oscar Tshiebwe
 1631095,Jabari Smith Jr.,HOU,Jabari Smith Jr.
 203500,Steven Adams,HOU,Steven Adams
 1642263,Reed Sheppard,HOU,Reed Sheppard
@@ -154,7 +155,6 @@ nba_id,player_name,team,data_name
 1630578,Alperen Sengun,HOU,Alperen Sengun
 203991,Clint Capela,HOU,Clint Capela
 203992,Bogdan Bogdanović,HOU,Bogdan Bogdanovic
-1631131,Oscar Tshiebwe,HOU,Oscar Tshiebwe
 203935,Marcus Smart,HOU,Marcus Smart
 1643413,Keaton Wagler,LAC,
 203078,Bradley Beal,LAC,Bradley Beal
@@ -168,7 +168,6 @@ nba_id,player_name,team,data_name
 1643568,Nick Martinelli,LAC,
 1642949,Yanic Konan Niederhäuser,LAC,Yanic Konan Niederhäuser
 1642394,Baba Miller,LAC,
-1631104,Blake Wesley,LAC,Blake Wesley
 1629618,Jalen Pickett,LAC,Jalen Pickett
 1641757,Jordan Miller,LAC,Jordan Miller
 1630543,Isaiah Jackson,LAC,Isaiah Jackson
@@ -240,7 +239,6 @@ nba_id,player_name,team,data_name
 1642389,Zyon Pullin,MIN,Zyon Pullin
 1642866,Joan Beringer,MIN,Joan Beringer
 1630228,Jonathan Kuminga,MIN,Jonathan Kuminga
-1642402,Enrique Freeman,MIN,Enrique Freeman
 203497,Rudy Gobert,MIN,Rudy Gobert
 1642912,Isaiah Evans,MIN,
 1626168,Trey Lyles,MIN,Trey Lyles
@@ -265,18 +263,18 @@ nba_id,player_name,team,data_name
 1642879,Ben Saraf,BKN,Ben Saraf
 203083,Andre Drummond,NYK,Andre Drummond
 203903,Jordan Clarkson,NYK,Jordan Clarkson
+1642261,Dalton Knecht,NYK,Dalton Knecht
 1630540,Miles McBride,NYK,Miles McBride
 1628404,Josh Hart,NYK,Josh Hart
-1642261,Dalton Knecht,NYK,Dalton Knecht
 1642359,Pacôme Dadiet,NYK,Pacôme Dadiet
 1630631,Jose Alvarado,NYK,Jose Alvarado
 1628384,OG Anunoby,NYK,OG Anunoby
-1630164,James Wiseman,NYK,James Wiseman
 1628973,Jalen Brunson,NYK,Jalen Brunson
 1642278,Tyler Kolek,NYK,Tyler Kolek
 1643022,Jaden Akins,NYK,
 1628969,Mikal Bridges,NYK,Mikal Bridges
 1626157,Karl-Anthony Towns,NYK,Karl-Anthony Towns
+1630164,James Wiseman,NYK,James Wiseman
 1629013,Landry Shamet,NYK,Landry Shamet
 1642885,Mohamed Diawara,NYK,Mohamed Diawara
 1643589,Tyler Nickel,NYK,
@@ -351,12 +349,12 @@ nba_id,player_name,team,data_name
 203081,Damian Lillard,POR,Damian Lillard
 1630703,Scoot Henderson,POR,Scoot Henderson
 1629630,Ja Morant,POR,Ja Morant
-1642959,Chris Youngblood,POR,Chris Youngblood
+1642910,John Tonje,POR,John Tonje
 201950,Jrue Holiday,POR,Jrue Holiday
 1630166,Deni Avdija,POR,Deni Avdija
-1642910,John Tonje,POR,John Tonje
 1630695,Micah Potter,POR,Micah Potter
 1642382,Branden Carlson,POR,Branden Carlson
+1642959,Chris Youngblood,POR,Chris Youngblood
 1642905,Yang Hansen,POR,Yang Hansen
 1631101,Shaedon Sharpe,POR,Shaedon Sharpe
 1642270,Donovan Clingan,POR,Donovan Clingan
@@ -370,7 +368,6 @@ nba_id,player_name,team,data_name
 1643411,Darius Acuff Jr.,SAC,
 203897,Zach LaVine,SAC,Zach LaVine
 1630173,Precious Achiuwa,SAC,Precious Achiuwa
-1642363,Nique Clifford,SAC,Nique Clifford
 1627734,Domantas Sabonis,SAC,Domantas Sabonis
 1631099,Keegan Murray,SAC,Keegan Murray
 1629631,De'Andre Hunter,SAC,De'Andre Hunter
@@ -409,6 +406,7 @@ nba_id,player_name,team,data_name
 1642892,Bennett Stirtz,OKC,
 1643530,Aday Mara,OKC,
 1642877,Micah Peavy,OKC,Micah Peavy
+1642363,Nique Clifford,OKC,Nique Clifford
 1643717,Josh Dix,OKC,
 1641717,Cason Wallace,OKC,Cason Wallace
 1642964,Brooks Barnhizer,OKC,Brooks Barnhizer
@@ -422,6 +420,7 @@ nba_id,player_name,team,data_name
 1630193,Immanuel Quickley,TOR,Immanuel Quickley
 1643558,Jaden Bradley,TOR,
 1629628,RJ Barrett,TOR,RJ Barrett
+1641755,Kevin McCullar Jr.,TOR,Kevin McCullar Jr.
 1642927,Nate Bittle,TOR,
 203937,Kyle Anderson,TOR,Kyle Anderson
 1642266,Ja'Kobe Walter,TOR,Ja'Kobe Walter
@@ -433,9 +432,9 @@ nba_id,player_name,team,data_name
 1642918,Alijah Martin,TOR,Alijah Martin
 1642419,Jamison Battle,TOR,Jamison Battle
 1631127,Harrison Ingram,UTA,Harrison Ingram
+1641723,Kobe Bufkin,UTA,Kobe Bufkin
 1642271,Kyle Filipowski,UTA,Kyle Filipowski
 1641718,Keyonte George,UTA,Keyonte George
-1641723,Kobe Bufkin,UTA,Kobe Bufkin
 1630182,Josh Green,UTA,Josh Green
 1642268,Isaiah Collier,UTA,Isaiah Collier
 1629004,Svi Mykhailiuk,UTA,Svi Mykhailiuk
@@ -454,11 +453,11 @@ nba_id,player_name,team,data_name
 1630590,Scotty Pippen Jr.,MEM,Scotty Pippen Jr.
 1629660,Ty Jerome,MEM,Ty Jerome
 203924,Jerami Grant,MEM,Jerami Grant
+1643563,Richie Saunders,MEM,
 1642914,Javon Small,MEM,Javon Small
 1641744,Zach Edey,MEM,Zach Edey
 1631200,Kris Murray,MEM,Kris Murray
 1641765,Olivier-Maxence Prosper,MEM,Olivier-Maxence Prosper
-1643721,Carson Cooper,MEM,
 1642942,Jahmai Mashack,MEM,Jahmai Mashack
 1641707,Taylor Hendricks,MEM,Taylor Hendricks
 1642907,Cedric Coward,MEM,Cedric Coward

@@ -1,4 +1,4 @@
-"""Scores a prospect with the draft model exported by Darko_Draft.ipynb (last cell).
+"""Scores a prospect with the draft model exported by EPM_Draft.ipynb (last cell).
 
 The app's form takes raw stats; the engineered and size-relative features are rebuilt here the same
 way the notebook builds them. The notebook re-scores its board through this file after exporting and

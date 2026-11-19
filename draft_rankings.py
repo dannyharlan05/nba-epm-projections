@@ -1,6 +1,6 @@
 """Draft Rankings page: predicted peak NBA EPM for classes the model never trained on.
 
-Everything in artifacts/draft_* is written by the last cell of Darko_Draft.ipynb.
+Everything in artifacts/draft_* is written by the last cell of EPM_Draft.ipynb.
 """
 import json
 import os
@@ -40,7 +40,7 @@ def load():
 st.title("Draft Rankings")
 
 if not os.path.exists(CSV):
-    st.error("artifacts/draft_rankings.csv not found. Run the last cell of Darko_Draft.ipynb.")
+    st.error("artifacts/draft_rankings.csv not found. Run the last cell of EPM_Draft.ipynb.")
     st.stop()
 
 df, meta = load()
@@ -98,7 +98,7 @@ st.dataframe(
     column_config={
         "Pred peak EPM": st.column_config.NumberColumn(format="%+.2f"),
         "vs mock": st.column_config.NumberColumn(
-            format="%+d", help="Mock rank minus model rank within the class. + means the model likes him more than the mock board."),
+            format="%+d", help="Mock rank minus model rank. + = model likes him more than the mock."),
         "Mock pick": st.column_config.NumberColumn(help="61 = on the bubble / unslotted"),
         "Class": st.column_config.NumberColumn(format="%d"),
     },
@@ -112,7 +112,7 @@ st.subheader("Build a prospect")
 
 _m = load_model()
 if _m is None:
-    st.info("Model not exported yet. Run the last cell of Darko_Draft.ipynb.")
+    st.info("Model not exported yet. Run the last cell of EPM_Draft.ipynb.")
     st.stop()
 bundle, booster = _m
 stats = bundle["inputs"]
@@ -178,12 +178,10 @@ if inputs is not None:
     opts += [f"{r.player} ({r.year}{', intl' if r.type == 'INTL' else ''})  #{i}" for i, r in _o.iterrows()]
 s1, s2, s3 = st.columns([3, 2, 1])
 s1.selectbox("Start from", opts, key="bp_start", on_change=_fill,
-             format_func=lambda o: o.rsplit("  #", 1)[0],
-             help="Prefill every box with a board player's real inputs, then tweak.")
+             format_func=lambda o: o.rsplit("  #", 1)[0])
 s2.selectbox("Position group", POS, key="bp_pos",
-             help="Sets which group median each stat is compared to. Auto: under 6'7\" guard, "
-                  "under 6'10\" wing, else big (a guard over 6'7\" counts as a wing).")
-s3.button("Reset", on_click=_fill, help="Back to the 'Start from' values", width="stretch")
+             help="Which group's medians the stats are compared to. Auto goes by height.")
+s3.button("Reset", on_click=_fill, width="stretch")
 
 
 def _box(col, c):

@@ -19,7 +19,8 @@
   "projected_pick",
   "age",
   "3par_rel",
-  "Rec Rank_rel"
+  "Rec Rank",
+  "usg_rel"
  ],
  "size_rel": {
   "blk_per_rel": "blk_per",
@@ -38,7 +39,7 @@
   "ASTXUsage_rel": "ASTXUsage",
   "DRB_per_rel": "DRB_per",
   "3par_rel": "3par",
-  "Rec Rank_rel": "Rec Rank"
+  "usg_rel": "usg"
  },
  "size_med": {
   "blk_per_rel": {
@@ -121,10 +122,10 @@
    "guard": 0.3934002820682741,
    "wing": 0.31851851851851853
   },
-  "Rec Rank_rel": {
-   "big": 91.69999999999999,
-   "guard": 89.4,
-   "wing": 91.6
+  "usg_rel": {
+   "big": 23.8,
+   "guard": 25.0,
+   "wing": 24.6
   }
  },
  "position_mask": {},
@@ -217,15 +218,15 @@
    "lo": 1.0,
    "hi": 61.0
   },
+  "Rec Rank": {
+   "median": 87.9,
+   "lo": 0.0,
+   "hi": 100.0
+  },
   "power6": {
    "median": 1.0,
    "lo": 0.0,
    "hi": 1.0
-  },
-  "Rec Rank": {
-   "median": 90.69999999999999,
-   "lo": 14.326,
-   "hi": 100.0
   }
  }
 }

@@ -4,7 +4,7 @@
 
 Each page is its own script and only reads files in artifacts/:
   epm_app.py        -- NBA EPM projections (predictions.parquet etc., built by build_artifacts.py)
-  draft_rankings.py -- draft model board (draft_rankings.csv, written by Darko_Draft.ipynb)
+  draft_rankings.py -- draft model board (draft_rankings.csv, written by EPM_Draft.ipynb)
 """
 import streamlit as st
 
