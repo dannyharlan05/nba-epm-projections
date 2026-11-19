@@ -47,17 +47,9 @@ df, meta = load()
 train = meta.get("train_years")
 st.caption(
     "Predicted peak NBA EPM over a player's first six seasons, for draft classes the model never "
-    "trained on" + (f" (trained on {train[0]}-{train[-1]})." if train else ".")
-)
-
-st.info(
-    "**No athletic testing, by design.** Combine drills (verticals, agility, sprints) are left out "
-    "of the model on purpose. Plenty of top prospects sit out testing, so the data is missing for "
-    "exactly the players who matter most, and filling those gaps in would mostly add noise. Size "
-    "still counts: height and weight are inputs. The trade-off is that athleticism only shows up "
-    "indirectly, through production like blocks, steals and rebounding. A player whose college "
-    "numbers outrun his physical tools may be rated too high, and an elite athlete whose production "
-    "hasn't caught up yet may be rated too low. Weigh the athletic profile on top of the number."
+    "trained on" + (f" (trained on {train[0]}-{train[-1]}). " if train else ". ")
+    + "No combine testing since a lot of top prospects skip it, so athleticism only shows up "
+    "through stats like blocks, steals and rebounding."
 )
 
 years = sorted(df["year"].unique(), reverse=True)
@@ -107,12 +99,11 @@ st.caption(f"{len(out)} players. Board is limited to players on the mock board (
 
 
 # Build a prospect: raw stats in, predicted peak EPM out (features are rebuilt in draft_model.py)
-st.divider()
 st.subheader("Build a prospect")
 
 _m = load_model()
 if _m is None:
-    st.info("Model not exported yet. Run the last cell of EPM_Draft.ipynb.")
+    st.write("Model not exported yet. Run the last cell of EPM_Draft.ipynb.")
     st.stop()
 bundle, booster = _m
 stats = bundle["inputs"]
@@ -128,16 +119,9 @@ LABELS = {
 }
 # ask only for the inputs the exported model needs (power6 is the checkbox below)
 LABELS = {c: LABELS.get(c, c) for c in stats if c != "power6"}
-SECTIONS = [
-    ("Scoring", ["ORtg", "usg", "twoP_per", "FT_per"]),
-    ("Shooting profile and playmaking", ["3par", "AST_per", "TO_per", "ast/tov"]),
-    ("Rebounding and defense", ["ORB_per", "DRB_per", "blk_per", "stl_per"]),
-    ("Size, age and draft slot", ["ht_inches", "WEIGHT", "age", "projected_pick"]),
-    ("Recruiting", ["Rec Rank"]),
-]
-_placed = {c for _, cols in SECTIONS for c in cols}
-_other = [c for c in LABELS if c not in _placed]
-SECTIONS += [("Other inputs", _other[k:k + 4]) for k in range(0, len(_other), 4)]
+ORDER = ["ORtg", "usg", "twoP_per", "FT_per", "3par", "AST_per", "TO_per", "ast/tov",
+         "ORB_per", "DRB_per", "blk_per", "stl_per", "ht_inches", "WEIGHT", "age", "projected_pick", "Rec Rank"]
+ORDER = [c for c in ORDER if c in LABELS] + [c for c in LABELS if c not in ORDER]
 POS = ["Auto (from height)", "Guard", "Wing", "Big"]
 BLANK = "Blank (training medians)"
 
@@ -165,12 +149,7 @@ def _fill():
 if "bp_ORtg" not in st.session_state:
     _fill()
 
-st.caption(
-    "Enter raw college stats (same units as Barttorvik). The model's interaction terms, like "
-    "ORtg x usage, 2P% x usage and assist% x usage, plus stocks and usage per assist, are computed "
-    "from these, and every stat except age, pick and conference is compared to the median for the "
-    "player's position group. Leave a box empty to treat it as missing."
-)
+st.caption("Raw college stats in Barttorvik units. Leave a box blank if you don't have it.")
 
 opts = [BLANK]
 if inputs is not None:
@@ -194,14 +173,9 @@ def _box(col, c):
     )
 
 
-for title, cols in SECTIONS:
-    cols = [c for c in cols if c in LABELS]
-    if not cols:
-        continue
-    st.markdown(f"**{title}**")
-    cc = st.columns(4)
-    for i, c in enumerate(cols):
-        _box(cc[i], c)
+for k in range(0, len(ORDER), 4):
+    for col, c in zip(st.columns(4), ORDER[k:k + 4]):
+        _box(col, c)
 st.checkbox("High-major conference (ACC, Big Ten, Big 12, SEC, Big East)", key="bp_power6",
             help="Internationals are scored as high-major.")
 
@@ -215,12 +189,11 @@ pred = float(predict(raw_df, bundle, booster)[0]) - st.session_state.get("bp_pen
 # rank within the 'Start from' player's class, else the class picked above
 _start = st.session_state.get("bp_start", BLANK)
 cls = int(inputs.iloc[int(_start.rsplit("#", 1)[1])]["year"]) if inputs is not None and _start != BLANK else year
-r1, r2, r3 = st.columns(3)
-r1.metric("Predicted peak EPM", f"{pred:+.2f}")
-r2.metric("Position group used", raw["grp"].title())
+line = f"Predicted peak EPM: **{pred:+.2f}**, scored as a {raw['grp']}"
 if cls != "All":
     _cl = df[df["year"] == cls]
     _cl = _cl[_cl["player"] != _start.rsplit(" (", 1)[0]] if _start != BLANK else _cl
-    r3.metric(f"Rank in {cls} class", f"{int((_cl['pred_epm'] > pred).sum()) + 1} of {len(_cl) + 1}")
+    line += f", {int((_cl['pred_epm'] > pred).sum()) + 1} of {len(_cl) + 1} in the {cls} class"
 if st.session_state.get("bp_penalty", 0.0):
-    st.caption(f"Includes the -{st.session_state['bp_penalty']:g} unmapped-league penalty this player gets on the board.")
+    line += f" (includes the -{st.session_state['bp_penalty']:g} unmapped-league penalty)"
+st.markdown(line + ".")

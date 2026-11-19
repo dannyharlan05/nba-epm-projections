@@ -306,7 +306,7 @@ with tab_player:
     st.markdown(f"### {name}, {age}")
 
     if row.get("status", "played") != "played":
-        st.warning(
+        st.write(
             f"Did not play in {season_label(CUR)}. Every projection below assumes he "
             + ("returns. Predictive EPM is still published for him, so the current value "
                "is a live estimate, not a result."
@@ -317,18 +317,11 @@ with tab_player:
 
     now_val = row[NOW]
 
-    cols = st.columns(4)
-    cols[0].metric(f"EPM {NOW_LABEL}", f"{now_val:+.2f}" if pd.notna(now_val) else "n/a")
-    for i, h in enumerate([1, 3, 5]):
-        p = row.get(pcolname(h))
-        cols[i + 1].metric(f"{h}-Year ({CUR + h})", f"{p:+.2f}" if pd.notna(p) else "n/a")
-
-    rcols = st.columns(2)
+    fmt = lambda v: f"{v:+.2f}" if pd.notna(v) else "n/a"
     rank = row.get("league_rank")
-    rcols[0].metric("Current EPM rank", f"#{int(rank)}" if pd.notna(rank) else "n/a")
-    p5 = row.get(pcolname(5))
-    five = (p5 - now_val) if (pd.notna(p5) and pd.notna(now_val)) else None
-    rcols[1].metric("5-year change", f"{five:+.2f}" if five is not None else "n/a")
+    proj = ", ".join(f"{CUR + h} {fmt(row.get(pcolname(h)))}" for h in (1, 3, 5))
+    st.markdown(f"EPM {NOW_LABEL}: **{fmt(now_val)}**" + (f" (#{int(rank)} in the league)" if pd.notna(rank) else "")
+                + f". Projected: {proj}.")
 
     yrs, vals = proj_values(row)
     mae = [0.0] + [MAE_BY_H.get(h, 0.0) for h in HORIZONS]
@@ -366,7 +359,7 @@ with tab_compare:
                            default=[n for n in ["Nikola Jokic", "Victor Wembanyama"] if n in NAMES],
                            max_selections=4)
     if len(picks) < 2:
-        st.info("Pick at least two players to compare.")
+        st.write("Pick at least two players to compare.")
     else:
         fig = go.Figure()
         rows = []
@@ -466,7 +459,7 @@ BT_SEASONS = [int(x) for x in _cov[(_cov > 0.9) & (_cov.index < CUR)].index]
 
 with tab_back:
     if IS_NOW or not BT_SEASONS:
-        st.info("The backtest uses the going-into-the-season view.")
+        st.write("The backtest uses the going-into-the-season view.")
     else:
         st.caption("What the model would have said going into each past season. It was built "
                    "afterwards, so this is a backtest, not a record of real-time calls: each season's "
@@ -492,11 +485,10 @@ with tab_back:
             ok = past["actual"].notna()
             mae, base = past.loc[ok, "miss"].abs().mean(), (past.loc[ok, "actual"] - past.loc[ok, NOW]).abs().mean()
 
-            m1, m2, m3, m4 = st.columns(4)
-            m1.metric("Players with a result", f"{int(ok.sum())} / {len(past)}")
-            m2.metric("Model MAE", f"{mae:.2f}" if ok.any() else "n/a")
-            m3.metric("No-change MAE", f"{base:.2f}" if ok.any() else "n/a", help=f"Guessing every player stays at his {season_label(S)} EPM")
-            m4.metric("Within 1 point", f"{(past.loc[ok, 'miss'].abs() <= 1).mean():.0%}" if ok.any() else "n/a")
+            if ok.any():
+                st.markdown(f"Model MAE **{mae:.2f}** vs {base:.2f} for guessing no change from {season_label(S)}. "
+                            f"{(past.loc[ok, 'miss'].abs() <= 1).mean():.0%} within 1 point, "
+                            f"{int(ok.sum())} of {len(past)} players have a result.")
 
             if bsearch:
                 past = past[past["player_name"].str.contains(bsearch, case=False, na=False)]
