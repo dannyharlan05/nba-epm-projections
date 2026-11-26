@@ -1,8 +1,7 @@
 """Streamlit front end for the EPM projection models.
 
 Loads pre-built artifacts (the notebook's export / build_artifacts.py), so it never
-retrains on launch. A sidebar toggle switches the projection target between the
-predictive (stabilized) EPM model and the observed (raw-season) EPM model.
+retrains on launch. Projects observed (raw-season) EPM.
 
     streamlit run app.py   (app.py is the router; this file is the "EPM Projections" page)
 """
@@ -200,17 +199,8 @@ else:
     st.caption(f"EPM projections 1 to 5 years out. Current season: {CUR}.")
 NOW_LABEL = "so far" if IS_NOW else "current"
 
-# ----- projection target toggle (click to switch model; drives every tab) -----
-if has_actual:
-    target = st.radio(
-        "Projection target",
-        ["Predictive EPM (stabilized)", "Observed EPM (raw season)"],
-        horizontal=True,
-        help="Predictive is the smoothed daily EPM. Observed is the raw season result.",
-    )
-else:
-    target = "Predictive EPM (stabilized)"
-IS_PRED = target.startswith("Predictive")
+# observed EPM everywhere, predictive only as a fallback when there's no observed model
+IS_PRED = not has_actual
 NOW = "epm_now" if IS_PRED else "epm_actual_now"
 PP = "pred_epm" if IS_PRED else "pred_epm_actual"
 MAE_BY_H = {int(r["horizon"]): float(r["cv_mae"]) for r in
@@ -557,7 +547,6 @@ if tab_wins is not None:
 
 # ============================================================ Methodology
 with tab_method:
-    pmae = ", ".join(f"{r['cv_mae']:.2f}" for r in meta["cv_mae"])
     amae = ", ".join(f"{r['cv_mae']:.2f}" for r in meta["cv_mae_actual"]) if has_actual else "n/a"
     NOW_SECTION = ("""
 ### If the season ended today
@@ -572,32 +561,22 @@ early in the year it rests on a handful of games, so expect it to move a lot wee
     st.markdown(f"""
 ### What this is
 
-A model that projects each NBA player's Estimated Plus-Minus (EPM) one to five
-seasons into the future. You can switch the **projection target** in the sidebar:
-
-- **Predictive EPM (stabilized)**: the smoothed, next-day impact estimate. Already
-  noise-reduced, so it's the easier, better-behaved thing to project.
-  Out-of-fold MAE by horizon (1-5y): **{pmae}**.
-- **Observed EPM (raw season)**: the actual full-season result. It swings with
-  injuries, hot/cold stretches, and role changes, so it's genuinely harder to predict.
-  Out-of-fold MAE by horizon: **{amae}**.
-
-The MAE gap between the two is the point: a stabilized metric exists precisely because
-the raw season number is noisy, and that noise shows up as a higher, irreducible error
-on the observed-EPM model.
+A model that projects each NBA player's observed Estimated Plus-Minus (EPM), the actual
+full-season number, one to five seasons into the future.
+Out-of-fold MAE by horizon (1-5y): {amae}.
 
 ### How it works
 
 - **Features:** current and lagged EPM, DARKO DPM as a second impact signal, observed
   EPM, per-36 box-score rates, team context, and minutes/impact
-  interactions. Both models share the same feature set.
+  interactions.
 - **Time-ordered validation:** every cross-validation fold trains only on seasons before
   the test seasons, so no future information reaches the feature set. Reported numbers are
   out-of-fold.
 - **Survivorship handling:** players who leave the league are not silently dropped,
   which would bias the model toward survivors. Their future is decayed from their last
   level toward replacement over the horizon (a gradual fade, not an instant cliff), so
-  decline is modeled rather than ignored. The same handling is applied to both targets.
+  decline is modeled rather than ignored.
 
 {NOW_SECTION}### Smoothed trajectories
 
@@ -608,7 +587,7 @@ it can rise to a peak and then decline, but it never declines and then recovers.
 EPM is a real result, so it is never changed; only the projections move.
 
 This is a presentation choice, **not an accuracy gain**. Backtested on the out-of-fold
-history it changes roughly a third (predictive) to two-fifths (observed) of paths but moves MAE by less than 0.005 at every
+history it changes roughly two-fifths of paths but moves MAE by less than 0.005 at every
 horizon, in either direction. The MAE figures above are for the unsmoothed model output.
 A genuine "regress next year, then grow" path for a young player gets flattened.
 
